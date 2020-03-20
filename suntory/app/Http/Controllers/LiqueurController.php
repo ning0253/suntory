@@ -25,7 +25,7 @@ class LiqueurController extends Controller
      */
     public function create()
     {
-        //
+        return View('auth.liqueur.edit');
     }
 
     /**
@@ -36,7 +36,8 @@ class LiqueurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        return $request->all();
     }
 
     /**
