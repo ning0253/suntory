@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0 !important;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+img {
+  width: 100%;
+}
+
+.navbar .logo {
+  margin-right: auto;
+}
+
+.navbar .logo img {
+  width: 155px;
+  height: 25px;
+}
+
+.navbar .menu a {
+  margin: 0 16px;
+}
+
+.main .banner {
+  min-width: 100%;
+  height: 100vh;
+  background-color: black;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main .banner .wine-main1 img {
+  width: 150px;
+  height: 500px;
+}
+
+.main .banner .wine-main2 img {
+  width: 200px;
+  height: 250px;
+}
+
+.main .banner .wine-main3 img {
+  width: 150px;
+  height: 500px;
+}
+/*# sourceMappingURL=style.css.map */
