@@ -222,6 +222,13 @@ ul {
         }
     }
 }
+.carousel-control-next{
+    right:-100px;
+}
+.carousel-control-prev{
+    left:-100px;
+}
+
 
 .sure {
     padding: $sectionToTitle 0;

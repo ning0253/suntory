@@ -171,6 +171,14 @@ ul li {
   font-size: 0.75rem;
 }
 
+.carousel-control-next {
+  right: -100px;
+}
+
+.carousel-control-prev {
+  left: -100px;
+}
+
 .sure {
   padding: 100px 0;
   background-color: black;
