@@ -12,22 +12,29 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|PT+Sans|Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="hover.css">
     <style>
-        .navbar-collapse a {
-            font-family: "Noto Sans TC";
+         @media (max-width:575px) {
+        .nav-link {
+            padding: 0rem 0.5rem;
         }
 
-        @media (max-width:575px) {
-            .navbar {
-                padding: .5rem 1rem;
-            }
+        #nav {
+            padding: 0 30px;
         }
-    </style>
-</head>
+    }
+
+    @media (min-width: 768px) {
+        .navbar-expand-md .navbar-nav .nav-link {
+            padding-right: 0;
+        }
+    }
+</style>
+
 
 <body>
+
     <div class="row " style="display: block;">
         <div class="container" style="padding-right: 0;">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white" style="height: 40px;">
+            <nav id="nav" class="navbar navbar-expand-md navbar-light" style="height: 40px;  padding: 0 15px;">
                 <a class="navbar-brand" href="#">
                     <img src="./img/SUNTORY_logo.svg.png" alt="" style="height: 16px;">
                 </a>
@@ -47,36 +54,38 @@
         </div>
 
 
-        <div class="row " >
+        <div class="row ">
             <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light">
-					<a class="navbar-brand" href="#">
+                <nav id="nav" class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="#">
                         <img src="./img/0000.png" alt="" style="height: 68px;">
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex" >
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
                                 <a class="nav-link hvr-underline-from-center" href="#">白州的故事</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex" >
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
                                 <a class="nav-link hvr-underline-from-center" href="#">白州的態度</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex" >
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
                                 <a class="nav-link hvr-underline-from-center" href="#">國際肯定</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex" >
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
                                 <a class="nav-link hvr-underline-from-center" href="#">白州蒸餾所</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex" >
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
                                 <a class="nav-link hvr-underline-from-center" href="#">白州系列</a>
                             </li>
                         </ul>
                     </div>
-                </nav>		
+                </nav>
             </div>
         </div>
     </div>
