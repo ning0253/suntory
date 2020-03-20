@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 24px;
+}
+
+$big-title:48px;
+$small-title:30px;
+$content:18px;
+$sectionToTitle:100px;
+$TitleToSmalltitle:100px;
+$SmalltitleToContent:50px;
+$ContentToContent:30px;
+
+
+ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar {
+    background-color: #231815;
+    width: 100%;
+    height: 100px;
+
+    .container {
+        .logo {
+            img {
+                padding-left: 15px;
+                max-height: 75px;
+            }
+        }
+
+        .nav {
+            color: white;
+
+            ul {
+                li {
+                    padding: 0 10px;
+                    font-size: 0.75rem;
+                }
+            }
+        }
+    }
+}
+
+.banner {
+    background-image: url("../img/keyvisual.jpg");
+    height: 875px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.story {
+    background-color: #231815;
+    padding: $sectionToTitle 0;
+
+    .container {
+        .story-title {
+            color: white;
+            padding-bottom: $TitleToSmalltitle;
+            padding-left: 15px;
+            font-size: 2rem;
+
+            .small-title {
+                font-size: 1.25rem;
+            }
+
+            .small-content {
+                font-size: 0.75rem;
+            }
+        }
+
+        .story-content {
+            .img-6 {
+                padding-left: 0;
+            }
+
+            #carouselExampleFade {
+                .carousel-control-next {
+                    right: -100px;
+                }
+
+                .carousel-control-prev {
+                    left: -100px;
+                }
+            }
+        }
+    }
+}
+
+.attitude {
+    padding: $sectionToTitle 0;
+    background-color: black;
+    color: white;
+
+    .container {
+        .attitude-title {
+            font-size: 2rem;
+            padding-left: 15px;
+        }
+
+        .attitude-content {
+            padding-top: $TitleToSmalltitle;
+
+            .content-one {
+                padding-bottom: $ContentToContent;
+
+                .col-5 {
+                    .title {
+                        padding-bottom: $SmalltitleToContent;
+                        font-size: 1.25rem;
+                    }
+
+                    .content {
+                        font-size: 0.75rem;
+                    }
+                }
+            }
+
+            .content-two {
+                padding-bottom: $ContentToContent;
+
+                .col-5 {
+                    .title {
+                        padding-bottom: $SmalltitleToContent;
+                        font-size: 1.25rem;
+                    }
+
+                    .content {
+                        font-size: 0.75rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.product {
+    background-color: black;
+    padding: $sectionToTitle 0;
+    color: white;
+
+    .product-title {
+        font-size: 2rem;
+        padding-bottom: $TitleToSmalltitle;
+        padding-left: 15px;
+    }
+
+    .product-content {
+        .img-fluid {
+            min-height: 100%;
+        }
+
+        .content {
+            font-size: 0.75rem;
+            padding-top: 60px;
+
+            .name {
+                font-size: 1.25rem;
+            }
+
+            .pad {
+                padding-bottom: $ContentToContent;
+            }
+        }
+    }
+}
+
+.method {
+    color: white;
+    background-color: black;
+    padding: $sectionToTitle 0;
+
+    .container {
+        .method-title {
+            padding-bottom: $TitleToSmalltitle;
+            padding-left: 15px;
+            font-size: 2rem;
+
+
+        }
+
+        .carousel {
+
+            .title {
+                padding-bottom: $SmalltitleToContent;
+                font-size: 1.25rem;
+            }
+
+            .content {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}
+.carousel-control-next{
+    right:-100px;
+}
+.carousel-control-prev{
+    left:-100px;
+}
+
+
+.sure {
+    padding: $sectionToTitle 0;
+    background-color: black;
+    color: balck;
+
+    .sure-title {
+        color: white;
+        font-size: 2rem;
+    }
+
+    .timeline{
+        .timeline-block{
+            .timeline-content{
+                p{
+                    font-size: 100px;
+                }
+            }
+        }
+    }
+}
+p{
+    font-size: 0.75rem;
+}
+
+.footer{
+    width: 100%;
+    height: 100px;
+    background-color: #231815;
+    color:white;
+}
