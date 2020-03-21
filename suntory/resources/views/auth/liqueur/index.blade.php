@@ -33,7 +33,7 @@
                                 class=" img-fluid">
                             <button class="btn btn-danger" type="button" data-delete="">X</button>
                         </div> --}}
-                        
+
                     </div>
                     <label for="img">banner照片</label>
                     <input type="file" class="form-update" id="img" name="img[]" onchange="uploadFile()" multiple>
@@ -47,8 +47,7 @@
         <thead>
             <tr>
                 <th>img</th>
-                <th>title</th>
-                <th>content</th>
+                <th>name</th>
                 <th>sort</th>
                 <th width='80px'></th>
             </tr>
@@ -57,29 +56,42 @@
             @foreach ($data as $item)
             <tr>
                 <td>
-                    <img src="{{$item->img}}" alt="" srcset="" style="width:50px; height=50px;">
+                    <a href="#look{{$item->id}}" class="btn btn-dark btn-sm" data-toggle="collapse">查看</a>
                 </td>
-                <td>{{$item->title}}</td>
-                <td>
-                    {!!$item->content!!}
-                </td>
+                <td>{{$item->name}}</td>
+
                 <td>
                     {{$item->sort}}
                 </td>
                 <td>
-                    <a href="/home/news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
+                    <a href="#edit{{$item->id}}" class="btn btn-success btn-sm" data-toggle="collapse">修改</a>
                     <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>
 
-                    <form id="news_delete{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST"
+                    <form id="news_delete{{$item->id}}" action="/admin/liqueur/{{$item->id}}" method="POST"
                         style="display: none;">
                         @csrf
+                        @method('DELETE')
                     </form>
                 </td>
+                <div class="collapse" id="edit{{$item->id}}">
+                    <div class="card card-body">
+
+                    </div>
+                </div>
+                <div class="collapse" id="look{{$item->id}}">
+                    <div class="card card-body">
+
+                    </div>
+                </div>
             </tr>
+
             @endforeach
 
         </tbody>
+
+
     </table>
+
 </div>
 
 

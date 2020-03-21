@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Liqueur;
 use App\Liqueurs_img;
+use Dotenv\Regex\Success;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -16,7 +17,7 @@ class LiqueurController extends Controller
      */
     public function index()
     {
-        $data = [];
+        $data = Liqueur::all();
         return View('auth.liqueur.index', compact('data'));
     }
 
@@ -96,7 +97,14 @@ class LiqueurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $imgs = Liqueurs_img::where('liqueurs_id',$id)->get();
+        foreach($imgs as $img){
+            $img->delete();
+        }
+        $data = Liqueur::find($id);
+        $data->delete();
+
+        return redirect('/admin/liqueur');
     }
 
     public function liqueur_upload_img()

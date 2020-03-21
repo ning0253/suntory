@@ -13,7 +13,7 @@ class CreateLiqueursImg extends Migration
      */
     public function up()
     {
-        Schema::create('liqueurs__img', function (Blueprint $table) {
+        Schema::create('liqueurs_img', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('liqueurs_id')->nullable();
             $table->string('img');
