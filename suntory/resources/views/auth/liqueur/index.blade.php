@@ -2,6 +2,14 @@
 @csrf
 
 @section('css')
+<style>
+    .d-flex .col-2 .btn-danger {
+        position: absolute;
+        border-radius: 50%;
+        top: -15px;
+        right: -5px;
+    }
+</style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 @endsection
 
@@ -19,6 +27,14 @@
                     <label for="name">酒類名稱</label>
                     <input type="text" class="form-control" id="name" name="name">酒類名稱 </div>
                 <div class="form-group">
+                    <div id="upload-img" class="d-flex flex-wrap">
+                        {{-- <div class="col-2">
+                            <img src="/upload/img/15847228415fd0b37cd7dbbb00f97ba6ce92bf5add.博愛廠" alt="" srcset=""
+                                class=" img-fluid">
+                            <button class="btn btn-danger" type="button" data-delete="">X</button>
+                        </div> --}}
+                        
+                    </div>
                     <label for="img">banner照片</label>
                     <input type="file" class="form-update" id="img" name="img[]" onchange="uploadFile()" multiple>
                 </div>
@@ -87,20 +103,20 @@
         });
     } );
 
-function show_confirm(id)
-{
-var r=confirm("你要刪除嗎!");
-if (r==true)
-  {
-    document.getElementById('news_delete'+id).submit();
-  }
-else
-  {
+    function show_confirm(id)
+    {
+    var r=confirm("你要刪除嗎!");
+    if (r==true)
+    {
+        document.getElementById('news_delete'+id).submit();
+    }
+    else
+    {
 
-  }
-}
+    }
+    }
 
-
+    //ajax 上傳圖片
     function uploadFile() {
         console.log()
 
@@ -115,9 +131,7 @@ else
             }
         }
     }
-
-
-
+    //上傳含式
     $.upload = function (file) {
                 let out = new FormData();
                 console.log(out);
@@ -126,15 +140,28 @@ else
                 console.log(out)
                 $.ajax({
                     method: 'POST',
-                    url: '/admin/liqueur',
+                    url: '/admin/liqueur_upload_img',
                     contentType: false,
                     cache: false,
                     processData: false,
                     data: out,
-                    success: function (img) {
-                        console.log(img);
+                    success: function (ret) {
+                        console.log(ret.img)
+                        let id = ret.id;
+                        let img = ret.img;
+
+                        //$('.upload-img').innerHtml=`<img src="${img}" alt="" srcset="" class="col-2 img-fluid">`;
+
+                        $("#upload-img").append(`<div class="col-2" data-id="${id}">
+                            <img src="${img}" alt="" srcset=""
+                                class=" img-fluid">
+                            <button class="btn btn-danger" type="button"  onclick="delete_img(${id})" >X</button>
+                        </div>`)
 
                         // $('#content').summernote('insertImage', img);
+                        //顯示後綁定方法
+
+
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.error(textStatus + " " + errorThrown);
@@ -143,46 +170,63 @@ else
     }
 
 
-    // function ShowStr(files) {
-    //     console.log(files);
-    //                     for(let i=0; i < files.length; i++) {
-    //                         console.log(files[i]);
-    //                         // $.upload(files[i]);
-    //                     }
-    // }
-    $(".btn-primary").click(function(){
-
-        $name = $("#name").val()
-        // var formData = $('#form1').serializeArray();
-        // console.log(formData);
 
 
-        $('form1').submit();
-        let formdata = new FormData($('#form1'));
-        //console.log();會是空值
+</script>
+<script>
+    //刪除上傳照片(未保存)含式
+function delete_img(id){
 
+// 將綁在按鈕上的data-newsimgid的值取出
+console.log(id);
 
-
-         $.ajax({
-                method: 'POST',
-                url: '/admin/liqueur',
-                contentType: false,
-                cache: false,
-                processData: false,
-                data: [
-                    formdata
-                ] ,
-                success: function (img) {
-                    console.log(img);
-
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error(textStatus + " " + errorThrown);
-                }
-            });
+$.ajax({
+    //   傳送路徑
+      url: "/admin/liqueur_delete_img",
+    //   方法
+      method: 'POST',
+    //   資料
+      data: {
+        id:id
+      },
+    //   如果成功回傳
+      success: function(result){
+        //   將col-2綁上ID 指定的ID做remove(移除)
+        //$(`.col-2[data-newsimgid=${imgid}]`).remove();
+        $(`.col-2[data-id=${id}]`).remove();
+      }
+});
+};
+</script>
+<script>
+    //Submit按下時寄送表單
+    $('.card .btn-primary').click(function(){
+        console.log($("#upload-img .col-2[data-id]"))
+        var aaa = [];
+        for(var i = 0; i<$("#upload-img .col-2[data-id]").length; i++){
+            var b =$("#upload-img .col-2[data-id]")[i].getAttribute('data-id')
+            var newLength = aaa.push(b);
+        }
+        $('#form1').serializeArray()
+        $.ajax({
+            //   傳送路徑
+            url: "/admin/liqueur",
+            //   方法
+            method: 'POST',
+            //   資料
+            data: {
+                imgs: aaa,
+                name: $('#name').val()
+            },
+            //   如果成功回傳
+            success: function(result){
+                //   將col-2綁上ID 指定的ID做remove(移除)
+                //$(`.col-2[data-newsimgid=${imgid}]`).remove();
+                //$(`.col-2[data-id=${id}]`).remove();
+                $('#form1')[0].reset();
+                $("#upload-img .col-2").remove()
+            }
+        });
     })
-
-
-
 </script>
 @endsection

@@ -22,4 +22,7 @@ Route::get('/admin', 'HomeController@index')->name('admin');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
    Route::resource('liqueur', 'LiqueurController');
+   Route::post('liqueur_upload_img','LiqueurController@liqueur_upload_img');//ajax 新增圖片
+   Route::post('liqueur_delete_img','LiqueurController@liqueur_delete_img');//ajax 刪除圖片
+   
 });

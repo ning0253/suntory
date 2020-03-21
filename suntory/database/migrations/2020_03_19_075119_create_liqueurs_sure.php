@@ -20,7 +20,7 @@ class CreateLiqueursSure extends Migration
             $table->string('content');
             $table->string('title');
             $table->string('award');
-            $table->integer('sort');
+            $table->integer('sort')->default(0);
             $table->timestamps();
         });
     }

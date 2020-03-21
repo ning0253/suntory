@@ -15,9 +15,9 @@ class CreateLiqueursImg extends Migration
     {
         Schema::create('liqueurs__img', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('liqueurs_id');
+            $table->integer('liqueurs_id')->nullable();
             $table->string('img');
-            $table->integer('sort');
+            $table->integer('sort')->default(0);
             $table->timestamps();
         });
     }
