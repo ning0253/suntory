@@ -55,7 +55,7 @@
                                 <a class="dropdown-item" href="">
                                     蒸餾場
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="/admin/liqueurProduct">
                                     酒的系列
                                 </a>
                             </div>

@@ -31,6 +31,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
    Route::post('liqueurStory_delete_img','LiqueurStoryController@liqueurStory_delete_img');//axios刪除圖片
    Route::post('liqueurStory_kind','LiqueurStoryController@liqueurStory_kind');//獲得酒的種類
 
-
    Route::post('liqueurStory_text','LiqueurStoryController@liqueurStory_text');
+
+
+   //酒類產品管理
+   Route::resource('liqueurProduct', 'LiqueurProductController');
+   Route::post('liqueurProduct_upload_img','LiqueurProductController@liqueurProduct_upload_img');//axios上傳圖片
+   Route::post('liqueurProduct_delete_img','LiqueurProductController@liqueurProduct_delete_img');//axios刪除圖片
+   Route::post('liqueurProduct_kind','LiqueurProductController@liqueurProduct_kind');//獲得酒的種類
+   Route::post('liqueurProduct_text','LiqueurProductController@liqueurProduct_text');//獲得酒的產品資料
 });

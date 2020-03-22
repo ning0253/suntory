@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('liqueur-story',require('./components/liqueur-story.vue').default);
 Vue.component('liqueur-text',require('./components/Text.vue').default);
 Vue.component('liqueur-all',require('./components/all.vue').default);
+Vue.component('liqueur-product', require('./components/Product.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
