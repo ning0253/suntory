@@ -52,11 +52,12 @@
                 <th width='80px'></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="tbody">
             @foreach ($data as $item)
             <tr>
                 <td>
                     <a href="#look{{$item->id}}" class="btn btn-dark btn-sm" data-toggle="collapse">查看</a>
+                    
                 </td>
                 <td>{{$item->name}}</td>
 
@@ -220,6 +221,7 @@ $.ajax({
             var newLength = aaa.push(b);
         }
         $('#form1').serializeArray()
+        var name = $('#name').val()
         $.ajax({
             //   傳送路徑
             url: "/admin/liqueur",
@@ -237,6 +239,40 @@ $.ajax({
                 //$(`.col-2[data-id=${id}]`).remove();
                 $('#form1')[0].reset();
                 $("#upload-img .col-2").remove()
+                $(".tbody").append(`
+                <tr>
+                    <td>
+                        <a href="#look${result}" class="btn btn-dark btn-sm" data-toggle="collapse">查看</a>
+                    </td>
+                    <td>${name}</td>
+
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        <a href="#edit${result}" class="btn btn-success btn-sm" data-toggle="collapse">修改</a>
+                        <button class="btn btn-danger btn-sm" onclick="show_confirm(${result})">刪除</button>
+
+                        <form id="news_delete${result}" action="/admin/liqueur/${result}" method="POST"
+                            style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </td>
+                </tr>`)
+                $("#example_wrapper").before(`
+                <div class="collapse" id="edit${result}">
+                        <div class="card card-body">
+
+                        </div>
+                    </div>
+                <div class="collapse" id="look${result}">
+                        <div class="card card-body">
+
+                        </div>
+                </div>
+                `)
+
             }
         });
     })

@@ -43,7 +43,7 @@
                                 <a class="dropdown-item" href="/admin/liqueur">
                                     酒類管理
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="/admin/liqueurStory">
                                     酒的故事
                                 </a>
                                 <a class="dropdown-item" href="">
