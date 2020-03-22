@@ -90,12 +90,12 @@ main {
     h1 {
         font-size: 1.6rem;
         color: $font_color;
-        margin: 0 0 $interval_s 0;
+        margin: 15px 0 $interval_s 0;
         text-shadow: 2px 2px 2px rgba(202, 202, 202, 0.5);
     }
 
     #story {
-        margin: $interval_xl 0 0 0;
+        margin: $interval_xl*2 0 0 0;
         .top {
             height: 100%;
             background-image: url("../../public/img/02.hibiki創造理念.jpg");
