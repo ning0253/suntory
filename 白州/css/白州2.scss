@@ -1,0 +1,160 @@
+body {
+  height: 800vh;
+}
+.padbtm-100{
+    padding-bottom: 100px;
+}
+
+.flex_1 {
+  flex: 1;
+}
+.row {
+  .bannerbox {
+    margin-bottom: 50px;
+  }
+  .hakushu_title {
+    display: flex;
+    justify-content: center;
+    h1 {
+      font-family: "Noto Sans TC";
+      margin-bottom: 30px;
+    }
+  }
+  .hakushu_text {
+    text-align: center;
+    p {
+      font-family: "Noto Sans TC";
+      margin-bottom: 50px;
+    }
+  }
+
+  .story_box {
+    display: flex;
+    justify-content: flex-end;
+    .story_title {
+      flex: 1;
+      justify-content: center;
+      padding-right: 5%;
+      h1 {
+        text-align: center;
+        font-family: "Noto Sans TC";
+        margin-bottom: 40px;
+      }
+    }
+    p {
+      text-align: center;
+      font-family: "Noto Sans TC";
+    }
+    .img {
+      background-size: cover;
+      background-position: center;
+      min-height: 450px;
+      max-width: 55%;
+      width: 55%;
+      background-image: url(../img/bg_top_01.jpg);
+    }
+  }
+  .manner_box {
+    display: flex;
+    justify-content: flex-start;
+
+    .story_title {
+      justify-content: center;
+      padding-left: 5%;
+      h1 {
+        text-align: center;
+        font-family: "Noto Sans TC";
+        margin-bottom: 40px;
+      }
+      p {
+        text-align: center;
+        font-family: "Noto Sans TC";
+      }
+    }
+    .img2 {
+      background-size: cover;
+      min-height: 400px;
+      max-width: 55%;
+      width: 55%;
+      background-image: url(../img/河流.gif);
+    }
+  }
+
+  .distillery_box {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 100px;
+    .story_title {
+      flex: 1;
+      justify-content: center;
+      padding-right: 5%;
+
+      h1 {
+        text-align: center;
+        font-family: "Noto Sans TC";
+        margin-bottom: 40px;
+      }
+    }
+    p {
+      text-align: center;
+      font-family: "Noto Sans TC";
+    }
+    .img3 {
+      background-size: cover;
+      background-position: center;
+      min-height: 400px;
+      max-width: 55%;
+      width: 55%;
+      background-image: url(../img/img_04.jpg);
+    }
+  }
+  .Award {
+    .Award_title {
+      display: flex;
+      justify-content: start;
+      padding-bottom: 50px;
+    }
+    h1 {
+      font-family: "Noto Sans TC";
+    }
+  }
+  .change_view {
+    .change_img {
+      background-image: url(../img/轉場.png);
+      height: 40vh;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center center;
+    }
+    padding-bottom: 100px;
+  }
+  .product_title {
+    text-align: center;
+    padding-bottom: 50px;
+  }
+
+  .backdrop {
+    background-color: white;
+    padding: 80px 200px;
+    .prod{
+        margin-bottom: 75px;
+    }
+    .prod_name {
+      text-align: center;
+    }
+    .prod1_title{
+       padding: 0;
+       margin: 0;
+       margin-bottom: 25px;
+
+    }
+    .prod1_min_title{
+        margin-bottom: 25px;
+    }
+    .prod1_text{
+        p{
+            padding-bottom: 25px;
+        }
+    }
+  }
+}
