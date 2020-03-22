@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLiqueursMethod extends Migration
+class CreateLiqueurStroys extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLiqueursMethod extends Migration
      */
     public function up()
     {
-        Schema::create('liqueurs_method', function (Blueprint $table) {
+        Schema::create('liqueur_stroys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('liqueur_id');
             $table->string('img');
@@ -31,6 +31,6 @@ class CreateLiqueursMethod extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('liqueurs_method');
+        Schema::dropIfExists('liqueur_stroys');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Liqueur;
-use App\Liqueurs_story;
+use App\LiqueurStory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -16,7 +16,7 @@ class LiqueurStoryController extends Controller
      */
     public function index()
     {
-        $data = Liqueurs_story::all();
+        $data = LiqueurStory::all();
         return View('auth.liqueur_story.index', compact('data'));
     }
 
@@ -39,7 +39,7 @@ class LiqueurStoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $ready = Liqueurs_story::create($data);
+        $ready = LiqueurStory::create($data);
         return $ready;
     }
 
@@ -133,7 +133,7 @@ class LiqueurStoryController extends Controller
 
     public function liqueurStory_text()
     {
-        $data = Liqueurs_story::with('name')->get();
+        $data = LiqueurStory::with('name')->get();
         return $data;
     }
 }

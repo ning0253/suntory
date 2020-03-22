@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLiqueursAttitude extends Migration
+class CreateLiqueurImgs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateLiqueursAttitude extends Migration
      */
     public function up()
     {
-        Schema::create('liqueurs_attitude', function (Blueprint $table) {
+        Schema::create('liqueur_imgs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('liqueur_id');
+            $table->integer('liqueur_id')->nullable();
             $table->string('img');
-            $table->string('content');
-            $table->string('title');
             $table->integer('sort')->default(0);
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateLiqueursAttitude extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('liqueurs_attitude');
+        Schema::dropIfExists('liqueur_imgs');
     }
 }
