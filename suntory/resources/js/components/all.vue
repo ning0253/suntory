@@ -53,7 +53,7 @@
                     <img :src="item.img" alt="" srcset="" class="img-fluid">
                 </td>
                 <td>
-                    <th>{{ item.id }}</th>
+                    {{ item.name.name }}
                 </td>
                 <td>
                     {{ item.title}}
