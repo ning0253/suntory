@@ -76,11 +76,24 @@ ul {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
+}
+
+#banner {
+
+    .carousel-control-next {
+        right: 0;
+    }
+
+    .carousel-control-prev {
+        left: 0;
+    }
 }
 
 .story {
     background-color: #231815;
     padding: $sectionToTitle 0;
+    overflow: hidden;
 
     .container {
         .story-title {
@@ -101,8 +114,17 @@ ul {
         .story-content {
             .img-6 {
                 padding-left: 0;
+                img{
+                    padding-bottom: $ContentToContent;
+                }
             }
-
+            .col-lg-6.col-12.pading{                
+                padding-left: 15px;
+                @media (max-width:992px) {
+                    padding: 0px;
+                }                
+                
+            }
             #carouselExampleFade {
                 .carousel-control-next {
                     right: -100px;
@@ -111,6 +133,9 @@ ul {
                 .carousel-control-prev {
                     left: -100px;
                 }
+            }
+            .small-title{
+                padding-bottom: $ContentToContent;
             }
         }
     }
@@ -133,6 +158,24 @@ ul {
             .content-one {
                 padding-bottom: $ContentToContent;
 
+                .col-lg-5.col-12{
+                    @media (max-width:992px){
+                        order:3;
+                    }
+                }
+                .col-lg-1{
+                    @media (max-width:992px){
+                        order:2;
+                    }
+                }
+                .col-lg-6.col-12{
+                    img{
+                        padding-bottom: $ContentToContent;
+                    }
+                    @media (max-width:992px){
+                        order:1;
+                    }
+                }
                 .col-5 {
                     .title {
                         padding-bottom: $SmalltitleToContent;
@@ -147,7 +190,9 @@ ul {
 
             .content-two {
                 padding-bottom: $ContentToContent;
-
+                img{
+                    padding-bottom: $ContentToContent;
+                }
                 .col-5 {
                     .title {
                         padding-bottom: $SmalltitleToContent;
@@ -159,6 +204,9 @@ ul {
                     }
                 }
             }
+        }
+        .title{
+            padding-bottom: $ContentToContent;
         }
     }
 }
@@ -199,6 +247,7 @@ ul {
     color: white;
     background-color: black;
     padding: $sectionToTitle 0;
+    overflow: hidden;
 
     .container {
         .method-title {
@@ -210,7 +259,9 @@ ul {
         }
 
         .carousel {
-
+            img{
+                padding-bottom: $ContentToContent;
+            }
             .title {
                 padding-bottom: $SmalltitleToContent;
                 font-size: 1.25rem;
@@ -222,11 +273,13 @@ ul {
         }
     }
 }
-.carousel-control-next{
-    right:-100px;
+
+.carousel-control-next {
+    right: -100px;
 }
-.carousel-control-prev{
-    left:-100px;
+
+.carousel-control-prev {
+    left: -100px;
 }
 
 
@@ -240,23 +293,24 @@ ul {
         font-size: 2rem;
     }
 
-    .timeline{
-        .timeline-block{
-            .timeline-content{
-                p{
+    .timeline {
+        .timeline-block {
+            .timeline-content {
+                p {
                     font-size: 100px;
                 }
             }
         }
     }
 }
-p{
+
+p {
     font-size: 0.75rem;
 }
 
-.footer{
+.footer {
     width: 100%;
     height: 100px;
     background-color: #231815;
-    color:white;
+    color: white;
 }

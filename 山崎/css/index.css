@@ -48,9 +48,18 @@ ul li {
   background-position: center;
 }
 
+#banner .carousel-control-next {
+  right: 0;
+}
+
+#banner .carousel-control-prev {
+  left: 0;
+}
+
 .story {
   background-color: #231815;
   padding: 100px 0;
+  overflow: hidden;
 }
 
 .story .container .story-title {
@@ -72,12 +81,30 @@ ul li {
   padding-left: 0;
 }
 
+.story .container .story-content .img-6 img {
+  padding-bottom: 30px;
+}
+
+.story .container .story-content .col-lg-6.col-12.pading {
+  padding-left: 15px;
+}
+
+@media (max-width: 992px) {
+  .story .container .story-content .col-lg-6.col-12.pading {
+    padding: 0px;
+  }
+}
+
 .story .container .story-content #carouselExampleFade .carousel-control-next {
   right: -100px;
 }
 
 .story .container .story-content #carouselExampleFade .carousel-control-prev {
   left: -100px;
+}
+
+.story .container .story-content .small-title {
+  padding-bottom: 30px;
 }
 
 .attitude {
@@ -99,6 +126,34 @@ ul li {
   padding-bottom: 30px;
 }
 
+@media (max-width: 992px) {
+  .attitude .container .attitude-content .content-one .col-lg-5.col-12 {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+}
+
+@media (max-width: 992px) {
+  .attitude .container .attitude-content .content-one .col-lg-1 {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+}
+
+.attitude .container .attitude-content .content-one .col-lg-6.col-12 img {
+  padding-bottom: 30px;
+}
+
+@media (max-width: 992px) {
+  .attitude .container .attitude-content .content-one .col-lg-6.col-12 {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+
 .attitude .container .attitude-content .content-one .col-5 .title {
   padding-bottom: 50px;
   font-size: 1.25rem;
@@ -112,6 +167,10 @@ ul li {
   padding-bottom: 30px;
 }
 
+.attitude .container .attitude-content .content-two img {
+  padding-bottom: 30px;
+}
+
 .attitude .container .attitude-content .content-two .col-5 .title {
   padding-bottom: 50px;
   font-size: 1.25rem;
@@ -119,6 +178,10 @@ ul li {
 
 .attitude .container .attitude-content .content-two .col-5 .content {
   font-size: 0.75rem;
+}
+
+.attitude .container .title {
+  padding-bottom: 30px;
 }
 
 .product {
@@ -154,12 +217,17 @@ ul li {
   color: white;
   background-color: black;
   padding: 100px 0;
+  overflow: hidden;
 }
 
 .method .container .method-title {
   padding-bottom: 100px;
   padding-left: 15px;
   font-size: 2rem;
+}
+
+.method .container .carousel img {
+  padding-bottom: 30px;
 }
 
 .method .container .carousel .title {
