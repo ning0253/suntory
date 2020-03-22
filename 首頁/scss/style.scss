@@ -10,40 +10,67 @@ ul {
 
 li {
   list-style: none;
-  display: inline-block;
 }
 
 img {
   width: 100%;
 }
-.svg{
+
+.svg {
   width: 16px;
   height: 16px;
 }
+.option{
+  display: none ;
+}
+.option.active{
+  display: block;
+}
 
-.navbar {
-  .down-menu{
-   display: none !important;
-   @media screen {
-     
-   }
+// .wine-title-style{
+//   @media (max-width: 768px) {
+
+//     bottom: 10% !important;
+//   }
+
+// }
+.wine-style{
+  @media (max-width: 768px) {
+
+    width: 80px !important;
   }
 
-  // padding: 13px 0;
+  @media (max-width: 568px) {
+
+    width: 60px !important;
+  }
+}
+
+
+.navbar {
+  li{
+    display: inline-block;
+  }
   .logo {
-    margin-right: auto;
     width: 155px;
     height: 25px;
   }
 
   .menu {
+    display: block;
+
+    @media (max-width: 768px) {
+
+      display: none !important;
+    }
+
     a {
-      margin: 0 16px;
+      margin: 0 18px;
     }
   }
 
   .social {
-    
+
 
     .fb {
       margin-right: 16px;
@@ -52,47 +79,39 @@ img {
 
 
   }
+
 }
 
 .main {
-  background-color: black;
 
-  .banner {
-    min-width: 100%;
-    height: 100vh;
-    background-image: url('/img/bg_main.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  .video{
+    position: relative;
 
-    .wine-main1 {
-      img {
-        width: 150px;
-        height: 450px;
+    .wine-title{
+      color: white;
+      position: absolute;
+      top: 35%;
+      left: 23%;
+      bottom: 50%;
+    }
+    .wine{
+      position: absolute;
+      right: 10%;
+      bottom: 10%;
 
+      .wine1{
+        width: 110px;
+      }
+      .wine2{
+        width: 110px;
+      }
+      .wine3{
+        width: 110px;
       }
 
     }
-
-    .wine-main2 {
-      img {
-        width: 200px;
-        height: 250px;
-
-      }
-
-    }
-
-    .wine-main3 {
-
-      img {
-        width: 150px;
-        height: 500px;
-
-      }
-
-    }
-
-
   }
+
+}
+.footer{
 }
