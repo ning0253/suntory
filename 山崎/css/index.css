@@ -1,0 +1,207 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 24px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+.navbar {
+  background-color: #231815;
+  width: 100%;
+  height: 100px;
+}
+
+.navbar .container .logo img {
+  padding-left: 15px;
+  max-height: 75px;
+}
+
+.navbar .container .nav {
+  color: white;
+}
+
+.navbar .container .nav ul li {
+  padding: 0 10px;
+  font-size: 0.75rem;
+}
+
+.banner {
+  background-image: url("../img/keyvisual.jpg");
+  height: 875px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.story {
+  background-color: #231815;
+  padding: 100px 0;
+}
+
+.story .container .story-title {
+  color: white;
+  padding-bottom: 100px;
+  padding-left: 15px;
+  font-size: 2rem;
+}
+
+.story .container .story-title .small-title {
+  font-size: 1.25rem;
+}
+
+.story .container .story-title .small-content {
+  font-size: 0.75rem;
+}
+
+.story .container .story-content .img-6 {
+  padding-left: 0;
+}
+
+.story .container .story-content #carouselExampleFade .carousel-control-next {
+  right: -100px;
+}
+
+.story .container .story-content #carouselExampleFade .carousel-control-prev {
+  left: -100px;
+}
+
+.attitude {
+  padding: 100px 0;
+  background-color: black;
+  color: white;
+}
+
+.attitude .container .attitude-title {
+  font-size: 2rem;
+  padding-left: 15px;
+}
+
+.attitude .container .attitude-content {
+  padding-top: 100px;
+}
+
+.attitude .container .attitude-content .content-one {
+  padding-bottom: 30px;
+}
+
+.attitude .container .attitude-content .content-one .col-5 .title {
+  padding-bottom: 50px;
+  font-size: 1.25rem;
+}
+
+.attitude .container .attitude-content .content-one .col-5 .content {
+  font-size: 0.75rem;
+}
+
+.attitude .container .attitude-content .content-two {
+  padding-bottom: 30px;
+}
+
+.attitude .container .attitude-content .content-two .col-5 .title {
+  padding-bottom: 50px;
+  font-size: 1.25rem;
+}
+
+.attitude .container .attitude-content .content-two .col-5 .content {
+  font-size: 0.75rem;
+}
+
+.product {
+  background-color: black;
+  padding: 100px 0;
+  color: white;
+}
+
+.product .product-title {
+  font-size: 2rem;
+  padding-bottom: 100px;
+  padding-left: 15px;
+}
+
+.product .product-content .img-fluid {
+  min-height: 100%;
+}
+
+.product .product-content .content {
+  font-size: 0.75rem;
+  padding-top: 60px;
+}
+
+.product .product-content .content .name {
+  font-size: 1.25rem;
+}
+
+.product .product-content .content .pad {
+  padding-bottom: 30px;
+}
+
+.method {
+  color: white;
+  background-color: black;
+  padding: 100px 0;
+}
+
+.method .container .method-title {
+  padding-bottom: 100px;
+  padding-left: 15px;
+  font-size: 2rem;
+}
+
+.method .container .carousel .title {
+  padding-bottom: 50px;
+  font-size: 1.25rem;
+}
+
+.method .container .carousel .content {
+  font-size: 0.75rem;
+}
+
+.carousel-control-next {
+  right: -100px;
+}
+
+.carousel-control-prev {
+  left: -100px;
+}
+
+.sure {
+  padding: 100px 0;
+  background-color: black;
+  color: balck;
+}
+
+.sure .sure-title {
+  color: white;
+  font-size: 2rem;
+}
+
+.sure .timeline .timeline-block .timeline-content p {
+  font-size: 100px;
+}
+
+p {
+  font-size: 0.75rem;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: #231815;
+  color: white;
+}
+/*# sourceMappingURL=index.css.map */

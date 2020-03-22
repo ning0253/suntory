@@ -19,7 +19,7 @@ class CreateLiqueursStroy extends Migration
             $table->string('img');
             $table->string('content');
             $table->string('title');
-            $table->integer('sort');
+            $table->integer('sort')->default(0);
             $table->timestamps();
         });
     }
