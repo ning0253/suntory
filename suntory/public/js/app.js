@@ -38095,7 +38095,13 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("td", [_c("th", [_vm._v(_vm._s(item.id))])]),
+              _c("td", [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(item.name.name) +
+                    "\n                "
+                )
+              ]),
               _vm._v(" "),
               _c("td", [
                 _vm._v(

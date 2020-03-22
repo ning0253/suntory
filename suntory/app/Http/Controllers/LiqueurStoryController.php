@@ -133,7 +133,7 @@ class LiqueurStoryController extends Controller
 
     public function liqueurStory_text()
     {
-        $data = Liqueurs_story::all();
+        $data = Liqueurs_story::with('name')->get();
         return $data;
     }
 }
