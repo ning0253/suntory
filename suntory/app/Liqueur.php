@@ -12,6 +12,6 @@ class Liqueur extends Model
 
     public function imgs()
     {
-        return $this->hasMany('App\Liqueurs_img','liqueurs_id','id')->orderBy('sort', 'desc');
+        return $this->hasMany('App\LiqueurImg', 'liqueur_id', 'id')->orderBy('sort', 'desc');
     }
 }

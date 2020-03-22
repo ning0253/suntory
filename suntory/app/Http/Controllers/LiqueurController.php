@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Liqueur;
-use App\Liqueurs_img;
+use App\LiqueurImg;
 use Dotenv\Regex\Success;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -48,7 +48,7 @@ class LiqueurController extends Controller
         //圖片建立ID
         $imgs = $data['imgs'];
         foreach($imgs as $img){
-            $liqueur_img = Liqueurs_img::where('id',$img)->first();
+            $liqueur_img = LiqueurImg::where('id',$img)->first();
             $liqueur_img->liqueurs_id = $liqueur->id;
             $liqueur_img->save();
         }

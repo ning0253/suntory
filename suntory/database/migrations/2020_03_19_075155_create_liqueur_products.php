@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLiqueursProduct extends Migration
+class CreateLiqueurProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLiqueursProduct extends Migration
      */
     public function up()
     {
-        Schema::create('liqueurs_product', function (Blueprint $table) {
+        Schema::create('liqueur_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('liqueur_id');
             $table->string('img');
@@ -40,6 +40,6 @@ class CreateLiqueursProduct extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('liqueurs_product');
+        Schema::dropIfExists('liqueur_products');
     }
 }

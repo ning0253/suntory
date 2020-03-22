@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLiqueursImg extends Migration
+class CreateLiqueurSures extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateLiqueursImg extends Migration
      */
     public function up()
     {
-        Schema::create('liqueurs_img', function (Blueprint $table) {
+        Schema::create('liqueur_sures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('liqueurs_id')->nullable();
+            $table->integer('liqueur_id');
             $table->string('img');
+            $table->string('content');
+            $table->string('title');
+            $table->string('award');
             $table->integer('sort')->default(0);
             $table->timestamps();
         });
@@ -29,6 +32,6 @@ class CreateLiqueursImg extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('liqueurs__img');
+        Schema::dropIfExists('liqueur_sures');
     }
 }
