@@ -40,7 +40,8 @@ class LiqueurStoryController extends Controller
     {
         $data = $request->all();
         $ready = LiqueurStory::create($data);
-        return $ready;
+        $newdata = LiqueurStory::with('name')->find($ready->id);
+        return $newdata;
     }
 
     /**

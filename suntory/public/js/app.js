@@ -2121,9 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
     //獲取酒的種類
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_kind').then(function (response) {
       return _this.input.liqueur_kind = response.data;
-    })["catch"](function (error) {
-      console.log(error);
-    }); //獲取酒的產品
+    })["catch"](function (error) {}); //獲取酒的產品
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_text').then(function (response) {
       _this.product_data = response.data;
@@ -2440,22 +2438,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   },
   created: function created() {
     var _this = this;
 
     //獲取酒的種類
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_kind').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_kind").then(function (response) {
       return _this.input.liqueur_kind = response.data;
     })["catch"](function (error) {
       console.log(error);
     }); //獲取酒的故事
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_text').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_text").then(function (response) {
       _this.liqueur_text = response.data;
 
       _this.upload();
@@ -2469,10 +2479,10 @@ __webpack_require__.r(__webpack_exports__);
       input: {
         newimg: null,
         oldimg: null,
-        content: '',
-        title: '',
+        content: "",
+        title: "",
         liqueur_kind: null,
-        id: '',
+        id: "",
         sort: 0,
         edit: null,
         index: null
@@ -2490,7 +2500,7 @@ __webpack_require__.r(__webpack_exports__);
             title = _this$input.title,
             img = _this$input.img,
             id = _this$input.id;
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory', {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory", {
           liqueur_id: this.input.id,
           img: this.input.oldimg,
           content: this.input.content,
@@ -2501,11 +2511,17 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
         this.clear();
-        alert('成功');
+        alert("成功");
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/admin/liqueurStory/".concat(this.input.edit), this.input).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/admin/liqueurStory/".concat(this.input.edit), {
+          liqueur_id: this.input.id,
+          img: this.input.oldimg,
+          content: this.input.content,
+          title: this.input.title,
+          sort: this.input.sort
+        }).then(function (res) {
           console.log(res.data);
-          console.log('aa'); // let target = this.liqueur_text[this.input.index]
+          console.log("aa"); // let target = this.liqueur_text[this.input.index]
           // console.log('olde');
           // console.log(target)
           // // target.content = res.data.content
@@ -2520,14 +2536,14 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
         this.clear();
-        alert('成功');
+        alert("成功");
       }
     },
     //當頁面讀取完成後執行datatable
     upload: function upload() {
       $(document).ready(function () {
-        $('#example').DataTable({
-          "order": [1, 'desc']
+        $("#example").DataTable({
+          order: [1, "desc"]
         });
       });
     },
@@ -2539,7 +2555,7 @@ __webpack_require__.r(__webpack_exports__);
       var target = this.liqueur_text[index];
 
       if (confirm("\u662F\u5426\u522A\u9664?".concat(target.title))) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/admin/liqueurStory/' + target.id).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/admin/liqueurStory/" + target.id).then(function (res) {
           _this3.liqueur_text.splice(index, 1);
         })["catch"](function (err) {
           console.log(err);
@@ -2578,14 +2594,14 @@ __webpack_require__.r(__webpack_exports__);
       if (this.input.oldimg == null) {
         this.input.newimg = event.target.files[0];
         var fd = new FormData();
-        fd.append('file', this.input.newimg, this.input.newimg.name);
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_upload_img', fd).then(function (response) {
+        fd.append("file", this.input.newimg, this.input.newimg.name);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_upload_img", fd).then(function (response) {
           return _this5.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_delete_img', {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_delete_img", {
           file_link: this.input.oldimg
         }).then(function (response) {
           console.log(response);
@@ -2596,9 +2612,9 @@ __webpack_require__.r(__webpack_exports__);
 
         var _fd = new FormData();
 
-        _fd.append('file', this.input.newimg, this.input.newimg.name);
+        _fd.append("file", this.input.newimg, this.input.newimg.name);
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_upload_img', _fd).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_upload_img", _fd).then(function (response) {
           return _this5.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
@@ -2607,8 +2623,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     //清除表單資料
     clear: function clear() {
-      this.input.newimg = null, this.input.oldimg = '', this.input.content = '', this.input.title = '', this.input.id = '', this.input.sort = '';
-      $('#img').val('');
+      this.input.newimg = null, this.input.oldimg = "", this.input.content = "", this.input.title = "", this.input.id = "", this.input.sort = "";
+      $("#img").val("");
     }
   }
 });
@@ -38966,7 +38982,7 @@ var render = function() {
             _c("div", { staticClass: "form-group" }, [
               _c("div", { staticClass: "col-4" }, [
                 _c("img", {
-                  staticClass: "img-fluid ",
+                  staticClass: "img-fluid",
                   attrs: { src: _vm.input.oldimg, alt: "", srcset: "" }
                 })
               ]),
@@ -39086,11 +39102,7 @@ var render = function() {
                 },
                 _vm._l(_vm.input.liqueur_kind, function(item) {
                   return _c("option", { domProps: { value: item.id } }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(item.name) +
-                        "\n                        "
-                    )
+                    _vm._v(_vm._s(item.name))
                   ])
                 }),
                 0
@@ -39145,7 +39157,7 @@ var render = function() {
     _c(
       "table",
       {
-        staticClass: "table table-striped table-bordered ",
+        staticClass: "table table-striped table-bordered",
         staticStyle: { width: "100%" },
         attrs: { id: "example" }
       },
@@ -39164,41 +39176,15 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.name.name) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.name.name))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.title) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.title))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.content) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.content))]),
               _vm._v(" "),
               item.sort == null
-                ? _c("td", [
-                    _vm._v("\n                    0\n                ")
-                  ])
-                : _c("td", [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(item.sort) +
-                        "\n                "
-                    )
-                  ]),
+                ? _c("td", [_vm._v("0")])
+                : _c("td", [_vm._v(_vm._s(item.sort))]),
               _vm._v(" "),
               _c("td", [
                 _c(
