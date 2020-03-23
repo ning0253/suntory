@@ -2566,7 +2566,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.input.id = liqueur_id;
         _this4.input.edit = id;
         _this4.input.index = index;
-        _this4.input.sort = sort;
+        _this4.input.sort = sort; // console.log(res.data)
       })["catch"](function (err) {
         console.log(err);
       });

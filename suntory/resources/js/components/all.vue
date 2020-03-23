@@ -143,7 +143,7 @@
             store(){
                 if(this.input.edit==null){
                     let {content, title,img,id} =this.input
-                    
+
                     axios.post('/admin/liqueurStory',{
                     liqueur_id:this.input.id,
                     img:this.input.oldimg,
@@ -225,6 +225,7 @@
                     this.input.edit = id
                     this.input.index = index
                     this.input.sort = sort
+                    // console.log(res.data)
                 }).catch((err)=>{
                     console.log(err)
                 })
