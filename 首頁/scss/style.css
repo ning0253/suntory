@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 ul {
@@ -10,7 +11,6 @@ ul {
 
 li {
   list-style: none;
-  display: inline-block;
 }
 
 img {
@@ -22,49 +22,114 @@ img {
   height: 16px;
 }
 
-.navbar .down-menu {
-  display: none !important;
+.option {
+  display: none;
+}
+
+.option.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .wine-title-style h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 540px) {
+  .wine-title-style h1 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wine-title-style h1 {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wine-style {
+    width: 80px !important;
+  }
+}
+
+@media (max-width: 568px) {
+  .wine-style {
+    width: 60px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .wine-style {
+    width: 40px !important;
+  }
+}
+
+.navbar li {
+  display: inline-block;
 }
 
 .navbar .logo {
-  margin-right: auto;
   width: 155px;
   height: 25px;
 }
 
+.navbar .menu {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .navbar .menu {
+    display: none !important;
+  }
+}
+
 .navbar .menu a {
-  margin: 0 16px;
+  margin: 0 18px;
 }
 
 .navbar .social .fb {
   margin-right: 16px;
 }
 
-.main {
-  background-color: black;
+.main .video {
+  position: relative;
 }
 
-.main .banner {
-  min-width: 100%;
-  height: 100vh;
-  background-image: url("/img/bg_main.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.main .video .video-inner {
+  width: 100%;
 }
 
-.main .banner .wine-main1 img {
-  width: 150px;
-  height: 450px;
+.main .video .wine-title {
+  color: white;
+  position: absolute;
+  top: 25%;
+  left: 23%;
+  bottom: 50%;
 }
 
-.main .banner .wine-main2 img {
-  width: 200px;
-  height: 250px;
+@media (max-width: 1020px) {
+  .main .video .wine-title {
+    top: 11%;
+  }
 }
 
-.main .banner .wine-main3 img {
-  width: 150px;
-  height: 500px;
+.main .video .wine {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+}
+
+.main .video .wine .wine1 {
+  width: 110px;
+}
+
+.main .video .wine .wine2 {
+  width: 110px;
+}
+
+.main .video .wine .wine3 {
+  width: 110px;
 }
 /*# sourceMappingURL=style.css.map */
