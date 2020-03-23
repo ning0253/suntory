@@ -1,8 +1,10 @@
 body {
   height: 800vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-.padbtm-100{
-    padding-bottom: 100px;
+.padbtm-100 {
+  padding-bottom: 100px;
 }
 
 .flex_1 {
@@ -31,6 +33,7 @@ body {
   .story_box {
     display: flex;
     justify-content: flex-end;
+    width: 100%;
     .story_title {
       flex: 1;
       justify-content: center;
@@ -45,11 +48,10 @@ body {
       text-align: center;
       font-family: "Noto Sans TC";
     }
-    .img {
+    .img1 {
       background-size: cover;
       background-position: center;
       min-height: 450px;
-      max-width: 55%;
       width: 55%;
       background-image: url(../img/bg_top_01.jpg);
     }
@@ -74,7 +76,6 @@ body {
     .img2 {
       background-size: cover;
       min-height: 400px;
-      max-width: 55%;
       width: 55%;
       background-image: url(../img/河流.gif);
     }
@@ -103,7 +104,6 @@ body {
       background-size: cover;
       background-position: center;
       min-height: 400px;
-      max-width: 55%;
       width: 55%;
       background-image: url(../img/img_04.jpg);
     }
@@ -135,26 +135,160 @@ body {
 
   .backdrop {
     background-color: white;
-    padding: 80px 200px;
-    .prod{
-        margin-bottom: 75px;
+    padding: 80px 5%;
+    .prod {
+      margin-bottom: 75px;
+      .prod_img {
+        height: 100%;
+        width: 100%\9;
+      }
     }
     .prod_name {
       text-align: center;
     }
-    .prod1_title{
-       padding: 0;
-       margin: 0;
-       margin-bottom: 25px;
+    .prod1_title {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 25px;
+    }
+    .prod1_min_title {
+      margin-bottom: 25px;
+    }
+    .prod1_text {
+      p {
+        padding-bottom: 25px;
+      }
+    }
+  }
+}
+@media (max-width: 720px) {
+  .row {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 1.7rem;
+  }
 
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+  .row .backdrop .prod {
+    margin-bottom: 10px;
+  }
+  .prod_img {
+    width: 70px;
+  }
+  .prod1_img {
+    height: 400px;
+  }
+  .padbtm-100 {
+    padding-bottom: 50px;
+  }
+}
+
+@media (max-width: 540px) {
+  .row {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.5rem;
+  }
+  .padbtm-100 {
+    padding-bottom: 30px;
+  }
+
+  .row .story_box .img1 {
+    width: 100%;
+  }
+  .row .manner_box .img2 {
+    width: 100%;
+  }
+  .row .distillery_box .img3 {
+    width: 100%;
+  }
+  flex-wrap .row .backdrop .prod {
+    margin-bottom: 10px;
+  }
+  .prod_img {
+    width: 50px;
+  }
+  .prod1_img {
+    height: 300px;
+  }
+
+  
+  .row .story_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .story_text {
+      order: 2;
+      justify-content: center;
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 50px;
+      }
     }
-    .prod1_min_title{
-        margin-bottom: 25px;
+
+    .img1 {
+      order: 1;
     }
-    .prod1_text{
-        p{
-            padding-bottom: 25px;
-        }
+  }
+  .row .manner_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .story_text {
+      order: 2;
+      justify-content: center;
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 50px;
+      }
+    }
+
+    .img2 {
+      order: 1;
+    }
+  }
+  .row .distillery_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .story_text {
+      order: 2;
+      justify-content: center;
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 50px;
+      }
+    }
+
+    .img3 {
+      order: 1;
     }
   }
 }

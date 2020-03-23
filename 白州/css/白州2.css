@@ -1,6 +1,8 @@
 @charset "UTF-8";
 body {
   height: 800vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .padbtm-100 {
@@ -47,6 +49,7 @@ body {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  width: 100%;
 }
 
 .row .story_box .story_title {
@@ -70,11 +73,10 @@ body {
   font-family: "Noto Sans TC";
 }
 
-.row .story_box .img {
+.row .story_box .img1 {
   background-size: cover;
   background-position: center;
   min-height: 450px;
-  max-width: 55%;
   width: 55%;
   background-image: url(../img/bg_top_01.jpg);
 }
@@ -109,7 +111,6 @@ body {
 .row .manner_box .img2 {
   background-size: cover;
   min-height: 400px;
-  max-width: 55%;
   width: 55%;
   background-image: url(../img/河流.gif);
 }
@@ -149,7 +150,6 @@ body {
   background-size: cover;
   background-position: center;
   min-height: 400px;
-  max-width: 55%;
   width: 55%;
   background-image: url(../img/img_04.jpg);
 }
@@ -187,11 +187,16 @@ body {
 
 .row .backdrop {
   background-color: white;
-  padding: 80px 200px;
+  padding: 80px 5%;
 }
 
 .row .backdrop .prod {
   margin-bottom: 75px;
+}
+
+.row .backdrop .prod .prod_img {
+  height: 100%;
+  width: 100%\9;
 }
 
 .row .backdrop .prod_name {
@@ -210,5 +215,160 @@ body {
 
 .row .backdrop .prod1_text p {
   padding-bottom: 25px;
+}
+
+@media (max-width: 720px) {
+  .row {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 1.7rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 0.7rem;
+  }
+  .row .backdrop .prod {
+    margin-bottom: 10px;
+  }
+  .prod_img {
+    width: 70px;
+  }
+  .prod1_img {
+    height: 400px;
+  }
+  .padbtm-100 {
+    padding-bottom: 50px;
+  }
+}
+
+@media (max-width: 540px) {
+  .row {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.5rem;
+  }
+  .padbtm-100 {
+    padding-bottom: 30px;
+  }
+  .row .story_box .img1 {
+    width: 100%;
+  }
+  .row .manner_box .img2 {
+    width: 100%;
+  }
+  .row .distillery_box .img3 {
+    width: 100%;
+  }
+  flex-wrap .row .backdrop .prod {
+    margin-bottom: 10px;
+  }
+  .prod_img {
+    width: 50px;
+  }
+  .prod1_img {
+    height: 300px;
+  }
+  .row .story_box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .row .story_box .story_text {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .row .story_box .story_text h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .row .story_box .story_text p {
+    margin-bottom: 50px;
+  }
+  .row .story_box .img1 {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .row .manner_box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .row .manner_box .story_text {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .row .manner_box .story_text h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .row .manner_box .story_text p {
+    margin-bottom: 50px;
+  }
+  .row .manner_box .img2 {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .row .distillery_box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .row .distillery_box .story_text {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .row .distillery_box .story_text h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .row .distillery_box .story_text p {
+    margin-bottom: 50px;
+  }
+  .row .distillery_box .img3 {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
 }
 /*# sourceMappingURL=白州2.css.map */
