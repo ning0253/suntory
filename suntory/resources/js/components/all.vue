@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <a
-            id="add"
+
             href="#create"
             data-toggle="collapse"
             class="btn btn-success"
-            @submit="clear()"
+            @click="clear()"
             >新增</a
         >
-        <hr />
+
         <div class="collapse" id="create">
             <div class="card card-body">
                 <form
@@ -16,7 +16,7 @@
                     action="#"
                     enctype="multipart/form-data"
                     id="form1"
-                    @submit.prevent="store()"
+                    @submit.prevent="store(input.index)"
                 >
                     <div class="form-group">
                         <div class="col-4">
@@ -30,17 +30,6 @@
 
                         <label for="img">圖片</label>
                         <input
-                            v-if="this.input.edit == null"
-                            required
-                            type="file"
-                            class="form-control"
-                            @change="processFile($event)"
-                            id="img"
-                            name="img"
-                            value
-                        />
-                        <input
-                            v-else
                             type="file"
                             class="form-control"
                             @change="processFile($event)"
@@ -52,7 +41,6 @@
                     <div class="form-group">
                         <label for="content">故事內容</label>
                         <input
-                            required
                             type="text"
                             class="form-control"
                             v-model="input.content"
@@ -64,7 +52,6 @@
                     <div class="form-group">
                         <label for="title">故事標題</label>
                         <input
-                            required
                             type="text"
                             class="form-control"
                             v-model="input.title"
@@ -91,7 +78,6 @@
                     <div class="form-group" v-if="input.edit != null">
                         <label for="sort">權重</label>
                         <input
-                            required
                             type="number"
                             class="form-control"
                             v-model="input.sort"
@@ -103,6 +89,7 @@
                     <button
                         type="submit"
                         class="btn btn-primary"
+                        data-toggle="collapse"
                         data-target="#create"
                     >
                         Submit
@@ -132,6 +119,7 @@
                     </td>
                     <td>{{ item.name.name }}</td>
                     <td>{{ item.title }}</td>
+
 
                     <td>{{ item.content }}</td>
                     <td v-if="item.sort == null">0</td>
@@ -206,7 +194,9 @@ export default {
     },
     methods: {
         //按下submit
-        store() {
+
+        store(index) {
+
             if (this.input.edit == null) {
                 let { content, title, img, id } = this.input;
 
@@ -225,7 +215,12 @@ export default {
                     .catch(function(error) {
                         console.log(error);
                     });
+
+                this.clear(index);
+                alert("成功");
             } else {
+                console.log(index);
+
                 axios
                     .put(`/admin/liqueurStory/${this.input.edit}`, {
                         liqueur_id: this.input.id,
@@ -235,32 +230,17 @@ export default {
                         sort: this.input.sort
                     })
                     .then(res => {
-                        console.log(res.data);
-                        console.log("aa");
-
-                        // let target = this.liqueur_text[this.input.index]
-                        // console.log('olde');
-                        // console.log(target)
-                        // // target.content = res.data.content
-                        // // target.img = res.data.img
-
-                        this.liqueur_text[this.input.index].content =
-                            res.data.content;
-                        this.liqueur_text[this.input.index].img = res.data.img;
-                        this.liqueur_text[this.input.index].title =
-                            res.data.title;
-                        this.liqueur_text[this.input.index].sort =
-                            res.data.sort;
-
-                        this.liqueur_text[this.input.index] = res.data;
-
-                        this.clear();
                         this.sweetalert(false);
-                        // console.log('new')
+                        this.clear();
+                        //兩個方法都可以重新渲染
+                        this.$set(this.liqueur_text, index, res.data);
+                        // this.liqueur_text.splice(index,1, res.data)
                     })
                     .catch(function(error) {
                         console.log(error);
                     });
+
+                alert("成功");
             }
         },
         //當頁面讀取完成後執行datatable
@@ -286,7 +266,7 @@ export default {
                     });
             }
         },
-        //編輯
+        //讀取編輯資料
         editdata(index) {
             let target = this.liqueur_text[index];
             axios
@@ -350,6 +330,8 @@ export default {
         },
         //清除表單資料
         clear() {
+            console.log("aa");
+
             (this.input.newimg = null),
                 (this.input.oldimg = ""),
                 (this.input.content = ""),
