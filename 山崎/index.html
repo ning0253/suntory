@@ -12,31 +12,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link rel="stylesheet" href="./css/timeline.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/hover.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 </head>
 
 <body>
     <nav>
-        <div class="navbar">
-            <div class="container d-flex justify-content-between">
-                <div class="logo">
-                    <img src="./img/logo.png" alt="" srcset="">
-                </div>
-                <div class="nav">
-                    <ul class="d-flex">
-                        <li>山崎的故事</li>
-                        <li>山崎的態度</li>
-                        <li>山崎系列 </li>
-                        <li>山崎蒸餾廠 </li>
-                        <li>國際的肯定</li>
-                    </ul>
-                </div>
+        <div class="navbar_1">
+            <div class="container">
+                <nav id="nav" class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="#">
+                        <img src="./img/0000.png" alt="" style="height: 68px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto py-4 py-md-0">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class="nav-link hvr-underline-from-center" href="#">山崎的故事</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class="nav-link hvr-underline-from-center" href="#">山崎的態度</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class="nav-link hvr-underline-from-center" href="#">國際肯定</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class="nav-link hvr-underline-from-center" href="#">山崎蒸餾所</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class="nav-link hvr-underline-from-center" href="#">山崎系列</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
+
+
+
         </div>
     </nav>
     <section>
         <!-- <div class="banner"></div> -->
-        <div id="banner" class="carousel slide" data-ride="carousel">
+
+        <!-- <div id="banner" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#banner" data-slide-to="0" class="active"></li>
                 <li data-target="#banner" data-slide-to="1"></li>
@@ -61,12 +87,37 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+        </div> -->
+        <div class="banner d-flex align-items-center">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                        <div class="banner-title">
+                            <img src="./img/top_logo.png" alt="">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-8  d-flex align-items-center justify-content-center">
+                        <div class="banner-wine">
+                            <img src="./img/banner1.jpg" alt="">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
+
     </section>
     <section>
         <div class="story">
             <div class="container">
-                <div class="story-title">山崎的故事</div>
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="story-title">山崎的故事</div>
+                </div>
+
+
                 <div class="story-content">
                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel"
                         data-interval="2000">
@@ -75,12 +126,14 @@
                                 <div class="col-lg-6 col-12 img-6">
                                     <img src="./img/吃麥的怪獸.jpg" class="d-block w-100" alt="...">
                                 </div>
+
                                 <div class="col-lg-6 col-12 pading">
                                     <div class="small-title">我是標題1</div>
                                     <div class="small-content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
                                 </div>
 
                             </div>
+
                             <div class="carousel-item d-flex flex-wrap ">
                                 <div class="col-lg-6 col-12 img-6">
                                     <img src="./img/郊外的山崎蒸餾場.jpg" class="d-block w-100" alt="...">
@@ -119,29 +172,43 @@
     <section>
         <div class="attitude">
             <div class="container">
-                <div class="attitude-title">山崎的態度</div>
-                <div class="attitude-content">
-                    <div class="content-one d-flex flex-wrap">
-                        <div class="col-lg-5 col-12">
-                            <div class="title">我是標題</div>
-                            <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
-                        </div>
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-6 col-12">
-                            <img class="img-fluid" src="./img/yam_hisimg00.jpg" alt="" srcset="">
-                        </div>
-                    </div>
-                    <div class="content-two d-flex flex-wrap">
-                        <div class="col-lg-6 col-12">
-                            <img src="./img/yam_hisimg02.jpg" class="img-fluid" alt="" srcset="">
-                        </div>
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-5 col-12">
-                            <div class="title text-lg-right">我是標題二</div>
-                            <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
-                        </div>
-                    </div>
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="attitude-title">山崎的態度</div>
                 </div>
+
+                <div data-aos="fade-up-left" data-aos-duration="1000">
+                    <div class="attitude-content">
+                        <div class="content-one d-flex flex-wrap">
+                            <div class="col-lg-5 col-12">
+                                <div class="title">我是標題</div>
+                                <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-6 col-12">
+                                <img class="img-fluid" src="./img/yam_hisimg00.jpg" alt="" srcset="">
+                            </div>
+                        </div>
+                        <div data-aos="fade-up-right" data-aos-duration="1000">
+                            <div class="content-two d-flex flex-wrap">
+                                <div class="col-lg-6 col-12">
+                                    <img src="./img/yam_hisimg02.jpg" class="img-fluid" alt="" srcset="">
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-5 col-12">
+                                    <div class="title text-lg-right">我是標題二</div>
+                                    <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
             </div>
         </div>
     </section>
@@ -149,87 +216,105 @@
     <section>
         <div class="product">
             <div class="container">
-                <div class="product-title">
-                    山崎系列
-                </div>
-                <div class="product-content d-flex flex-wrap">
-                    <div class="col-lg-3 col-12 d-flex justify-content-center">
-                        <img class="img-fluid" src="./img/山崎單一麥芽威士忌.jpg" alt="" srcset="">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="product-title">
+                        山崎系列
                     </div>
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-8 col-12 border px-4 pb-3">
-                        <div class="content">
-                            <div class="name pad">山崎單一麥芽威士忌</div>
-                            <div class="ml pad">700ml ‧ 43%</div>
-                            <div class="section pad">
-                                由山崎蒸餾廠所擁有豐富多彩的原酒中，調和師們精心挑選出理想的麥芽原酒調配而成。內含代表山崎的水楢桶中所儲藏的麥芽威士忌，及引領山崎邁入新境界的紅酒桶，所儲藏富有獨特個性的麥芽威士忌兩者結合，孕育而成嶄新的「新山崎」。溫和，豐富多層次的香氣、香甜滑順的口感為其最大特點。
-                            </div>
-                            <div class="second pad">香味特徵：具有新鮮的草苺，櫻桃的香氣。蜂蜜的香甜味及微酸味隨著品嘗逐漸在口腔中散溢。香甜香草，肉桂香讓人感受到心情愉悅的餘韻。
-                            </div>
-                            <div class="Introduction text-right pb-3"><span class="px-1">詳細介紹</span><i
-                                    class="fas fa-chevron-right"></i></div>
-                            <div class="buy  text-center pb-2"><span class="border px-3 py-1">立即購買</span></div>
+                </div>
+
+                <div data-aos="flip-right" data-aos-duration="1000">
+                    <div class="product-content d-flex flex-wrap">
+                        <div class="col-lg-3 col-12 d-flex justify-content-center">
+                            <img class="product-img" src="./img/山崎12年單一麥芽威士忌.png" alt="" srcset="">
                         </div>
+                        <div class="col-lg-1"></div>
+
+                        <div class="col-lg-8 col-12 border px-4 pb-3">
+                            <div class="content">
+                                <div class="name pad">山崎單一麥芽威士忌</div>
+                                <div class="ml pad">700ml ‧ 43%</div>
+                                <div class="section pad">
+                                    由山崎蒸餾廠所擁有豐富多彩的原酒中，調和師們精心挑選出理想的麥芽原酒調配而成。內含代表山崎的水楢桶中所儲藏的麥芽威士忌，及引領山崎邁入新境界的紅酒桶，所儲藏富有獨特個性的麥芽威士忌兩者結合，孕育而成嶄新的「新山崎」。溫和，豐富多層次的香氣、香甜滑順的口感為其最大特點。
+                                </div>
+                                <div class="second pad">香味特徵：具有新鮮的草苺，櫻桃的香氣。蜂蜜的香甜味及微酸味隨著品嘗逐漸在口腔中散溢。香甜香草，肉桂香讓人感受到心情愉悅的餘韻。
+                                </div>
+                                <div class="Introduction text-right pb-3"><span class="px-1">詳細介紹</span><i
+                                        class="fas fa-chevron-right"></i></div>
+                                <div class="buy  text-center pb-2"><span class="border px-3 py-1">立即購買</span></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>
 
     <section>
+
         <div class="method">
+
             <div class="container">
-                <div class="method-title">山崎蒸餾廠</div>
-                <div class="method-content">
-                    <div id="method" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-interval="10000">
-                                <div class="d-flex flex-wrap">
-                                    <div class="col-lg-6 col-12">
-                                        <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="">
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="title">我是標題</div>
-                                        <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
-                                    </div>
-                                </div>
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="method-title">山崎蒸餾廠</div>
 
-                            </div>
-                            <div class="carousel-item" data-interval="2000">
-                                <div class="d-flex flex-wrap">
-                                    <div class="col-lg-6 col-12">
-                                        <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="">
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="title">我是標題</div>
-                                        <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
-                                    </div>
-                                </div>
+                </div>
 
-                            </div>
-                            <div class="carousel-item">
-                                <div class="d-flex flex-wrap">
-                                    <div class="col-lg-6 col-12">
-                                        <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="">
+                <div data-aos="fade-up" data-aos-duration="1000">
+                    <div class="method-content">
+                        <div id="method" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-interval="10000">
+                                    <div class="d-flex flex-wrap">
+                                        <div class="col-lg-6 col-12">
+                                            <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="">
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="title">我是標題</div>
+                                            <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-6 col-12">
-                                        <div class="title">我是標題</div>
-                                        <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
-                                    </div>
-                                </div>
 
+                                </div>
+                                <div class="carousel-item" data-interval="2000">
+                                    <div class="d-flex flex-wrap">
+                                        <div class="col-lg-6 col-12">
+                                            <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="">
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="title">我是標題</div>
+                                            <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="d-flex flex-wrap">
+                                        <div class="col-lg-6 col-12">
+                                            <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="">
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="title">我是標題</div>
+                                            <div class="content">我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
+                            <a class="carousel-control-prev" href="#method" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#method" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#method" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#method" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -238,7 +323,11 @@
     <section>
         <div class="sure">
             <div class="container">
-                <div class="sure-title">國際的肯定</div>
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="sure-title">國際的肯定</div>
+
+                </div>
+
                 <div id="timeline" style="overflow: hidden;">
                     <div class="timeline-block">
                         <div class="timeline-year right" data-anime="scroll" style="color:white;"><strong>2001</strong>
@@ -301,6 +390,17 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="./js/timeline.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 
 </body>
 

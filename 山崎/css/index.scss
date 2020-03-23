@@ -27,57 +27,52 @@ ul {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.navbar {
-    background-color: #231815;
+img{
     width: 100%;
-    height: 100px;
+}
 
-    .container {
-        .logo {
-            img {
-                padding-left: 15px;
-                max-height: 75px;
-            }
-        }
+.product-img{
+    max-width: 67%;
+    @media (max-width: 991px) {
+        max-width: 35%;
+        
+      }
+}
 
-        .nav {
-            color: white;
 
-            ul {
-                li {
-                    padding: 0 10px;
-                    font-size: 0.75rem;
-                }
-            }
-        }
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar_1 {
+    background-color:white;
+    font-size: 18px;
+
 }
 
 .banner {
-    background-image: url("../img/keyvisual.jpg");
-    height: 875px;
+    // background-image: url("../img/keyvisual.jpg");
+    //     background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
+    background-color: black;
+    // height: 875px;
     width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    padding: 180px 0;
+
 
 }
+
+
 
 #banner {
 
@@ -213,11 +208,18 @@ ul {
 
 
 .product {
-    background-color: black;
+    // background-color: black;
+    background-image: url('/img/whiskey.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding: $sectionToTitle 0;
     color: white;
 
-    .product-title {
+    .container{
+
+            .product-title {
         font-size: 2rem;
         padding-bottom: $TitleToSmalltitle;
         padding-left: 15px;
@@ -226,6 +228,7 @@ ul {
     .product-content {
         .img-fluid {
             min-height: 100%;
+    
         }
 
         .content {
@@ -241,6 +244,8 @@ ul {
             }
         }
     }
+    }
+
 }
 
 .method {
