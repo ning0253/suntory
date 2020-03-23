@@ -19,29 +19,33 @@ ul li {
   list-style: none;
 }
 
-img {
+.navbar {
+  background-color: #231815;
   width: 100%;
+  height: 100px;
 }
 
-.product-img {
-  max-width: 67%;
+.navbar .container .logo img {
+  padding-left: 15px;
+  max-height: 75px;
 }
 
-@media (max-width: 991px) {
-  .product-img {
-    max-width: 35%;
-  }
+.navbar .container .nav {
+  color: white;
 }
 
-.navbar_1 {
-  background-color: white;
-  font-size: 18px;
+.navbar .container .nav ul li {
+  padding: 0 10px;
+  font-size: 0.75rem;
 }
 
 .banner {
-  background-color: black;
+  background-image: url("../img/keyvisual.jpg");
+  height: 875px;
   width: 100%;
-  padding: 180px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 #banner .carousel-control-next {
@@ -181,35 +185,31 @@ img {
 }
 
 .product {
-  background-image: url("/img/whiskey.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: black;
   padding: 100px 0;
   color: white;
 }
 
-.product .container .product-title {
+.product .product-title {
   font-size: 2rem;
   padding-bottom: 100px;
   padding-left: 15px;
 }
 
-.product .container .product-content .img-fluid {
+.product .product-content .img-fluid {
   min-height: 100%;
 }
 
-.product .container .product-content .content {
+.product .product-content .content {
   font-size: 0.75rem;
   padding-top: 60px;
 }
 
-.product .container .product-content .content .name {
+.product .product-content .content .name {
   font-size: 1.25rem;
 }
 
-.product .container .product-content .content .pad {
+.product .product-content .content .pad {
   padding-bottom: 30px;
 }
 
