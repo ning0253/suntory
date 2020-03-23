@@ -57,17 +57,7 @@ ul {
     }
 }
 
-img{
-    width: 100%;
-}
 
-.product-img{
-    max-width: 67%;
-    @media (max-width: 991px) {
-        max-width: 35%;
-        
-      }
-}
 
 
 
@@ -75,22 +65,23 @@ img{
     background-color:white;
     font-size: 18px;
 
-}
+            ul {
+                li {
+                    padding: 0 10px;
+                    font-size: 0.75rem;
+                }
+            }
+        }
 
 .banner {
-    // background-image: url("../img/keyvisual.jpg");
-    //     background-repeat: no-repeat;
-    // background-size: cover;
-    // background-position: center;
-    background-color: black;
-    // height: 875px;
+    background-image: url("../img/keyvisual.jpg");
+    height: 875px;
     width: 100%;
-    padding: 180px 0;
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
 }
-
-
 
 #banner {
 
@@ -226,18 +217,11 @@ img{
 
 
 .product {
-    // background-color: black;
-    background-image: url('/img/whiskey.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: black;
     padding: $sectionToTitle 0;
     color: white;
 
-    .container{
-
-            .product-title {
+    .product-title {
         font-size: 2rem;
         padding-bottom: $TitleToSmalltitle;
         padding-left: 15px;
@@ -246,7 +230,6 @@ img{
     .product-content {
         .img-fluid {
             min-height: 100%;
-    
         }
 
         .content {
@@ -262,8 +245,6 @@ img{
             }
         }
     }
-    }
-
 }
 
 .method {

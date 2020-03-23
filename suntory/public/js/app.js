@@ -2121,9 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
     //獲取酒的種類
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_kind').then(function (response) {
       return _this.input.liqueur_kind = response.data;
-    })["catch"](function (error) {
-      console.log(error);
-    }); //獲取酒的產品
+    })["catch"](function (error) {}); //獲取酒的產品
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_text').then(function (response) {
       _this.product_data = response.data;
