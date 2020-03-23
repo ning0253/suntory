@@ -97,6 +97,10 @@ img {
   position: relative;
 }
 
+.main .video .video-inner {
+  width: 100%;
+}
+
 .main .video .wine-title {
   color: white;
   position: absolute;
