@@ -1,7 +1,7 @@
 <template>
     <div class="container">
 
-    <a href="#create" data-toggle="collapse" class="btn btn-success">新增</a>
+    <a href="#create" data-toggle="collapse" class="btn btn-success" @submit="clear()">新增</a>
 
     <div class="collapse" id="create">
         <div class="card card-body">
@@ -16,11 +16,11 @@
                 </div>
                 <div class="form-group">
                     <label for="content">故事內容</label>
-                    <input type="text" class="form-control" v-model="input.content" id="content" name="content">
+                    <input type="text" class="form-control" v-model="input.content" id="content" name="content" required>
                 </div>
                 <div class="form-group">
                     <label for="title">故事標題</label>
-                    <input type="text" class="form-control" v-model="input.title" id="title" name="title">
+                    <input type="text" class="form-control" v-model="input.title" id="title" name="title" required>
                 </div>
                 <div class="form-group">
                     <label for="liqueur_id">產品系列</label>
@@ -30,6 +30,11 @@
                         </option>
                     </select>
                 </div>
+                <div class="form-group" v-if="input.edit!=null">
+                    <label for="sort">權重</label>
+                    <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort">
+                </div>
+
                 <button type="submit" class="btn btn-primary" data-toggle="collapse"
                     data-target="#create">Submit</button>
             </form>
@@ -48,14 +53,14 @@
         </thead>
         <tbody class="tbody">
 
-            <tr v-for="item in liqueur_text">
+            <tr v-for="(item, index) in liqueur_text" :key="index">
                 <td>
                     <img :src="item.img" alt="" srcset="" class="img-fluid">
                 </td>
                 <td>
                     {{ item.name.name }}
                 </td>
-                <td>
+                <td >
                     {{ item.title}}
                 </td>
 
@@ -69,8 +74,8 @@
                     {{ item.sort }}
                 </td>
                 <td>
-                    <a href="" class="btn btn-success btn-sm" data-toggle="collapse">修改</a>
-                    <button class="btn btn-danger btn-sm" onclick="show_confirm()">刪除</button>
+                    <a href="#create" class="btn btn-success btn-sm" data-toggle="collapse" @click="editdata(index)">修改</a>
+                    <button class="btn btn-danger btn-sm" @click="deletedata(index)">刪除</button>
                 </td>
                 <div class="collapse" id="">
                     <div class="card card-body">
@@ -128,27 +133,62 @@
                     liqueur_kind:null,
                     id:'',
                     sort:0,
+                    edit:null,
+                    index:null,
                 }
             }
         },
         methods:{
             //按下submit
             store(){
-                axios.post('/admin/liqueurStory',{
+                if(this.input.edit==null){
+                    let {content, title,img,id} =this.input
+                    
+                    axios.post('/admin/liqueurStory',{
                     liqueur_id:this.input.id,
                     img:this.input.oldimg,
                     content:this.input.content,
                     title:this.input.title
-                })
-                .then((res)=>{
-                    this.liqueur_text.push(res.data)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                    })
+                        .then((res)=>{
+                            this.liqueur_text.push(res.data)
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                    });
 
-                this.clear();
-                alert('成功');
+                    this.clear();
+                    alert('成功');
+                }else{
+                    axios.put(`/admin/liqueurStory/${this.input.edit}`,this.input)
+                    .then((res)=>{
+                            console.log(res.data);
+                            console.log('aa');
+
+                            // let target = this.liqueur_text[this.input.index]
+                            // console.log('olde');
+                            // console.log(target)
+                            // // target.content = res.data.content
+                            // // target.img = res.data.img
+
+                            this.liqueur_text[this.input.index].content = res.data.content
+                            this.liqueur_text[this.input.index].img = res.data.img
+                            this.liqueur_text[this.input.index].title = res.data.title
+                            this.liqueur_text[this.input.index].sort = res.data.sort
+
+                             this.liqueur_text[this.input.index] = res.data
+
+                            // console.log('new')
+
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                    });
+                    this.clear();
+                    alert('成功');
+                }
+
+
             },
             //當頁面讀取完成後執行datatable
             upload(){
@@ -156,6 +196,37 @@
                     $('#example').DataTable({
                         "order": [ 1, 'desc' ]
                     });
+                })
+            },
+            //刪除
+            deletedata(index){
+                console.log(index)
+                let target = this.liqueur_text[index]
+                if(confirm(`是否刪除?${target.title}`)){
+                    axios.delete('/admin/liqueurStory/'+target.id)
+                    .then((res)=>{
+                        this.liqueur_text.splice(index,1)
+                    }).catch((err)=>{
+                        console.log(err)
+                    })
+                }
+            },
+            //編輯
+            editdata(index){
+                let target = this.liqueur_text[index]
+                axios.get(`/admin/liqueurStory/${target.id}/edit`)
+                .then((res)=>{
+                    console.log(res.data)
+                    let{ content, img, title,id,liqueur_id,sort} = res.data
+                    this.input.content = content
+                    this.input.title = title
+                    this.input.oldimg = img
+                    this.input.id = liqueur_id
+                    this.input.edit = id
+                    this.input.index = index
+                    this.input.sort = sort
+                }).catch((err)=>{
+                    console.log(err)
                 })
             },
             //判斷是否有圖片上傳
@@ -193,9 +264,10 @@
             clear(){
                 this.input.newimg = null,
                 this.input.oldimg = '',
-                this.content = '',
-                this.title = '',
-                this.id = ''
+                this.input.content = '',
+                this.input.title = '',
+                this.input.id = '',
+                this.input.sort = ''
                 $('#img').val('')
             }
 

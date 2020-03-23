@@ -93,7 +93,7 @@
             </tr>
         </thead>
         <tbody class="tbody">
-            <tr v-for="item in product_data">
+            <tr v-for="(item,index) in product_data " :key="index">
                 <td>
                     <img :src="item.img" alt="" srcset="" class="img-fluid">
                 </td>
