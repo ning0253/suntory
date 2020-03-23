@@ -62,7 +62,8 @@ class LiqueurStoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = LiqueurStory::find($id);
+        return $data;
     }
 
     /**
@@ -74,7 +75,11 @@ class LiqueurStoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = $request->all();
+        $data = LiqueurStory::with('name')->find($id);
+        $data->update($new);
+
+        return $data;
     }
 
     /**
@@ -85,7 +90,9 @@ class LiqueurStoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = LiqueurStory::find($id);
+        $data->delete();
+        return 'successful';
     }
 
     public function liqueurStory_upload_img()

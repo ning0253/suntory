@@ -2435,6 +2435,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2468,7 +2473,9 @@ __webpack_require__.r(__webpack_exports__);
         title: '',
         liqueur_kind: null,
         id: '',
-        sort: 0
+        sort: 0,
+        edit: null,
+        index: null
       }
     };
   },
@@ -2477,18 +2484,44 @@ __webpack_require__.r(__webpack_exports__);
     store: function store() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory', {
-        liqueur_id: this.input.id,
-        img: this.input.oldimg,
-        content: this.input.content,
-        title: this.input.title
-      }).then(function (res) {
-        _this2.liqueur_text.push(res.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-      this.clear();
-      alert('成功');
+      if (this.input.edit == null) {
+        var _this$input = this.input,
+            content = _this$input.content,
+            title = _this$input.title,
+            img = _this$input.img,
+            id = _this$input.id;
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory', {
+          liqueur_id: this.input.id,
+          img: this.input.oldimg,
+          content: this.input.content,
+          title: this.input.title
+        }).then(function (res) {
+          _this2.liqueur_text.push(res.data);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+        this.clear();
+        alert('成功');
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/admin/liqueurStory/".concat(this.input.edit), this.input).then(function (res) {
+          console.log(res.data);
+          console.log('aa'); // let target = this.liqueur_text[this.input.index]
+          // console.log('olde');
+          // console.log(target)
+          // // target.content = res.data.content
+          // // target.img = res.data.img
+
+          _this2.liqueur_text[_this2.input.index].content = res.data.content;
+          _this2.liqueur_text[_this2.input.index].img = res.data.img;
+          _this2.liqueur_text[_this2.input.index].title = res.data.title;
+          _this2.liqueur_text[_this2.input.index].sort = res.data.sort;
+          _this2.liqueur_text[_this2.input.index] = res.data; // console.log('new')
+        })["catch"](function (error) {
+          console.log(error);
+        });
+        this.clear();
+        alert('成功');
+      }
     },
     //當頁面讀取完成後執行datatable
     upload: function upload() {
@@ -2498,16 +2531,56 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+    //刪除
+    deletedata: function deletedata(index) {
+      var _this3 = this;
+
+      console.log(index);
+      var target = this.liqueur_text[index];
+
+      if (confirm("\u662F\u5426\u522A\u9664?".concat(target.title))) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/admin/liqueurStory/' + target.id).then(function (res) {
+          _this3.liqueur_text.splice(index, 1);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    },
+    //編輯
+    editdata: function editdata(index) {
+      var _this4 = this;
+
+      var target = this.liqueur_text[index];
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/admin/liqueurStory/".concat(target.id, "/edit")).then(function (res) {
+        console.log(res.data);
+        var _res$data = res.data,
+            content = _res$data.content,
+            img = _res$data.img,
+            title = _res$data.title,
+            id = _res$data.id,
+            liqueur_id = _res$data.liqueur_id,
+            sort = _res$data.sort;
+        _this4.input.content = content;
+        _this4.input.title = title;
+        _this4.input.oldimg = img;
+        _this4.input.id = liqueur_id;
+        _this4.input.edit = id;
+        _this4.input.index = index;
+        _this4.input.sort = sort;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
     //判斷是否有圖片上傳
     processFile: function processFile(event) {
-      var _this3 = this;
+      var _this5 = this;
 
       if (this.input.oldimg == null) {
         this.input.newimg = event.target.files[0];
         var fd = new FormData();
         fd.append('file', this.input.newimg, this.input.newimg.name);
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_upload_img', fd).then(function (response) {
-          return _this3.input.oldimg = response.data;
+          return _this5.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2526,7 +2599,7 @@ __webpack_require__.r(__webpack_exports__);
         _fd.append('file', this.input.newimg, this.input.newimg.name);
 
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_upload_img', _fd).then(function (response) {
-          return _this3.input.oldimg = response.data;
+          return _this5.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2534,7 +2607,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     //清除表單資料
     clear: function clear() {
-      this.input.newimg = null, this.input.oldimg = '', this.content = '', this.title = '', this.id = '';
+      this.input.newimg = null, this.input.oldimg = '', this.input.content = '', this.input.title = '', this.input.id = '', this.input.sort = '';
       $('#img').val('');
     }
   }
@@ -38520,8 +38593,8 @@ var render = function() {
         _c(
           "tbody",
           { staticClass: "tbody" },
-          _vm._l(_vm.product_data, function(item) {
-            return _c("tr", [
+          _vm._l(_vm.product_data, function(item, index) {
+            return _c("tr", { key: index }, [
               _c("td", [
                 _c("img", {
                   staticClass: "img-fluid",
@@ -38861,7 +38934,12 @@ var render = function() {
       "a",
       {
         staticClass: "btn btn-success",
-        attrs: { href: "#create", "data-toggle": "collapse" }
+        attrs: { href: "#create", "data-toggle": "collapse" },
+        on: {
+          submit: function($event) {
+            return _vm.clear()
+          }
+        }
       },
       [_vm._v("新增")]
     ),
@@ -38919,7 +38997,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "content", name: "content" },
+                attrs: {
+                  type: "text",
+                  id: "content",
+                  name: "content",
+                  required: ""
+                },
                 domProps: { value: _vm.input.content },
                 on: {
                   input: function($event) {
@@ -38945,7 +39028,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "title", name: "title" },
+                attrs: {
+                  type: "text",
+                  id: "title",
+                  name: "title",
+                  required: ""
+                },
                 domProps: { value: _vm.input.title },
                 on: {
                   input: function($event) {
@@ -39009,6 +39097,34 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
+            _vm.input.edit != null
+              ? _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "sort" } }, [_vm._v("權重")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.input.sort,
+                        expression: "input.sort"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", id: "sort", name: "sort" },
+                    domProps: { value: _vm.input.sort },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.input, "sort", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "button",
               {
@@ -39039,8 +39155,8 @@ var render = function() {
         _c(
           "tbody",
           { staticClass: "tbody" },
-          _vm._l(_vm.liqueur_text, function(item) {
-            return _c("tr", [
+          _vm._l(_vm.liqueur_text, function(item, index) {
+            return _c("tr", { key: index }, [
               _c("td", [
                 _c("img", {
                   staticClass: "img-fluid",
@@ -39084,11 +39200,38 @@ var render = function() {
                     )
                   ]),
               _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-success btn-sm",
+                    attrs: { href: "#create", "data-toggle": "collapse" },
+                    on: {
+                      click: function($event) {
+                        return _vm.editdata(index)
+                      }
+                    }
+                  },
+                  [_vm._v("修改")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    on: {
+                      click: function($event) {
+                        return _vm.deletedata(index)
+                      }
+                    }
+                  },
+                  [_vm._v("刪除")]
+                )
+              ]),
+              _vm._v(" "),
               _vm._m(1, true),
               _vm._v(" "),
-              _vm._m(2, true),
-              _vm._v(" "),
-              _vm._m(3, true)
+              _vm._m(2, true)
             ])
           }),
           0
@@ -39116,30 +39259,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "80px" } }, [_vm._v("action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success btn-sm",
-          attrs: { href: "", "data-toggle": "collapse" }
-        },
-        [_vm._v("修改")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger btn-sm",
-          attrs: { onclick: "show_confirm()" }
-        },
-        [_vm._v("刪除")]
-      )
     ])
   },
   function() {
@@ -51961,8 +52080,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\GitHub\suntory\suntory\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\GitHub\suntory\suntory\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\user\Documents\GitHub\suntory\suntory\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\user\Documents\GitHub\suntory\suntory\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
