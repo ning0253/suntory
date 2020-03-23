@@ -31,6 +31,24 @@ img {
 }
 
 @media (max-width: 768px) {
+  .wine-title-style h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 540px) {
+  .wine-title-style h1 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wine-title-style h1 {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
   .wine-style {
     width: 80px !important;
   }
@@ -39,6 +57,12 @@ img {
 @media (max-width: 568px) {
   .wine-style {
     width: 60px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .wine-style {
+    width: 40px !important;
   }
 }
 
@@ -76,9 +100,15 @@ img {
 .main .video .wine-title {
   color: white;
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 23%;
   bottom: 50%;
+}
+
+@media (max-width: 1020px) {
+  .main .video .wine-title {
+    top: 11%;
+  }
 }
 
 .main .video .wine {
