@@ -176,7 +176,7 @@
             axios.post('/admin/liqueurProduct_kind')
                 .then(response=>this.input.liqueur_kind = response.data)
                 .catch(function (error) {
-                    console.log(error);
+                    
                 });
             //獲取酒的產品
             axios.post('/admin/liqueurProduct_text')
