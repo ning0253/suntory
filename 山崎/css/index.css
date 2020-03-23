@@ -54,20 +54,12 @@ ul li {
 }
 
 .banner {
-  background-image: url("../img/keyvisual.jpg");
-  height: 875px;
+  background-color: black;
+  padding: 180px 0;
+}
+
+.banner img {
   width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-#banner .carousel-control-next {
-  right: 0;
-}
-
-#banner .carousel-control-prev {
-  left: 0;
 }
 
 .story {
@@ -125,6 +117,7 @@ ul li {
   padding: 100px 0;
   background-color: black;
   color: white;
+  overflow: hidden;
 }
 
 .attitude .container .attitude-title {
