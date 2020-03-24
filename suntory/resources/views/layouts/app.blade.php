@@ -46,7 +46,7 @@
                                 <a class="dropdown-item" href="/admin/liqueurStory">
                                     酒的故事
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="/admin/liqueurAttitude">
                                     酒的態度
                                 </a>
                                 <a class="dropdown-item" href="">

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Liqueur;
+use App\LiqueurAttitude;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class LiqueurAttitudeController extends Controller
 {
@@ -13,7 +16,7 @@ class LiqueurAttitudeController extends Controller
      */
     public function index()
     {
-        return view('auth.liqueur_attitude.index')
+        return view('auth.liqueur_attitude.index');
     }
 
     /**
@@ -34,7 +37,10 @@ class LiqueurAttitudeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $ready = LiqueurAttitude::create($data);
+        $newdata = LiqueurAttitude::with('name')->find($ready->id);
+        return $newdata;
     }
 
     /**
@@ -56,7 +62,8 @@ class LiqueurAttitudeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = LiqueurAttitude::find($id);
+        return $data;
     }
 
     /**
@@ -68,7 +75,11 @@ class LiqueurAttitudeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = $request->all();
+        $data = LiqueurAttitude::with('name')->find($id);
+        $data->update($new);
+
+        return $data;
     }
 
     /**
@@ -79,6 +90,57 @@ class LiqueurAttitudeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = LiqueurAttitude::find($id);
+        $data->delete();
+        return 'successful';
+    }
+
+    public function liqueurAttitude_upload_img()
+    {
+        // A list of permitted file extensions
+        $allowed = array('png', 'jpg', 'gif','zip');
+        if(isset($_FILES['file']) && $_FILES['file']['error'] == 0){
+            $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            if(!in_array(strtolower($extension), $allowed)){
+                echo '{"status":"error"}';
+                exit;
+            }
+            $name = strval(time().md5(rand(100, 200)));
+            $ext = explode('.', $_FILES['file']['name']);
+            $filename = $name . '.' . $ext[1];
+            //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
+            if( ! is_dir('upload/')){
+                mkdir('upload/');
+            }
+            //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
+            if ( ! is_dir('upload/Storyimg')) {
+                mkdir('upload/Storyimg');
+            }
+            $destination = public_path().'/upload/Storyimg/'. $filename; //change this directory
+            $location = $_FILES["file"]["tmp_name"];
+            move_uploaded_file($location, $destination);
+            echo "/upload/Storyimg/".$filename;//change this URL
+        }
+        exit;
+    }
+
+    public function liqueurAttitude_delete_img(Request $request)
+    {
+        if(file_exists(public_path().$request->file_link)){
+            File::delete(public_path().$request->file_link);
+        }
+        return $request;
+    }
+
+    public function liqueurAttitude_kind()
+    {
+        $data = Liqueur::all();
+        return $data;
+    }
+
+    public function liqueurAttitude_text()
+    {
+        $data = LiqueurAttitude::with('name')->orderby('sort','desc')->get();
+        return $data;
     }
 }

@@ -63,7 +63,7 @@
                     <td>{{ item.name.name }}</td>
                     <td>{{ item.title }}</td>
 
-                    <td>{{ item.content }}</td>
+                    <td v-html="item.content" ></td>
                     <td v-if="item.sort == null">0</td>
                     <td v-else>{{ item.sort }}</td>
                     <td>
@@ -72,12 +72,7 @@
                             刪除
                         </button>
                     </td>
-                    <div class="collapse" id>
-                        <div class="card card-body"></div>
-                    </div>
-                    <div class="collapse" id>
-                        <div class="card card-body"></div>
-                    </div>
+                    
                 </tr>
             </tbody>
         </table>
@@ -95,14 +90,14 @@ export default {
     created() {
         //獲取酒的種類
         axios
-            .post("/admin/liqueurStory_kind")
+            .post("/admin/liqueurAttitude_kind")
             .then(response => (this.input.liqueur_kind = response.data))
             .catch(function (error) {
                 console.log(error);
             });
         //獲取酒的故事
         axios
-            .post("/admin/liqueurStory_text")
+            .post("/admin/liqueurAttitude_text")
             .then(response => {
                 this.liqueur_text = response.data;
                 this.upload();
@@ -139,7 +134,7 @@ export default {
                 let { content, title, img, id } = this.input;
 
                 axios
-                    .post("/admin/liqueurStory", {
+                    .post("/admin/liqueurAttitude", {
                         liqueur_id: this.input.id,
                         img: this.input.oldimg,
                         content: this.input.content,
@@ -157,7 +152,7 @@ export default {
                 //console.log(index);
 
                 axios
-                    .put(`/admin/liqueurStory/${this.input.edit}`, {
+                    .put(`/admin/liqueurAttitude/${this.input.edit}`, {
                         liqueur_id: this.input.id,
                         img: this.input.oldimg,
                         content: this.input.content,
@@ -200,7 +195,7 @@ export default {
             }).then(result => {
                 if (result.value) {
                     axios
-                        .delete("/admin/liqueurStory/" + target.id)
+                        .delete("/admin/liqueurAttitude/" + target.id)
                         .then(res => {
                             this.liqueur_text.splice(index, 1);
                             this.sweetalert("del");
@@ -215,7 +210,7 @@ export default {
         editdata(index) {
             let target = this.liqueur_text[index];
             axios
-                .get(`/admin/liqueurStory/${target.id}/edit`)
+                .get(`/admin/liqueurAttitude/${target.id}/edit`)
                 .then(res => {
                     //console.log(res.data);
                     let {
@@ -246,14 +241,14 @@ export default {
                 const fd = new FormData();
                 fd.append("file", this.input.newimg, this.input.newimg.name);
                 axios
-                    .post("/admin/liqueurStory_upload_img", fd)
+                    .post("/admin/liqueurAttitude_upload_img", fd)
                     .then(response => (this.input.oldimg = response.data))
                     .catch(function (error) {
                         console.log(error);
                     });
             } else {
                 axios
-                    .post("/admin/liqueurStory_delete_img", {
+                    .post("/admin/liqueurAttitude_delete_img", {
                         file_link: this.input.oldimg
                     })
                     .then(function (response) {
@@ -266,7 +261,7 @@ export default {
                 const fd = new FormData();
                 fd.append("file", this.input.newimg, this.input.newimg.name);
                 axios
-                    .post("/admin/liqueurStory_upload_img", fd)
+                    .post("/admin/liqueurAttitude_upload_img", fd)
                     .then(response => (this.input.oldimg = response.data))
                     .catch(function (error) {
                         console.log(error);
@@ -294,6 +289,7 @@ export default {
                     timer: 1500
                 }).then(result => {
                     $("#add").click();
+
                 });
             } else {
                 Swal.fire({

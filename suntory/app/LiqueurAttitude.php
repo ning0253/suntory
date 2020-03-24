@@ -16,9 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LiqueurAttitude extends Model
 {
+    protected $table = 'liqueur_attitudes';
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -27,5 +28,10 @@ class LiqueurAttitude extends Model
      * @var array
      */
     protected $fillable = ['liqueur_id', 'img', 'content', 'title', 'sort', 'created_at', 'updated_at'];
+
+    public function name()
+    {
+        return $this->belongsTo('App\Liqueur', 'liqueur_id', 'id')->orderBy('sort', 'asc');
+    }
 
 }
