@@ -18,7 +18,8 @@
                     </div>
                     <div class="form-group">
                         <label for="content">故事內容</label>
-                        <input type="text" class="form-control" v-model="input.content" id="content" name="content" required />
+                        <!-- <input type="text" class="form-control" v-model="input.content" id="content" name="content" required /> -->
+                        <vue-editor v-model="input.content" :editor-toolbar="customToolbar" />
                     </div>
                     <div class="form-group">
                         <label for="title">故事標題</label>
@@ -85,7 +86,9 @@
 
 <script>
 import axios from "axios";
+import { VueEditor } from "vue2-editor";
 export default {
+    components: { VueEditor },
     mounted() {
         console.log("Component mounted.");
     },
@@ -121,7 +124,12 @@ export default {
                 sort: 0,
                 edit: null,
                 index: null
-            }
+            },
+            customToolbar: [
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["code-block"]
+            ]
         };
     },
     methods: {
