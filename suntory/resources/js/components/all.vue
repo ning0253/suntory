@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label for="liqueur_id">產品系列</label>
                         <select required name="liqueur_id" id v-model="input.id" class="form-control">
-                            <option v-for="item in input.liqueur_kind" :value="item.id">{{ item.name }}</option>
+                            <option v-for="(item, index) in input.liqueur_kind" :value="item.id" :key="index">{{ item.name }}</option>
                         </select>
                     </div>
                     <div class="form-group" v-if="input.edit != null">
@@ -126,7 +126,6 @@ export default {
     },
     methods: {
         //按下submit
-
         store(index) {
             if (this.input.edit == null) {
                 let { content, title, img, id } = this.input;
@@ -147,7 +146,7 @@ export default {
                         console.log(error);
                     });
             } else {
-                console.log(index);
+                //console.log(index);
 
                 axios
                     .put(`/admin/liqueurStory/${this.input.edit}`, {
@@ -179,7 +178,7 @@ export default {
         },
         //刪除
         deletedata(index) {
-            console.log(index);
+            //console.log(index);
             let target = this.liqueur_text[index];
 
             Swal.fire({
@@ -210,7 +209,7 @@ export default {
             axios
                 .get(`/admin/liqueurStory/${target.id}/edit`)
                 .then(res => {
-                    console.log(res.data);
+                    //console.log(res.data);
                     let {
                         content,
                         img,
@@ -250,7 +249,7 @@ export default {
                         file_link: this.input.oldimg
                     })
                     .then(function (response) {
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function (error) {
                         console.log(error);
