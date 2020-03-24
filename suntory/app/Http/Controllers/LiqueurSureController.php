@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Liqueur;
+use App\LiqueurProduct;
 use App\LiqueurSure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -11,15 +11,33 @@ class LiqueurSureController extends Controller
 {
     public function index()
     {
-        $data = LiqueurSure::all();
-        return view('auth.liqueur_Sure.index', compact('data'));
+        return view('auth.liqueur_Sure.index');
     }
     public function store(Request $request)
     {
-        $data = $request->all();
-        $ready = LiqueurSure::create($data);
+        $request_data = $request->all();
+        $ready = LiqueurSure::create($request_data);
         $data = LiqueurSure::with('liqueur')->where('id', $ready->id)->first();
         return $data;
+    }
+    public function edit($id)
+    {
+        $data = LiqueurSure::find($id);
+        return $data;
+    }
+    public function update(Request $request, $id)
+    {
+        $new = $request->all();
+        $data = LiqueurSure::with('name')->find($id);
+        $data->update($new);
+
+        return $data;
+    }
+    public function destroy($id)
+    {
+        $data = LiqueurSure::find($id);
+        $data->delete();
+        return 'successful';
     }
     public function liqueurSure_upload_img()
     {
@@ -60,13 +78,13 @@ class LiqueurSureController extends Controller
 
     public function liqueurSure_kind()
     {
-        $data = Liqueur::all();
+        $data = LiqueurProduct::with('liqueur')->get();
         return $data;
     }
 
     public function liqueurSure_text()
     {
-        $data = LiqueurSure::with('liqueur')->get();
+        $data = LiqueurSure::with('liqueur_product')->get();
         return $data;
     }
 }

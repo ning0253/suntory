@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property int $liqueur_id
- * @property string $img
- * @property string $content
- * @property string $title
+ * @property string $year
+ * @property string $award_img
  * @property string $award
- * @property int $sort
+ * @property int $liqueur_product_id
+ * @property string $content
  * @property string $created_at
  * @property string $updated_at
  */
@@ -27,11 +26,10 @@ class LiqueurSure extends Model
     /**
      * @var array
      */
-    protected $fillable = ['liqueur_id', 'img', 'content', 'title', 'award', 'sort', 'created_at', 'updated_at'];
+    protected $fillable = ['year', 'award_img', 'award', 'liqueur_product_id', 'content', 'created_at', 'updated_at'];
 
-    public function liqueur()
+    public function liqueur_product()
     {
-        return $this->belongsTo('App\Liqueur', 'liqueur_id', 'id')->orderBy('sort', 'desc');
+        return $this->belongsTo('App\LiqueurProduct', 'liqueur_product_id', 'id')->orderBy('sort', 'desc');
     }
-
 }

@@ -15,12 +15,11 @@ class CreateLiqueurSures extends Migration
     {
         Schema::create('liqueur_sures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('liqueur_id');
-            $table->string('img');
-            $table->string('content');
-            $table->string('title');
+            $table->string('year');
+            $table->string('award_img');
             $table->string('award');
-            $table->integer('sort')->default(0);
+            $table->integer('liqueur_product_id');
+            $table->string('content');
             $table->timestamps();
         });
     }
