@@ -8,28 +8,30 @@
             <div class="card card-body">
                 <form method="post" action="#" enctype="multipart/form-data" id="form1" @submit.prevent="store(input.index)">
                     <div class="form-group">
-                        <div class="col-4">
-                            <img :src="input.oldimg" alt srcset class="img-fluid" />
+                        <div class="row" style="position: relative">
+                            <div class="col-4 " v-if="input.oldimg !=null" v-for="(item ,index) in input.oldimg" :key="index">
+                                <img :src="item" alt srcset class="img-fluid" />
+                                <button type="button" class="btn btn-danger" style="position: absolute;border-radius: 50%;top: -15px;right: -5px;" @click="deleteimg(index)">X</button>
+                            </div>
                         </div>
 
                         <label for="img">圖片</label>
                         <input v-if="this.input.edit == null" required type="file" class="form-control" multiple="multiple" @change="processFile($event)" id="img" name="img" value />
                         <input v-else type="file" class="form-control" multiple="multiple" @change="processFile($event)" id="img" name="img" value />
 
-                        <file-upload class="btn btn-primary" post-action="/upload/post" extensions="gif,jpg,jpeg,png,webp" accept="image/png,image/gif,image/jpeg,image/webp" :multiple="true" :size="1024 * 1024 * 10" v-model="files" @input-filter="inputFilter" @input-file="inputFile" ref="upload">
+                        <!-- <file-upload class="btn btn-primary" post-action="/upload/post" extensions="gif,jpg,jpeg,png,webp" accept="image/png,image/gif,image/jpeg,image/webp" :multiple="true" :size="1024 * 1024 * 10" v-model="files" @input-filter="inputFilter" @input-file="inputFile" ref="upload">
                             <i class="fa fa-plus"></i>
                             Select files
-                        </file-upload>
+                        </file-upload> -->
 
-                        <button type="button" class="btn btn-success" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
+                        <!-- <button type="button" class="btn btn-success" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
                             <i class="fa fa-arrow-up" aria-hidden="true"></i>
                             Start Upload
                         </button>
                         <button type="button" class="btn btn-danger" v-else @click.prevent="$refs.upload.active = false">
                             <i class="fa fa-stop" aria-hidden="true"></i>
                             Stop Upload
-                        </button>
-
+                        </button> -->
                     </div>
                     <div class="form-group">
                         <label for="content">故事內容</label>
@@ -100,7 +102,7 @@
 </template>
 
 <script>
-import FileUpload from 'vue-upload-component/src'
+import FileUpload from "vue-upload-component/src";
 import { VueEditor } from "vue2-editor";
 export default {
     components: { VueEditor, FileUpload: FileUpload },
@@ -155,28 +157,30 @@ export default {
                 // 添加文件前
                 // Filter system files or hide files
                 // 过滤系统文件 和隐藏文件
-                if (/(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)) {
-                    return prevent()
+                if (
+                    /(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)
+                ) {
+                    return prevent();
                 }
                 // Filter php html js file
                 // 过滤 php html js 文件
                 if (/\.(php5?|html?|jsx?)$/i.test(newFile.name)) {
-                    return prevent()
+                    return prevent();
                 }
             }
         },
         inputFile(newFile, oldFile) {
             if (newFile && !oldFile) {
                 // add
-                console.log('add', newFile)
+                console.log("add", newFile);
             }
             if (newFile && oldFile) {
                 // update
-                console.log('update', newFile)
+                console.log("update", newFile);
             }
             if (!newFile && oldFile) {
                 // remove
-                console.log('remove', oldFile)
+                console.log("remove", oldFile);
             }
         },
         //按下submit
@@ -287,55 +291,75 @@ export default {
         },
         //判斷是否有圖片上傳
         processFile(event) {
-            if (this.input.oldimg == '') {
-                let length = event.target.files.length
 
-                this.input.newimg = event.target.files[0];
+            let length = event.target.files.length;
 
-                for (var i = 0; i < length; i++) {
-                    this.input.newimg = event.target.files[i];
-                    const fd = new FormData();
-                    fd.append("file", this.input.newimg, this.input.newimg.name);
-                    axios
-                        .post("/admin/liqueurStory_upload_img", fd)
-                        .then(response => {
-                            if (this.input.oldimg[0] == null) {
-                                this.input.oldimg.push(response.data)
-                                console.log(response.data)
+            this.input.newimg = event.target.files[0];
 
-                            } else {
-                                this.input.oldimg.push(response.data)
-                                console.log('測試');
-
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-
-
-            } else {
-                axios
-                    .post("/admin/liqueurStory_delete_img", {
-                        file_link: this.input.oldimg
-                    })
-                    .then(function (response) {
-                        //console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                this.input.newimg = event.target.files[0];
+            for (var i = 0; i < length; i++) {
+                this.input.newimg = event.target.files[i];
                 const fd = new FormData();
-                fd.append("file", this.input.newimg, this.input.newimg.name);
+                fd.append(
+                    "file",
+                    this.input.newimg,
+                    this.input.newimg.name
+                );
                 axios
                     .post("/admin/liqueurStory_upload_img", fd)
-                    .then(response => (this.input.oldimg = response.data))
+                    .then((response) => {
+                        if (!this.input.oldimg) {
+                            this.input.oldimg = [response.data]
+                        } else {
+                            this.input.oldimg.push(response.data)
+                        }
+
+                    })
                     .catch(function (error) {
                         console.log(error);
                     });
             }
+
+            // else {
+            //     axios
+            //         .post("/admin/liqueurStory_delete_img", {
+            //             file_link: this.input.oldimg
+            //         })
+            //         .then(function (response) {
+            //             //console.log(response);
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            //     this.input.newimg = event.target.files[0];
+            //     const fd = new FormData();
+            //     fd.append("file", this.input.newimg, this.input.newimg.name);
+            //     axios
+            //         .post("/admin/liqueurStory_upload_img", fd)
+            //         .then((response) => {
+            //                 if (!this.input.oldimg) {
+            //                     this.input.oldimg = [response.data]
+            //                 } else {
+            //                     this.input.oldimg.push(response.data)
+            //                 }
+
+            //             })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            // }
+        },
+        deleteimg(index) {
+            axios
+                .post("/admin/liqueurStory_delete_img", {
+                    file_link: this.input.oldimg[index]
+                })
+                .then((res)=>{
+                    this.input.oldimg.splice(index, 1)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
         },
         //清除表單資料
         clear() {
@@ -370,4 +394,3 @@ export default {
     }
 };
 </script>
-

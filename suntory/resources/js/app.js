@@ -27,7 +27,7 @@ Vue.component('liqueur-product', require('./components/Product.vue').default);
 Vue.component('content-editor', require('./components/vue2editor.vue').default);
 Vue.component('liqueur-attitude', require('./components/liqueur-attitude.vue').default);
 Vue.component('liqueur-sure', require('./components/liqueur-sure.vue').default);
-
+Vue.component('vueupload-Image', require('./components/vueUploadImage.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
