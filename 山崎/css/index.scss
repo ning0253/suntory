@@ -249,25 +249,9 @@ ul {
     background-attachment: fixed;
     padding: $sectionToTitle 0;
     color: white;
-position: relative;
 
-    .lightbox{
-        z-index: 2;
-        position: absolute;
-        width: 500px;
-        top: 50%;
-        right: 23%;
-        left: 25%;
-        p{
-            color: white;
-        }
-        .toast{
-            max-width: 500px;
-        }
     }
-    .detail{
-        border: 0;
-    }
+
 
     .product-title {
         font-size: 2rem;
