@@ -63,13 +63,30 @@ ul {
 
 
 .navbar_1 {
-    background-color:white;
+    background-color:black;
     font-size: 18px;
+    // .navbar-toggler-icon{
+    //     background-image: url('/img/open-menu.svg');
+    // }
+    .navbar-toggler{
+        padding: 0 10px;
+        border-color:white;
+        svg{
+            width: 40px;
+            height: 50px;
+            fill: white;
+        }
+    }
 
             ul {
                 li {
+                    color: white;
                     padding: 0 10px;
                     font-size: 0.75rem;
+                    a{
+                        color: white;
+                        text-decoration: none;
+                    }
                 }
             }
         }
@@ -225,9 +242,32 @@ ul {
 
 
 .product {
-    background-color: black;
+    background-image: url('/img/whiskey.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     padding: $sectionToTitle 0;
     color: white;
+position: relative;
+
+    .lightbox{
+        z-index: 2;
+        position: absolute;
+        width: 500px;
+        top: 50%;
+        right: 23%;
+        left: 25%;
+        p{
+            color: white;
+        }
+        .toast{
+            max-width: 500px;
+        }
+    }
+    .detail{
+        border: 0;
+    }
 
     .product-title {
         font-size: 2rem;
@@ -254,6 +294,7 @@ ul {
         }
     }
 }
+
 
 .method {
     color: white;

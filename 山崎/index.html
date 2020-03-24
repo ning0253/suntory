@@ -15,28 +15,106 @@
     <link rel="stylesheet" href="./css/hover.css">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
+
+
 
 
 </head>
 
 <body>
+    <div class="loader-inner ball-pulse">
+
+
+    </div>
+
     <nav>
-        <div class="navbar">
-            <div class="container d-flex justify-content-between">
-                <div class="logo">
-                    <img src="./img/logo.png" alt="" srcset="">
-                </div>
-                <div class="nav">
-                    <ul class="d-flex">
-                        <li>山崎的故事</li>
-                        <li>山崎的態度</li>
-                        <li>山崎系列 </li>
-                        <li>山崎蒸餾廠 </li>
-                        <li>國際的肯定</li>
-                    </ul>
-                </div>
+        <div class="navbar_1">
+            <div class="container">
+                <nav id="nav" class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="#">
+                        <img src="./img/logo.png" alt="" style="height: 68px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <div class="hamburger">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M492,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,236,492,236z" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M492,76H20C8.954,76,0,84.954,0,96s8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,76,492,76z" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M492,396H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20
+			C512,404.954,503.046,396,492,396z" />
+                                    </g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                            </svg>
+                        </div>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto py-4 py-md-0">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class="hvr-underline-from-center" href="#">山崎的故事</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class=" hvr-underline-from-center" href="#">山崎的態度</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class=" hvr-underline-from-center" href="#">國際的肯定</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class=" hvr-underline-from-center" href="#">山崎蒸餾廠</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                <a class=" hvr-underline-from-center" href="#">山崎系列</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
+
         </div>
     </nav>
     <section>
@@ -209,6 +287,40 @@
 
     <section>
         <div class="product">
+            <div class="lightbox">
+                <div aria-live="polite" aria-atomic="true"
+                    class="d-flex justify-content-center align-items-center lightbox"  >
+
+                    <!-- Then put toasts within -->
+
+                    <div class="toast bg-dark w-100" role="alert" aria-live="assertive" aria-atomic="true" data-delay="100000000">
+                        <div class="toast-header d-flex justify-content-between">
+                            <h3>Tasting note</h3>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+                        <div class="toast-body">
+                            <ul>
+                                <li>色澤&thinsp;|&thinsp;淺紅琥珀色。</li>
+                                <li>香氣&thinsp;|&thinsp;莓、櫻桃氣味。</li>
+                                <li>酒體&thinsp;|&thinsp;中度。</li>
+                                <li>味覺&thinsp;|&thinsp;蜂蜜，滑順的在口中散開的甜味。</li>
+                                <li>餘覺&thinsp;|&thinsp;甜香草、肉桂味。</li>
+                            </ul>
+                            <!-- <p>色澤&thinsp;|&thinsp;淺紅琥珀色。</p>
+                            <p>香氣&thinsp;|&thinsp;莓、櫻桃氣味。</p>
+                            <p>酒體&thinsp;|&thinsp;中度。</p>
+                            <p>味覺&thinsp;|&thinsp;蜂蜜，滑順的在口中散開的甜味。</p>
+                            <p>餘覺&thinsp;|&thinsp;甜香草、肉桂味。</p> -->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
             <div class="container">
                 <div data-aos="fade-right" data-aos-duration="1000">
                     <div class="product-title">
@@ -235,9 +347,15 @@
                                 </div>
                                 <div class="second pad">香味特徵：具有新鮮的草苺，櫻桃的香氣。蜂蜜的香甜味及微酸味隨著品嘗逐漸在口腔中散溢。香甜香草，肉桂香讓人感受到心情愉悅的餘韻。
                                 </div>
-                                <div class="Introduction text-right pb-3"><span class="px-1">
 
-                                        詳細介紹</span><i class="fas fa-chevron-right"></i></div>
+                                <div class="Introduction text-right pb-3">
+
+                                    <button id="showToast" class="detail bg-transparent text-white ">詳細介紹</button>
+
+
+
+
+                                    <i class="fas fa-chevron-right"></i></div>
                                 <div class="buy  text-center pb-2"><span class="border px-3 py-1">立即購買</span></div>
                             </div>
 
@@ -247,6 +365,7 @@
             </div>
         </div>
     </section>
+
 
     <section>
         <div class="method">
@@ -424,14 +543,18 @@
     <script>
         AOS.init();
     </script>
-    <script src="path/to/lightbox.js"></script>
-    <script>
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true
-        })
-    </script>
 
+    <script>
+
+        $(document).ready(function () {
+
+            $("#showToast").click(function () {
+                $('.toast').toast('show');
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>
