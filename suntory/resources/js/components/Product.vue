@@ -324,13 +324,7 @@ export default {
                 })
                 .then(res => {
                     this.clear();
-                    Swal.fire(
-                        "Deleted!",
-                        "Your file has been deleted.",
-                        "OK"
-                    ).then(result => {
-                        $("#add").click();
-                    });
+
                     this.product_data.push(res.data);
                 })
                 .catch(function(error) {
@@ -396,6 +390,26 @@ export default {
                 (this.input.price = ""),
                 (this.input.note = ""),
                 $("#img").val("");
+        },
+
+        sweetalert(action) {
+            if (action != "del") {
+                Swal.fire({
+                    icon: "success",
+                    title: "儲存成功",
+                    timer: 1500
+                }).then(result => {
+                    if (action == "add") {
+                        $("#add").click();
+                    }
+                });
+            }else{
+                Swal.fire({
+                    icon: "success",
+                    title: "刪除成功",
+                    timer: 1500
+                });
+            }
         }
     }
 };
