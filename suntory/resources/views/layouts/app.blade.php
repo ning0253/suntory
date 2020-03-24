@@ -49,10 +49,10 @@
                                 <a class="dropdown-item" href="/admin/liqueurAttitude">
                                     酒的態度
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="/admin/liqueurSure">
                                     酒的肯定
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="/admin/liqueurMethod">
                                     蒸餾場
                                 </a>
                                 <a class="dropdown-item" href="/admin/liqueurProduct">
