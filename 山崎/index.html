@@ -16,13 +16,14 @@
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="./css/lightbox.css">
-
+    <link rel="stylesheet" href="/css/cart-style.css">
 
 
 
 </head>
 
 <body>
+    <a href="#" class="cart"><span></span></a>
 
 
     <nav>
@@ -327,7 +328,10 @@
 
 
                                 </div>
-                                <div class="buy  text-center pb-2"><span class="border px-3 py-1">立即購買</span></div>
+                                <div class="buy-btn d-flex justify-content-center">
+                                    <a href="#" class="add-to-cart">立即購買</a>
+                                </div>
+
                             </div>
 
                         </div>
@@ -511,6 +515,7 @@
         crossorigin="anonymous"></script>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="/js/cart-style.js"></script>
     <script>
         AOS.init();
     </script>
