@@ -97,7 +97,7 @@ body {
 }
 
 .timeline-block .timeline-year.left strong{
-  margin-left: -75px;
+  margin-left: -120px;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -242,8 +242,9 @@ body {
 }
 
 [data-anime-left].animate {
-    opacity: 1;
-    transform: translate3d(-320px, 0, 0);
+  opacity: 1;
+  transform: translate3d(-320px, 0, 0);
+    
 }
 
 [data-anime-right] {
@@ -255,4 +256,11 @@ body {
 [data-anime-right].animate {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+}
+@media (max-width:1170px) { 
+  [data-anime-left].animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+      
+  }
 }
