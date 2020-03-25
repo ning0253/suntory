@@ -8,7 +8,7 @@
 
 
 @section('content')
-<liqueur-test></liqueur-test>
+<liqueur-main data-all='{!! json_encode($data) !!}'></liqueur-main>
 @endsection
 
 

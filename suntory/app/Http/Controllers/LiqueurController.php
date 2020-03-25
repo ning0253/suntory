@@ -8,6 +8,7 @@ use Dotenv\Regex\Success;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+
 class LiqueurController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class LiqueurController extends Controller
      */
     public function index()
     {
-        $data = Liqueur::all();
+        $data = Liqueur::with('imgs')->get();
         return View('auth.liqueur.index', compact('data'));
     }
 
@@ -42,17 +43,17 @@ class LiqueurController extends Controller
 
         $data = $request->all();
         //酒類名稱建立
-        $liqueur = new Liqueur();
-        $liqueur->name =$data['name'];
-        $liqueur->save();
+        $liqueur = Liqueur::create($data);
+
         //圖片建立ID
-        $imgs = $data['imgs'];
-        foreach($imgs as $img){
-            $liqueur_img = LiqueurImg::where('id',$img)->first();
-            $liqueur_img->liqueurs_id = $liqueur->id;
-            $liqueur_img->save();
+        $imgs = $data['img'];
+        foreach ($imgs as $img) {
+            $image = new LiqueurImg();
+            $image->liqueur_id = $liqueur->id;
+            $image->img = $img;
+            $image->save();
         }
-        return $liqueur->id;
+        return $liqueur;
     }
 
     /**
@@ -74,7 +75,9 @@ class LiqueurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Liqueur::with('imgs')->find($id);
+        return $data;
+
     }
 
     /**
@@ -86,7 +89,21 @@ class LiqueurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = $request->all();
+
+        $imgs = $new['img'];
+        foreach ($imgs as $img) {
+            $table = LiqueurImg::where('img', $img)->first();
+            if ($table == null) {
+                $newimgs = new LiqueurImg();
+                $newimgs->liqueur_id = $id;
+                $newimgs->img = $img;
+                $newimgs->save();
+            }        }
+        $data = Liqueur::with('imgs')->find($id);
+        $data->update($new);
+
+        return $data;
     }
 
     /**
@@ -97,14 +114,14 @@ class LiqueurController extends Controller
      */
     public function destroy($id)
     {
-        $imgs = Liqueurs_img::where('liqueurs_id',$id)->get();
-        foreach($imgs as $img){
+        $imgs = LiqueurImg::where('liqueur_id', $id)->get();
+        foreach ($imgs as $img) {
             $img->delete();
         }
         $data = Liqueur::find($id);
         $data->delete();
 
-        return redirect('/admin/liqueur');
+        return 'successful';
     }
 
     public function liqueur_upload_img()
@@ -131,15 +148,15 @@ class LiqueurController extends Controller
             $destination = public_path() . '/upload/img/' . $filename; //change this directory
             $location = $_FILES["file"]["tmp_name"];
             move_uploaded_file($location, $destination);
-            $img="/upload/img/" . $filename;
-            $liqueur_img = new Liqueurs_img();
+            $img = "/upload/img/" . $filename;
+            $liqueur_img = new LiqueurImg();
 
             $liqueur_img->img = $img;
             $liqueur_img->save();
             $id = $liqueur_img->id;
             $new_ary = [
                 'id' => $liqueur_img->id,
-                'img' => $img
+                'img' => $img,
             ];
             return $new_ary; //change this URL
 
@@ -148,14 +165,15 @@ class LiqueurController extends Controller
     }
     public function liqueur_delete_img(Request $request)
     {
-        $id = $request->id;
-        $data = Liqueurs_img::where('id', $id)->first();
-        $old_image = $data->img;
+        $data = $request->all();
+        $old_image = $data['file_link'];
+        $id = $data['id'];
         if (file_exists(public_path() . $old_image)) {
             File::delete(public_path() . $old_image);
         }
-        $data->delete();
-        return 'successful';
+        $delete = LiqueurImg::find($id);
+        $delete->delete();
+        return "successsful";
 
     }
 }

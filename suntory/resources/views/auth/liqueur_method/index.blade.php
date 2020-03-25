@@ -8,7 +8,7 @@
 
 
 @section('content')
-    <liqueur-product></liqueur-product>
+    <liqueur-method></liqueur-method>
 @endsection
 
 
