@@ -16,6 +16,7 @@ class LiqueurAttitudeController extends Controller
      */
     public function index()
     {
+        
         return view('auth.liqueur_attitude.index');
     }
 

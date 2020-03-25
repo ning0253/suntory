@@ -42,17 +42,17 @@ class LiqueurController extends Controller
 
         $data = $request->all();
         //酒類名稱建立
-        $liqueur = new Liqueur();
-        $liqueur->name =$data['name'];
-        $liqueur->save();
+        $liqueur=Liqueur::create($data);
+
         //圖片建立ID
-        $imgs = $data['imgs'];
+        $imgs = $data['img'];
         foreach($imgs as $img){
-            $liqueur_img = LiqueurImg::where('id',$img)->first();
-            $liqueur_img->liqueurs_id = $liqueur->id;
-            $liqueur_img->save();
+            $image = new LiqueurImg();
+            $image->liqueur_id= $liqueur->id;
+            $image->img = $img;
+            $image->save();
         }
-        return $liqueur->id;
+        return $liqueur;
     }
 
     /**

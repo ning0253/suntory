@@ -33,9 +33,29 @@
                             Stop Upload
                         </button> -->
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="liqueur_id">酒類名字</label>
                         <input type="text" class="form-control" v-model="input.name" id="name" name="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="story">NavOne若不填則NavBar不顯示</label>
+                        <input type="text" class="form-control" v-model="input.story" id="story" name="story" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="attitude">Navtwo若不填則NavBar不顯示</label>
+                        <input type="text" class="form-control" v-model="input.attitude" id="attitude" name="attitude" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="sure">Navthree若不填則NavBar不顯示</label>
+                        <input type="text" class="form-control" v-model="input.sure" id="sure" name="sure" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Navfour若不填則NavBar不顯示</label>
+                        <input type="text" class="form-control" v-model="input.product" id="product" name="product" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="method">Navfive若不填則NavBar不顯示</label>
+                        <input type="text" class="form-control" v-model="input.method" id="method" name="method" required />
                     </div>
                     <div class="form-group" v-if="input.edit != null">
                         <label for="sort">權重</label>
@@ -53,23 +73,26 @@
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>img</th>
-                    <th>kind</th>
-                    <th>title</th>
-                    <th>content</th>
+
+                    <th>name</th>
+                    <th>Nav1</th>
+                    <th>Nav2</th>
+                    <th>Nav3</th>
+                    <th>Nav4</th>
+                    <th>Nav5</th>
                     <th>sort</th>
                     <th width="80px">action</th>
                 </tr>
             </thead>
             <tbody class="tbody">
                 <tr v-for="(item, index) in liqueur_text" :key="index">
-                    <td>
-                        <img :src="item.img" alt srcset class="img-fluid" />
-                    </td>
-                    <td>{{ item.name.name }}</td>
-                    <td>{{ item.title }}</td>
 
-                    <td>{{ item.content }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.story }}</td>
+                    <td>{{ item.attitude }}</td>
+                    <td>{{ item.sure }}</td>
+                    <td>{{ item.product }}</td>
+                    <td>{{ item.method }}</td>
                     <td v-if="item.sort == null">0</td>
                     <td v-else>{{ item.sort }}</td>
                     <td>
@@ -98,39 +121,28 @@ export default {
     mounted() {
         console.log("Component mounted.");
     },
-    created() {
-        //獲取酒的種類
-        axios
-            .post("/admin/liqueurStory_kind")
-            .then(response => (this.input.liqueur_kind = response.data))
-            .catch(function (error) {
-                console.log(error);
-            });
-        //獲取酒的故事
-        axios
-            .post("/admin/liqueurStory_text")
-            .then(response => {
-                this.liqueur_text = response.data;
-                this.upload();
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    props: ["dataAll"],
+    created(){
+        // console.log(this.allData);
+
     },
     data() {
         return {
             files: [],
-            liqueur_text: [],
+            liqueur_text: JSON.parse(this.dataAll),
+            // liqueur_text:this.dataAll,
             input: {
                 newimg: null,
                 oldimg: [],
-                content: "",
-                title: "",
-                liqueur_kind: null,
                 name: "",
                 sort: 0,
                 edit: null,
-                index: null
+                index: null,
+                story: "",
+                attitude: "",
+                sure: "",
+                product: "",
+                method: "",
             },
             customToolbar: [
                 ["bold", "italic", "underline"],
@@ -144,14 +156,17 @@ export default {
         //按下submit
         store(index) {
             if (this.input.edit == null) {
-                let { content, title, img, id } = this.input;
+                let { name,story,attitude,sure,product,method,oldimg } = this.input;
 
                 axios
                     .post("/admin/liqueur", {
-                        liqueur_id: this.input.id,
-                        img: this.input.oldimg,
-                        content: this.input.content,
-                        title: this.input.title
+                        img:oldimg,
+                        name:name,
+                        story:story,
+                        attitude:attitude,
+                        sure:sure,
+                        product:product,
+                        method:method
                     })
                     .then(res => {
                         this.clear();
@@ -222,30 +237,40 @@ export default {
         //讀取編輯資料
         editdata(index) {
             let target = this.liqueur_text[index];
-            axios
-                .get(`/admin/liqueurStory/${target.id}/edit`)
-                .then(res => {
-                    //console.log(res.data);
-                    let {
-                        content,
-                        img,
-                        title,
-                        id,
-                        liqueur_id,
-                        sort
-                    } = res.data;
-                    this.input.content = content;
-                    this.input.title = title;
-                    this.input.oldimg = img;
-                    this.input.id = liqueur_id;
-                    this.input.edit = id;
-                    this.input.index = index;
-                    this.input.sort = sort;
-                    // console.log(res.data)
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            // axios
+            //     .get(`/admin/liqueur/${target.id}/edit`)
+            //     .then(res => {
+            //         //console.log(res.data);
+            //         let {
+            //             content,
+            //             img,
+            //             title,
+            //             id,
+            //             liqueur_id,
+            //             sort
+            //         } = res.data;
+            //         this.input.content = content;
+            //         this.input.title = title;
+            //         this.input.oldimg = img;
+            //         this.input.id = liqueur_id;
+            //         this.input.edit = id;
+            //         this.input.index = index;
+            //         this.input.sort = sort;
+            //         // console.log(res.data)
+            //     })
+            //     .catch(err => {
+            //         console.log(err);
+            //     });
+            let {name,story,attitude,sure,product,method,sort,id} = this.liqueur_text[index]
+            this.input.name = name
+            this.input.story = story
+            this.input.attitude = attitude
+            this.input.sure = sure
+            this.input.product = product
+            this.input.method = method
+            this.input.edit = id;
+            this.input.index = index;
+            this.input.sort = sort
         },
         //判斷是否有圖片上傳
         processFile(event) {
@@ -311,7 +336,7 @@ export default {
                 .post("/admin/liqueurStory_delete_img", {
                     file_link: this.input.oldimg[index]
                 })
-                .then((res)=>{
+                .then((res) => {
                     this.input.oldimg.splice(index, 1)
                 })
                 .catch(function (error) {
@@ -323,12 +348,14 @@ export default {
         clear() {
             //console.log("aa");
 
-            (this.input.newimg = null),
-                (this.input.oldimg = ""),
-                (this.input.content = ""),
-                (this.input.title = ""),
-                (this.input.id = ""),
-                (this.input.sort = "");
+            this.input.newimg = null,
+            this.input.oldimg =[],
+            this.input.name = "",
+            this.input.story="",
+            this.input.attitude="",
+            this.input.sure="",
+            this.input.product="",
+            this.input.method="",
             $("#img").val("");
         },
 
