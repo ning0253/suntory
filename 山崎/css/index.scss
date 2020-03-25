@@ -3,14 +3,24 @@ body {
     padding: 0;
     font-family: 'Noto Sans TC', sans-serif;
     box-sizing: border-box;
+    
+    h1{
+        font-size: 1.6rem;
+    }
+    h2{
+        font-size: 1.2rem;
+    }
+    p{
+        font-size: 0.8rem;
+      }
     @media (max-width: 	720px) {
 
         h1{
-          font-size: 1.7rem;
+          font-size: 1.4rem;
         }
       
         h2 {
-          font-size: 1.2rem;
+          font-size: 1rem;
         }
         
         p{
@@ -22,11 +32,11 @@ body {
       @media (max-width: 540px) {
        
         h1{
-          font-size: 1.5rem;
+          font-size: 1.2rem;
         }
       
         h2 {
-          font-size: 1rem;
+          font-size: 0.8rem;
         }
         
         p{
@@ -250,7 +260,14 @@ ul {
     padding: $sectionToTitle 0;
     color: white;
 
+    .detail{
+        width: 500px;
+        height: 500px;
     }
+
+
+
+
 
 
     .product-title {

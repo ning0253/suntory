@@ -6,12 +6,24 @@ body {
           box-sizing: border-box;
 }
 
+body h1 {
+  font-size: 1.6rem;
+}
+
+body h2 {
+  font-size: 1.2rem;
+}
+
+body p {
+  font-size: 0.8rem;
+}
+
 @media (max-width: 720px) {
   body h1 {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
   body h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   body p {
     font-size: 0.7rem;
@@ -20,10 +32,10 @@ body {
 
 @media (max-width: 540px) {
   body h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   body h2 {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   body p {
     font-size: 0.5rem;
@@ -216,28 +228,11 @@ ul li {
   background-attachment: fixed;
   padding: 100px 0;
   color: white;
-  position: relative;
-}
-
-.product .lightbox {
-  z-index: 2;
-  position: absolute;
-  width: 500px;
-  top: 50%;
-  right: 23%;
-  left: 25%;
-}
-
-.product .lightbox p {
-  color: white;
-}
-
-.product .lightbox .toast {
-  max-width: 500px;
 }
 
 .product .detail {
-  border: 0;
+  width: 500px;
+  height: 500px;
 }
 
 .product .product-title {
