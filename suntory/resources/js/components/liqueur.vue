@@ -10,11 +10,11 @@
                     <div class="form-group">
                         <div class="row" style="position: relative">
                             <div class="col-4 " v-if="input.oldimg !=null" v-for="(item ,index) in input.oldimg" :key="index">
-                                <img :src="item" alt srcset class="img-fluid" />
+                                <img :src="item.img" alt srcset class="img-fluid" v-if="typeof item == 'object' ">
+                                <img :src="item" alt srcset class="img-fluid" v-else>
                                 <button type="button" class="btn btn-danger" style="position: absolute;border-radius: 50%;top: -15px;right: -5px;" @click="deleteimg(index)">X</button>
                             </div>
                         </div>
-
                         <label for="img">圖片</label>
                         <input v-if="this.input.edit == null" required type="file" class="form-control" multiple="multiple" @change="processFile($event)" id="img" name="img" value />
                         <input v-else type="file" class="form-control" multiple="multiple" @change="processFile($event)" id="img" name="img" value />
@@ -122,7 +122,7 @@ export default {
         console.log("Component mounted.");
     },
     props: ["dataAll"],
-    created(){
+    created() {
         // console.log(this.allData);
 
     },
@@ -156,17 +156,17 @@ export default {
         //按下submit
         store(index) {
             if (this.input.edit == null) {
-                let { name,story,attitude,sure,product,method,oldimg } = this.input;
+                let { name, story, attitude, sure, product, method, oldimg } = this.input;
 
                 axios
                     .post("/admin/liqueur", {
-                        img:oldimg,
-                        name:name,
-                        story:story,
-                        attitude:attitude,
-                        sure:sure,
-                        product:product,
-                        method:method
+                        img: oldimg,
+                        name: name,
+                        story: story,
+                        attitude: attitude,
+                        sure: sure,
+                        product: product,
+                        method: method
                     })
                     .then(res => {
                         this.clear();
@@ -178,14 +178,17 @@ export default {
                     });
             } else {
                 //console.log(index);
-
+                let { name, story, attitude, sure, product, method, oldimg, sort } = this.input
                 axios
                     .put(`/admin/liqueur/${this.input.edit}`, {
-                        liqueur_id: this.input.id,
-                        img: this.input.oldimg,
-                        content: this.input.content,
-                        title: this.input.title,
-                        sort: this.input.sort
+                        img: oldimg,
+                        name: name,
+                        story: story,
+                        attitude: attitude,
+                        sure: sure,
+                        product: product,
+                        method: method,
+                        sort: sort
                     })
                     .then(res => {
                         this.sweetalert("edit");
@@ -223,7 +226,7 @@ export default {
             }).then(result => {
                 if (result.value) {
                     axios
-                        .delete("/admin/liqueurStory/" + target.id)
+                        .delete("/admin/liqueur/" + target.id)
                         .then(res => {
                             this.liqueur_text.splice(index, 1);
                             this.sweetalert("del");
@@ -237,40 +240,28 @@ export default {
         //讀取編輯資料
         editdata(index) {
             let target = this.liqueur_text[index];
-            // axios
-            //     .get(`/admin/liqueur/${target.id}/edit`)
-            //     .then(res => {
-            //         //console.log(res.data);
-            //         let {
-            //             content,
-            //             img,
-            //             title,
-            //             id,
-            //             liqueur_id,
-            //             sort
-            //         } = res.data;
-            //         this.input.content = content;
-            //         this.input.title = title;
-            //         this.input.oldimg = img;
-            //         this.input.id = liqueur_id;
-            //         this.input.edit = id;
-            //         this.input.index = index;
-            //         this.input.sort = sort;
-            //         // console.log(res.data)
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-            //     });
-            let {name,story,attitude,sure,product,method,sort,id} = this.liqueur_text[index]
-            this.input.name = name
-            this.input.story = story
-            this.input.attitude = attitude
-            this.input.sure = sure
-            this.input.product = product
-            this.input.method = method
-            this.input.edit = id;
-            this.input.index = index;
-            this.input.sort = sort
+            axios
+                .get(`/admin/liqueur/${target.id}/edit`)
+                .then(res => {
+                    let { name, story, attitude, sure, product, method, sort, id, imgs } = res.data
+                    this.input.name = name
+                    this.input.story = story
+                    this.input.attitude = attitude
+                    this.input.sure = sure
+                    this.input.product = product
+                    this.input.method = method
+                    this.input.edit = id;
+                    this.input.index = index;
+                    this.input.sort = sort
+                    imgs.forEach(element => {
+                        this.input.oldimg.push(element.img)
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
+
         },
         //判斷是否有圖片上傳
         processFile(event) {
@@ -332,16 +323,47 @@ export default {
             // }
         },
         deleteimg(index) {
-            axios
-                .post("/admin/liqueurStory_delete_img", {
+
+            if (this.input.edit == null) {
+                axios.post("/admin/liqueurStory_delete_img", {
                     file_link: this.input.oldimg[index]
                 })
-                .then((res) => {
-                    this.input.oldimg.splice(index, 1)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                    .then((res) => {
+                        this.input.oldimg.splice(index, 1)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                if (typeof this.input.oldimg[index]== 'object') {
+
+                    axios.post("/admin/liqueur_delete_img", {
+                        id: this.input.oldimg[index].id,
+                        file_link: this.input.oldimg[index].img
+                    })
+                        .then((res) => {
+                            this.input.oldimg.splice(index, 1)
+                            this.input.oldimg[index].img
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                } else {
+
+                    axios.post("/admin/liqueurStory_delete_img", {
+                        file_link: this.input.oldimg[index]
+                    })
+                        .then((res) => {
+                            this.input.oldimg.splice(index, 1)
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+
+
+            }
+
 
         },
         //清除表單資料
@@ -349,14 +371,14 @@ export default {
             //console.log("aa");
 
             this.input.newimg = null,
-            this.input.oldimg =[],
-            this.input.name = "",
-            this.input.story="",
-            this.input.attitude="",
-            this.input.sure="",
-            this.input.product="",
-            this.input.method="",
-            $("#img").val("");
+                this.input.oldimg = [],
+                this.input.name = "",
+                this.input.story = "",
+                this.input.attitude = "",
+                this.input.sure = "",
+                this.input.product = "",
+                this.input.method = "",
+                $("#img").val("");
         },
 
         sweetalert(action) {
