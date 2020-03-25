@@ -8,7 +8,7 @@
 
 
 @section('content')
-    <order-component></order-component>
+<order-component data-all="{{$data}}"></order-component>
 @endsection
 
 

@@ -34,6 +34,6 @@ class Order extends Model
     {
         return $this->hasMany('App\OrderDetail')->orderby('sort', 'desc');
     }
-}
+
 
 }

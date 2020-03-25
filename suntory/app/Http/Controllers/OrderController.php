@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $data = Order::all();
+        return View('auth.Order.index', compact('data'));
     }
 
     /**
@@ -34,7 +36,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $ready = Order::create($data);
+        return $ready;
     }
 
     /**
@@ -56,7 +60,9 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Order::find($id);
+        return $data;
+
     }
 
     /**
@@ -68,7 +74,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = $request->all();
+        $data =Order::find($id);
+        $data->update($new);
+
+        return $data;
     }
 
     /**
@@ -79,6 +89,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Order::find($id);
+        $data->delete();
+        return 'successful';
     }
 }
