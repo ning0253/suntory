@@ -13,23 +13,8 @@
                         </div>
 
                         <label for="img">圖片</label>
-                        <input v-if="this.input.edit == null" required type="file" class="form-control" multiple="multiple" @change="processFile($event)" id="img" name="img" value />
-                        <input v-else type="file" class="form-control" multiple="multiple" @change="processFile($event)" id="img" name="img" value />
-
-                        <file-upload class="btn btn-primary" post-action="/upload/post" extensions="gif,jpg,jpeg,png,webp" accept="image/png,image/gif,image/jpeg,image/webp" :multiple="true" :size="1024 * 1024 * 10" v-model="files" @input-filter="inputFilter" @input-file="inputFile" ref="upload">
-                            <i class="fa fa-plus"></i>
-                            Select files
-                        </file-upload>
-
-                        <button type="button" class="btn btn-success" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
-                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                            Start Upload
-                        </button>
-                        <button type="button" class="btn btn-danger" v-else @click.prevent="$refs.upload.active = false">
-                            <i class="fa fa-stop" aria-hidden="true"></i>
-                            Stop Upload
-                        </button>
-
+                        <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                        <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
                     </div>
                     <div class="form-group">
                         <label for="content">故事內容</label>
@@ -71,7 +56,7 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr v-for="(item, index) in liqueur_text" :key="index">
+                <tr v-for="(item, index) in liqueur_text" :key="index">a
                     <td>
                         <img :src="item.img" alt srcset class="img-fluid" />
                     </td>
@@ -100,10 +85,10 @@
 </template>
 
 <script>
-import FileUpload from 'vue-upload-component/src'
+import axios from "axios";
 import { VueEditor } from "vue2-editor";
 export default {
-    components: { VueEditor, FileUpload: FileUpload },
+    components: { VueEditor },
     mounted() {
         console.log("Component mounted.");
     },
@@ -128,11 +113,10 @@ export default {
     },
     data() {
         return {
-            files: [],
             liqueur_text: [],
             input: {
                 newimg: null,
-                oldimg: [],
+                oldimg: null,
                 content: "",
                 title: "",
                 liqueur_kind: null,
@@ -149,36 +133,6 @@ export default {
         };
     },
     methods: {
-        inputFilter(newFile, oldFile, prevent) {
-            if (newFile && !oldFile) {
-                // Before adding a file
-                // 添加文件前
-                // Filter system files or hide files
-                // 过滤系统文件 和隐藏文件
-                if (/(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)) {
-                    return prevent()
-                }
-                // Filter php html js file
-                // 过滤 php html js 文件
-                if (/\.(php5?|html?|jsx?)$/i.test(newFile.name)) {
-                    return prevent()
-                }
-            }
-        },
-        inputFile(newFile, oldFile) {
-            if (newFile && !oldFile) {
-                // add
-                console.log('add', newFile)
-            }
-            if (newFile && oldFile) {
-                // update
-                console.log('update', newFile)
-            }
-            if (!newFile && oldFile) {
-                // remove
-                console.log('remove', oldFile)
-            }
-        },
         //按下submit
         store(index) {
             if (this.input.edit == null) {
@@ -287,34 +241,16 @@ export default {
         },
         //判斷是否有圖片上傳
         processFile(event) {
-            if (this.input.oldimg == '') {
-                let length = event.target.files.length
-
+            if (this.input.oldimg == null) {
                 this.input.newimg = event.target.files[0];
-
-                for (var i = 0; i < length; i++) {
-                    this.input.newimg = event.target.files[i];
-                    const fd = new FormData();
-                    fd.append("file", this.input.newimg, this.input.newimg.name);
-                    axios
-                        .post("/admin/liqueurStory_upload_img", fd)
-                        .then(response => {
-                            if (this.input.oldimg[0] == null) {
-                                this.input.oldimg.push(response.data)
-                                console.log(response.data)
-
-                            } else {
-                                this.input.oldimg.push(response.data)
-                                console.log('測試');
-
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-
-
+                const fd = new FormData();
+                fd.append("file", this.input.newimg, this.input.newimg.name);
+                axios
+                    .post("/admin/liqueurStory_upload_img", fd)
+                    .then(response => (this.input.oldimg = response.data))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             } else {
                 axios
                     .post("/admin/liqueurStory_delete_img", {
@@ -370,4 +306,3 @@ export default {
     }
 };
 </script>
-
