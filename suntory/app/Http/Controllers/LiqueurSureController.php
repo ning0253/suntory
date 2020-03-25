@@ -17,7 +17,7 @@ class LiqueurSureController extends Controller
     {
         $request_data = $request->all();
         $ready = LiqueurSure::create($request_data);
-        $data = LiqueurSure::with('liqueur')->where('id', $ready->id)->first();
+        $data = LiqueurSure::with('liqueur_product')->where('id', $ready->id)->first();
         return $data;
     }
     public function edit($id)
@@ -28,7 +28,7 @@ class LiqueurSureController extends Controller
     public function update(Request $request, $id)
     {
         $new = $request->all();
-        $data = LiqueurSure::with('name')->find($id);
+        $data = LiqueurSure::with('liqueur_product')->find($id);
         $data->update($new);
 
         return $data;
@@ -76,7 +76,7 @@ class LiqueurSureController extends Controller
         return $request;
     }
 
-    public function liqueurSure_kind()
+    public function liqueurSure_product()
     {
         $data = LiqueurProduct::with('liqueur')->get();
         return $data;

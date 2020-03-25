@@ -11,38 +11,33 @@
                         <div class="col-4">
                             <img :src="input.oldimg" alt srcset class="img-fluid" />
                         </div>
-
-                        <label for="img">獎項圖片</label>
+                        <label for="img">比賽Logo</label>
                         <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
                         <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
                     </div>
                     <div class="form-group">
-                        <label for="liqueur_id">產品系列</label>
-                        <select name="liqueur_id" id="liqueur_id" v-model="input.liqueur_id" class="form-control">
-                            <option v-for="item in input.liqueur_kind" :key="item.id" :value="item.id">
-                                {{ item.name }}
+                        <label for="contest">比賽名稱</label>
+                        <input type="text" class="form-control" v-model="input.contest" id="contest" name="contest" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="liqueur_product_id">得獎的酒</label>
+                        <select name="liqueur_product_id" id="liqueur_product_id" v-model="input.liqueur_product_id" class="form-control">
+                            <option v-for="item in liqueur_products" :key="item.id" :value="item.id">
+                                {{ item.title }}
                             </option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="title">國際肯定的標題</label>
-                        <input type="text" class="form-control" v-model="input.title" id="title" name="title" required />
+                        <label for="year">得獎時間(年)</label>
+                        <input type="number" class="form-control" v-model="input.year" id="year" name="year" required />
                     </div>
                     <div class="form-group">
-                        <label for="award">國際肯定的獎項</label>
+                        <label for="award">獎項</label>
                         <input type="text" class="form-control" v-model="input.award" id="award" name="award" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="content">國際肯定的內容</label>
-                        <vue-editor v-model="input.content" :editor-toolbar="customToolbar" />
-                    </div>
-                    <div class="form-group" v-if="input.edit != null">
-                        <label for="sort">權重</label>
-                        <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" />
                     </div>
 
                     <button type="submit" class="btn btn-primary" data-target="#create">
-                        Submit
+                        儲存
                     </button>
                 </form>
             </div>
@@ -52,27 +47,27 @@
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>img</th>
-                    <th>kind</th>
-                    <th>title</th>
-                    <th>content</th>
-                    <th>title</th>
-                    <th>award</th>
-                    <th>sort</th>
-                    <th width="80px">action</th>
+                    <th width="20px">No.</th>
+                    <th width="80px">比賽Logo</th>
+                    <th width="80px">比賽名稱</th>
+                    <th width="80px">得獎的酒</th>
+                    <th width="100px">得獎時間(年)</th>
+                    <th>獎項</th>
+                    <th width="80px"></th>
                 </tr>
             </thead>
             <tbody class="tbody">
                 <tr v-for="(item, index) in liqueur_text" :key="index">
+                    <td>{{ (index + 1) }}</td>
                     <td>
                         <img :src="item.img" alt srcset class="img-fluid" />
                     </td>
-                    <td>{{ item.liqueur.name }}</td>
-                    <td>{{ item.title }}</td>
-                    <td>{{ item.content }}</td>
+                    <td>{{ item.contest }}</td>
+                    <td>{{ item.liqueur_product.title }}</td>
+                    <td>{{ item.year }}</td>
                     <td>{{ item.award }}</td>
-                    <td v-if="item.sort == null">0</td>
-                    <td v-else>{{ item.sort }}</td>
+                    <!-- <td v-if="item.sort == null">0</td>
+                    <td v-else>{{ item.sort }}</td> -->
                     <td>
                         <a href="#create" class="btn btn-success btn-sm" data-toggle="collapse" @click="editdata(index)">修改</a>
                         <button class="btn btn-danger btn-sm" @click="deletedata(index)">
@@ -87,21 +82,19 @@
 
 <script>
 import axios from "axios";
-import { VueEditor } from "vue2-editor";
 export default {
-    components: { VueEditor },
     mounted() {
         console.log("Component mounted.");
     },
     created() {
-        //獲取酒的種類
+        //獲取酒的產品
         axios
-            .post("/admin/liqueurSure_kind")
-            .then(response => (this.input.liqueur_kind = response.data))
+            .post("/admin/liqueurSure_product")
+            .then(response => (this.liqueur_products = response.data))
             .catch(function (error) {
                 console.log(error);
             });
-        //獲取酒的國際肯定的
+        //獲取酒的獎項資料
         axios
             .post("/admin/liqueurSure_text")
             .then(response => {
@@ -113,25 +106,20 @@ export default {
             });
     },
     data() {
-        return {
+        return {//定義變數
             liqueur_text: [],
-            input: {//定義變數
+            liqueur_products: [],
+            input: {
                 newimg: null,
                 oldimg: null,
-                liqueur_id: "",
-                liqueur_kind: null,
-                title: "",
+                contest: "",
+                liqueur_product_id: "",
+                year: "",
                 award: "",
-                content: "",
-                sort: 0,
-                edit: null,
-                index: null
-            },
-            customToolbar: [
-                ["bold", "italic", "underline"],
-                [{ list: "ordered" }, { list: "bullet" }],
-                ["code-block"]
-            ]
+                // sort: 0,
+                edit: null, //若有值則為編輯，若無為新增
+                index: null //編輯或刪除第幾項
+            }
         };
     },
     methods: {
@@ -140,11 +128,11 @@ export default {
             if (this.input.edit == null) {
                 axios
                     .post("/admin/liqueurSure", {
-                        liqueur_id: this.input.liqueur_id,
                         img: this.input.oldimg,
-                        content: this.input.content,
-                        award: this.input.award,
-                        title: this.input.title
+                        contest: this.input.contest,
+                        liqueur_product_id: this.input.liqueur_product_id,
+                        year: this.input.year,
+                        award: this.input.award
                     })
                     .then(res => {
                         this.clear();
@@ -158,12 +146,11 @@ export default {
                 //console.log(index);
                 axios
                     .put(`/admin/liqueurSure/${this.input.edit}`, {
-                        liqueur_id: this.input.liqueur_id,
                         img: this.input.oldimg,
-                        content: this.input.content,
-                        title: this.input.title,
-                        award: this.input.award,
-                        sort: this.input.sort
+                        contest: this.input.contest,
+                        liqueur_product_id: this.input.liqueur_product_id,
+                        year: this.input.year,
+                        award: this.input.award
                     })
                     .then(res => {
                         this.sweetalert("edit");
@@ -191,7 +178,7 @@ export default {
             let target = this.liqueur_text[index];
 
             Swal.fire({
-                title: `確定要刪除 ${target.title} ?`,
+                title: `確定要刪除第 ${index + 1} 筆?`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -220,22 +207,22 @@ export default {
                 .then(res => {
                     //console.log(res.data);
                     let {
-                        liqueur_id,
                         id,
                         img,
-                        title,
-                        award,
-                        content,
-                        sort
+                        contest,
+                        liqueur_product_id,
+                        year,
+                        award
+                        // sort
                     } = res.data;
                     this.input.index = index;
-                    this.input.liqueur_id = liqueur_id;
                     this.input.edit = id;
                     this.input.oldimg = img;
-                    this.input.title = title;
+                    this.input.contest = contest;
+                    this.input.liqueur_product_id = liqueur_product_id;
+                    this.input.year = year;
                     this.input.award = award;
-                    this.input.content = content;
-                    this.input.sort = sort;
+                    // this.input.sort = sort;
                     // console.log(res.data)
                 })
                 .catch(err => {
@@ -278,15 +265,13 @@ export default {
         },
         //清除表單資料
         clear() {
-            //console.log("aa");
-
             (this.input.newimg = null),
                 (this.input.oldimg = ""),
-                (this.input.content = ""),
-                (this.input.title = ""),
-                (this.input.award = ""),
-                (this.input.liqueur_id = ""),
-                (this.input.sort = "");
+                (this.input.contest = ""),
+                (this.input.liqueur_product_id = ""),
+                (this.input.year = ""),
+                (this.input.award = "");
+            // (this.input.sort = "");
             $("#img").val("");
         },
 

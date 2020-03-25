@@ -21,6 +21,25 @@ class LiqueurProductController extends Controller
         $data = LiqueurProduct::with('liqueur')->where('id', $ready->id)->first();
         return $data;
     }
+    public function edit($id)
+    {
+        $data = LiqueurProduct::find($id);
+        return $data;
+    }
+    public function update(Request $request, $id)
+    {
+        $new = $request->all();
+        $data = LiqueurProduct::with('liqueur')->find($id);
+        $data->update($new);
+
+        return $data;
+    }
+    public function destroy($id)
+    {
+        $data = LiqueurProduct::find($id);
+        $data->delete();
+        return 'successful';
+    }
     public function liqueurProduct_upload_img()
     {
         // A list of permitted file extensions

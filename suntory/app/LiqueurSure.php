@@ -26,7 +26,7 @@ class LiqueurSure extends Model
     /**
      * @var array
      */
-    protected $fillable = ['year', 'award_img', 'award', 'liqueur_product_id', 'content', 'created_at', 'updated_at'];
+    protected $fillable = ['img', 'contest', 'liqueur_product_id', 'year', 'award', 'created_at', 'updated_at'];
 
     public function liqueur_product()
     {
