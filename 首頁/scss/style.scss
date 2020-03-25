@@ -95,43 +95,67 @@ img {
   }
   
 }
-
-
-.navbar {
-  li{
-    display: inline-block;
+.navbar{
+  padding: 0px !important;
+  span{
+    font-size: 1rem;
   }
-  .logo {
-    width: 155px;
-    height: 25px;
-  }
-
-  .menu {
-    display: block;
-
-    @media (max-width: 768px) {
-
-      display: none !important;
-    }
-
-    a {
-      margin: 0 18px;
-    }
-  }
-
-  .social {
-
-
-    .fb {
-      margin-right: 16px;
-
-    }
-
-
-  }
+.navbar-toggler{
+  border-color: white !important;
+}
 
 }
 
+
+// .navbar {
+//   li{
+//     display: inline-block;
+//   }
+//   .logo {
+//     width: 113px;
+//     height: 16px;
+//   }
+
+//   .menu {
+//     display: block;
+
+//     @media (max-width: 768px) {
+
+//       display: none !important;
+//     }
+
+//     a {
+//       margin: 0 18px;
+//     }
+//   }
+
+//   .social {
+
+
+//     .fb {
+//       margin-right: 16px;
+
+//     }
+
+
+//   }
+
+// }
+
+.collapse{
+
+  ul {
+    li {
+        color: white;
+        padding: 0 10px;
+        font-size: 0.75rem;
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+}
 .main {
 
   .video{

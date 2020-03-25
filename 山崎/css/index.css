@@ -55,13 +55,21 @@ ul li {
   list-style: none;
 }
 
+.navbar-top {
+  padding: 0px !important;
+}
+
+.navbar-top span {
+  font-size: 1rem;
+}
+
+.navbar-top .navbar-toggler {
+  border-color: white !important;
+}
+
 .navbar_1 {
   background-color: black;
   font-size: 18px;
-}
-
-.navbar_1 .navbar-brand {
-  display: none;
 }
 
 .navbar_1 .navbar-toggler {

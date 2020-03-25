@@ -104,31 +104,27 @@ img {
   }
 }
 
-.navbar li {
-  display: inline-block;
+.navbar {
+  padding: 0px !important;
 }
 
-.navbar .logo {
-  width: 155px;
-  height: 25px;
+.navbar span {
+  font-size: 1rem;
 }
 
-.navbar .menu {
-  display: block;
+.navbar .navbar-toggler {
+  border-color: white !important;
 }
 
-@media (max-width: 768px) {
-  .navbar .menu {
-    display: none !important;
-  }
+.collapse ul li {
+  color: white;
+  padding: 0 10px;
+  font-size: 0.75rem;
 }
 
-.navbar .menu a {
-  margin: 0 18px;
-}
-
-.navbar .social .fb {
-  margin-right: 16px;
+.collapse ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 .main .video {

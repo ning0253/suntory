@@ -69,7 +69,16 @@ ul {
 }
 
 
-
+.navbar-top{
+    padding: 0px !important;
+    span{
+      font-size: 1rem;
+    }
+  .navbar-toggler{
+    border-color: white !important;
+  }
+  
+  }
 
 
 .navbar_1 {
@@ -79,7 +88,7 @@ ul {
     //     background-image: url('/img/open-menu.svg');
     // }
     .navbar-brand{
-        display: none;
+        // display: none;
     }
     .navbar-toggler{
         padding: 0 10px;
