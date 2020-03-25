@@ -3,13 +3,20 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 .padbtm-100 {
   padding-bottom: 100px;
 }
-
+.sticky-top {
+  background-color: rgba(255, 255, 255, 0.7);
+}
 .flex_1 {
   flex: 1;
 }
+
 .row {
   .bannerbox {
     margin-bottom: 50px;
@@ -42,6 +49,13 @@ body {
         text-align: center;
         font-family: "Noto Sans TC";
         margin-bottom: 40px;
+        position: relative;
+        span {
+          position: absolute;
+          top: -83px;
+          width: 2px;
+          height: 100%;
+        }
       }
     }
     p {
@@ -67,6 +81,13 @@ body {
         text-align: center;
         font-family: "Noto Sans TC";
         margin-bottom: 40px;
+        position: relative;
+        span {
+          position: absolute;
+          top: -130px;
+          width: 2px;
+          height: 100%;
+        }
       }
       p {
         text-align: center;
@@ -94,6 +115,13 @@ body {
         text-align: center;
         font-family: "Noto Sans TC";
         margin-bottom: 40px;
+        position: relative;
+        span {
+          position: absolute;
+          top: -118px;
+          width: 2px;
+          height: 100%;
+        }
       }
     }
     p {
@@ -116,6 +144,13 @@ body {
     }
     h1 {
       font-family: "Noto Sans TC";
+      position: relative;
+      span {
+        position: absolute;
+        top: -118px;
+        width: 2px;
+        height: 100%;
+      }
     }
   }
   .change_view {
@@ -131,32 +166,57 @@ body {
   .product_title {
     text-align: center;
     padding-bottom: 50px;
-  }
-
-  .backdrop {
-    background-color: white;
-    padding: 80px 5%;
-    .prod {
-      margin-bottom: 75px;
-      .prod_img {
+    h1 {
+      font-family: "Noto Sans TC";
+      position: relative;
+      span {
+        position: absolute;
+        top: -118px;
+        width: 2px;
         height: 100%;
-        width: 100%\9;
       }
     }
-    .prod_name {
-      text-align: center;
-    }
-    .prod1_title {
-      padding: 0;
-      margin: 0;
-      margin-bottom: 25px;
-    }
-    .prod1_min_title {
-      margin-bottom: 25px;
-    }
-    .prod1_text {
-      p {
-        padding-bottom: 25px;
+  }
+
+  .backg {
+    background-image: url(../img/樹林.jpg);
+    width: 100%;
+    background-attachment: fixed;
+
+    .backdrop {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 80px 5%;
+      .prod {
+        margin-bottom: 75px;
+        .prod_img {
+          height: 100%;
+          width: 100%\9;
+        }
+      }
+      .prod_name {
+        text-align: center;
+      }
+      .prod1_title {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 25px;
+        h1 {
+          position: relative;
+          span {
+            position: absolute;
+            top: -300px;
+            width: 2px;
+            height: 100%;
+          }
+        }
+      }
+      .prod1_min_title {
+        margin-bottom: 25px;
+      }
+      .prod1_text {
+        p {
+          padding-bottom: 25px;
+        }
       }
     }
   }
@@ -230,7 +290,6 @@ body {
     height: 300px;
   }
 
-  
   .row .story_box {
     display: flex;
     flex-wrap: wrap;
