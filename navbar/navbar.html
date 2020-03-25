@@ -12,27 +12,27 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|PT+Sans|Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="hover.css">
     <style>
-         @media (max-width:575px) {
-        .nav-link {
-            padding: 0rem 0.5rem;
+        @media (max-width:575px) {
+            .nav-link {
+                padding: 0rem 0.5rem;
+            }
+
+            #nav {
+                padding: 0 30px;
+            }
         }
 
-        #nav {
-            padding: 0 30px;
+        @media (min-width: 768px) {
+            .navbar-expand-md .navbar-nav .nav-link {
+                padding-right: 0;
+            }
         }
-    }
-
-    @media (min-width: 768px) {
-        .navbar-expand-md .navbar-nav .nav-link {
-            padding-right: 0;
-        }
-    }
-</style>
+    </style>
 
 
 <body>
+    <header class="row " style="display: block;">
 
-    <div class="row " style="display: block;">
         <div class="container" style="padding-right: 0;">
             <nav id="nav" class="navbar navbar-expand-md navbar-light" style="height: 40px;  padding: 0 15px;">
                 <a class="navbar-brand" href="#">
@@ -88,7 +88,9 @@
                 </nav>
             </div>
         </div>
-    </div>
+
+    </header>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

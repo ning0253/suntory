@@ -16,6 +16,13 @@ html {
 .flex_1 {
   flex: 1;
 }
+.h5{
+  font-size: 1.5rem;
+}
+p,
+h1 {
+  font-family: "Noto Sans TC";
+}
 
 .row {
   .bannerbox {
@@ -25,14 +32,14 @@ html {
     display: flex;
     justify-content: center;
     h1 {
-      font-family: "Noto Sans TC";
+     
       margin-bottom: 30px;
     }
   }
   .hakushu_text {
     text-align: center;
     p {
-      font-family: "Noto Sans TC";
+      
       margin-bottom: 50px;
     }
   }
@@ -47,7 +54,7 @@ html {
       padding-right: 5%;
       h1 {
         text-align: center;
-        font-family: "Noto Sans TC";
+        
         margin-bottom: 40px;
         position: relative;
         span {
@@ -60,12 +67,12 @@ html {
     }
     p {
       text-align: center;
-      font-family: "Noto Sans TC";
+      
     }
     .img1 {
       background-size: cover;
       background-position: center;
-      min-height: 450px;
+      min-height: 420px;
       width: 55%;
       background-image: url(../img/bg_top_01.jpg);
     }
@@ -79,7 +86,7 @@ html {
       padding-left: 5%;
       h1 {
         text-align: center;
-        font-family: "Noto Sans TC";
+        
         margin-bottom: 40px;
         position: relative;
         span {
@@ -91,7 +98,7 @@ html {
       }
       p {
         text-align: center;
-        font-family: "Noto Sans TC";
+        
       }
     }
     .img2 {
@@ -113,7 +120,7 @@ html {
 
       h1 {
         text-align: center;
-        font-family: "Noto Sans TC";
+       
         margin-bottom: 40px;
         position: relative;
         span {
@@ -126,7 +133,7 @@ html {
     }
     p {
       text-align: center;
-      font-family: "Noto Sans TC";
+    
     }
     .img3 {
       background-size: cover;
@@ -143,7 +150,7 @@ html {
       padding-bottom: 50px;
     }
     h1 {
-      font-family: "Noto Sans TC";
+    
       position: relative;
       span {
         position: absolute;
@@ -167,7 +174,7 @@ html {
     text-align: center;
     padding-bottom: 50px;
     h1 {
-      font-family: "Noto Sans TC";
+      
       position: relative;
       span {
         position: absolute;
@@ -221,7 +228,7 @@ html {
     }
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 770px) {
   .row {
     padding: 0;
     margin: 0;
@@ -231,6 +238,9 @@ html {
   }
 
   h2 {
+    font-size: 1.2rem;
+  }
+  h5{
     font-size: 1.2rem;
   }
 
@@ -249,7 +259,20 @@ html {
   .padbtm-100 {
     padding-bottom: 50px;
   }
+  .row .story_box .img1 {
+   
+    min-height: 300px
+  
 }
+.row .manner_box .img2 {
+    min-height: 300px
+}
+.row .distillery_box .img3 {
+    min-height: 300px
+}
+}
+
+
 
 @media (max-width: 540px) {
   .row {
@@ -262,6 +285,9 @@ html {
 
   h2 {
     font-size: 1rem;
+  }
+  h5{
+    font-size: 1.2rem;
   }
 
   p {
@@ -308,6 +334,7 @@ html {
 
     .img1 {
       order: 1;
+      min-height: 200px
     }
   }
   .row .manner_box {
@@ -328,6 +355,7 @@ html {
 
     .img2 {
       order: 1;
+      min-height: 200px
     }
   }
   .row .distillery_box {
@@ -348,6 +376,7 @@ html {
 
     .img3 {
       order: 1;
+      min-height: 200px
     }
   }
 }
