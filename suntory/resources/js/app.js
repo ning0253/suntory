@@ -29,7 +29,8 @@ Vue.component('liqueur-story',require('./components/all.vue').default);
 Vue.component('liqueur-attitude', require('./components/liqueur-attitude.vue').default);
 Vue.component('liqueur-product', require('./components/Product.vue').default);
 Vue.component('liqueur-sure', require('./components/liqueur-sure.vue').default);
-
+Vue.component('liqueur-main', require('./components/liqueur.vue').default);
+Vue.component('liqueur-method', require('./components/liqueur-method.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
