@@ -1,7 +1,34 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans TC', sans-serif !important;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body h1 {
+  font-size: 1.6rem;
+}
+
+body h2 {
+  font-size: 1.2rem;
+}
+
+body p {
+  font-size: 0.8rem;
+}
+
+.title-space {
+  padding: 100px 0;
+}
+
+.p-space {
+  padding: 30px 0;
+}
+
+html {
+  font-size: 24px;
 }
 
 ul {
@@ -15,6 +42,16 @@ li {
 
 img {
   width: 100%;
+}
+
+.display-rwd {
+  display: none;
+}
+
+@media (max-width: 1183px) {
+  .display-rwd {
+    display: block;
+  }
 }
 
 .svg {
@@ -62,7 +99,8 @@ img {
 
 @media (max-width: 425px) {
   .wine-style {
-    width: 40px !important;
+    top: 0% !important;
+    width: 30px !important;
   }
 }
 
@@ -95,6 +133,7 @@ img {
 
 .main .video {
   position: relative;
+  overflow: hidden;
 }
 
 .main .video .wine-title {
@@ -111,10 +150,22 @@ img {
   }
 }
 
+@media (max-width: 407px) {
+  .main .video .wine-title {
+    top: 0%;
+  }
+}
+
 .main .video .wine {
   position: absolute;
   right: 10%;
   bottom: 10%;
+}
+
+@media (max-width: 1183px) {
+  .main .video .wine {
+    display: none !important;
+  }
 }
 
 .main .video .wine .wine1 {
@@ -127,5 +178,35 @@ img {
 
 .main .video .wine .wine3 {
   width: 110px;
+}
+
+.wine-detail-bg {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/img/bg白州.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -10px;
+}
+
+.wine2-detail-bg {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/img/bg響.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -6px;
+}
+
+.wine3-detail-bg {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/img/bg山崎.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -6px;
 }
 /*# sourceMappingURL=style.css.map */
