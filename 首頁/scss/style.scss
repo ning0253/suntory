@@ -15,9 +15,13 @@ body {
     }
 
 }
+.img-footer{
+  max-width: 960px;
+  height: auto;
+}
 
 .title-space{
-  padding: 100px 0;
+  padding-top: 100px;
 }
 .p-space{
   padding: 30px 0;
@@ -106,41 +110,6 @@ img {
 
 }
 
-
-// .navbar {
-//   li{
-//     display: inline-block;
-//   }
-//   .logo {
-//     width: 113px;
-//     height: 16px;
-//   }
-
-//   .menu {
-//     display: block;
-
-//     @media (max-width: 768px) {
-
-//       display: none !important;
-//     }
-
-//     a {
-//       margin: 0 18px;
-//     }
-//   }
-
-//   .social {
-
-
-//     .fb {
-//       margin-right: 16px;
-
-//     }
-
-
-//   }
-
-// }
 
 .collapse{
 

@@ -19,8 +19,13 @@ body p {
   font-size: 0.8rem;
 }
 
+.img-footer {
+  max-width: 960px;
+  height: auto;
+}
+
 .title-space {
-  padding: 100px 0;
+  padding-top: 100px;
 }
 
 .p-space {

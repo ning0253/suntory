@@ -588,7 +588,7 @@
             <img src="./img/sxc-warning.gif" class="img-fluid" alt="">
         </div>
     </section>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -616,24 +616,24 @@
 
     <script>
         $(window).scroll(function () {
-            var scrollVal = $(document).scrollTop()            
-            if(scrollVal > 200){
-                $('.navbar_1').css("opacity","0")
-                if (scrollVal > 557) {               
-                    
-                    $('.navbar_1 .navbar-brand img').css("display","block")               
+            var scrollVal = $(document).scrollTop()
+            if (scrollVal > 200) {
+                $('.navbar_1').css("opacity", "0")
+                if (scrollVal > 557) {
+
+                    $('.navbar_1 .navbar-brand img').css("display", "block")
                     $('.navbar_1').addClass('active');
-                    $('.navbar_1').css("opacity","1")
-                    
+                    $('.navbar_1').css("opacity", "1")
+
                 } else {
-                    
-                    $('.navbar_1 .navbar-brand img').css("display","none")
+
+                    $('.navbar_1 .navbar-brand img').css("display", "none")
                     $('.navbar_1').removeClass('active');
                 }
-            }else{
-                $('.navbar_1').css("opacity","1")
+            } else {
+                $('.navbar_1').css("opacity", "1")
             }
-            
+
         })
     </script>
     </script>
