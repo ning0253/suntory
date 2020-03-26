@@ -81,29 +81,39 @@
                 </tr>
             </tbody>
         </table> -->
+        <button class="btn btn-dark" @click="darks()">景深</button>
         <v-app>
-            <v-data-table :headers="headers" :items="desserts" :items-per-page="10" :loading="false" class="elevation-1">
-                <template v-slot:item="row">
-                    <tr>
+            <v-card>
+                <v-card-title>
+                    酒的故事
+                    <v-spacer></v-spacer>
+                    <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                </v-card-title>
+                <v-data-table :headers="headers" :items="desserts" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true">
+                    <template v-slot:item="row" >
+                        <tr>
 
-                        <td class="text-center">{{ row.item.name.name ,}}</td>
-                        <td>
-                            <img :src="row.item.img" alt="" srcset="" style="width:150px;">
-                        </td>
-                        <td v-html="row.item.content"></td>
-                        <td>{{row.item.title}}</td>
-                        <td>{{row.item.sort}}</td>
-                        <td>
-                            <v-btn class="mx-2" fab dark small color="pink" @click="onButtonClick(row.item)">
-                                aaa
-                            </v-btn>
-
-                        </td>
-                    </tr>
-                </template>
-
-            </v-data-table>
-
+                            <td class="text-center">{{ row.item.name.name ,}}</td>
+                            <td class="text-center">
+                                <img :src="row.item.img" alt="" srcset="" style="width:150px;">
+                            </td>
+                            <td class="text-center" v-html="row.item.content"></td>
+                            <td class="text-center">{{row.item.title}}</td>
+                            <td class="text-center">{{row.item.sort}}</td>
+                            <td class="">
+                                <div class="d-flex justify-content-center">
+                                    <v-btn class="mx-2" fab dark small color="green" @click="onButtonClick(row.index)" href="#create" data-toggle="collapse">
+                                        編輯
+                                    </v-btn>
+                                    <v-btn class="mx-2" fab dark small color="pink" @click="deletedata(row.index)">
+                                        刪除
+                                    </v-btn>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card>
         </v-app>
 
     </div>
@@ -139,6 +149,8 @@ export default {
     },
     data() {
         return {
+            search: '',
+            dark: false,
             liqueur_text: [],
             input: {
                 newimg: null,
@@ -162,12 +174,13 @@ export default {
                     align: 'center',
                     sortable: false,
                     value: 'name',
+                    filterable:"flase",
                 },
-                { text: '圖片', value: 'img' },
-                { text: '內文', value: 'content' },
-                { text: '標題', value: 'title' },
-                { text: '權重', value: 'sort' },
-                { text: '狀態', value: 'action' },
+                { text: '圖片', value: 'img', align: 'center', },
+                { text: '內文', value: 'content', align: 'center', },
+                { text: '標題', value: 'title', align: 'center', },
+                { text: '權重', value: 'sort', align: 'center', },
+                { text: '狀態', value: 'action', align: 'center', },
             ],
             desserts: [
                 {
@@ -183,6 +196,15 @@ export default {
     },
     methods: {
         //按下submit
+        darks() {
+            if (this.dark == true) {
+                this.dark = false
+                $('.text-center').css('color', 'black')
+            } else {
+                this.dark = true
+                $('.text-center').css('color', 'white')
+            }
+        },
         store(index) {
             if (this.input.edit == null) {
                 let { content, title, img, id } = this.input;
@@ -197,7 +219,7 @@ export default {
                     .then(res => {
                         this.clear();
                         this.sweetalert("add");
-                        this.liqueur_text.push(res.data);
+                        this.desserts.unshift(res.data);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -217,7 +239,7 @@ export default {
                         this.sweetalert("edit");
                         this.clear();
                         //兩個方法都可以重新渲染
-                        this.$set(this.liqueur_text, index, res.data);
+                        this.$set(this.desserts, index, res.data);
                         // this.liqueur_text.splice(index,1, res.data)
                     })
                     .catch(function (error) {
@@ -236,7 +258,7 @@ export default {
         //刪除
         deletedata(index) {
             //console.log(index);
-            let target = this.liqueur_text[index];
+            let target = this.desserts[index];
 
             Swal.fire({
                 title: `確定要刪除 ${target.title} ?`,
@@ -251,7 +273,7 @@ export default {
                     axios
                         .delete("/admin/liqueurStory/" + target.id)
                         .then(res => {
-                            this.liqueur_text.splice(index, 1);
+                            this.desserts.splice(index, 1);
                             this.sweetalert("del");
                         })
                         .catch(err => {
@@ -262,7 +284,7 @@ export default {
         },
         //讀取編輯資料
         editdata(index) {
-            let target = this.liqueur_text[index];
+            let target = this.desserts[index];
             axios
                 .get(`/admin/liqueurStory/${target.id}/edit`)
                 .then(res => {
@@ -289,7 +311,7 @@ export default {
                 });
         },
         onButtonClick(item) {
-            console.log('click on ' + item.no)
+            this.editdata(item);
         },
         //判斷是否有圖片上傳
         processFile(event) {
