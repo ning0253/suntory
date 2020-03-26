@@ -44,7 +44,7 @@
             <hr />
         </div>
 
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <!-- <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>img</th>
@@ -80,13 +80,39 @@
                     </div>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+        <v-app>
+            <v-data-table :headers="headers" :items="desserts" :items-per-page="10" :loading="false" class="elevation-1">
+                <template v-slot:item="row">
+                    <tr>
+
+                        <td class="text-center">{{ row.item.name.name ,}}</td>
+                        <td>
+                            <img :src="row.item.img" alt="" srcset="" style="width:150px;">
+                        </td>
+                        <td v-html="row.item.content"></td>
+                        <td>{{row.item.title}}</td>
+                        <td>{{row.item.sort}}</td>
+                        <td>
+                            <v-btn class="mx-2" fab dark small color="pink" @click="onButtonClick(row.item)">
+                                aaa
+                            </v-btn>
+
+                        </td>
+                    </tr>
+                </template>
+
+            </v-data-table>
+
+        </v-app>
+
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import { VueEditor } from "vue2-editor";
+
 export default {
     components: { VueEditor },
     mounted() {
@@ -104,7 +130,7 @@ export default {
         axios
             .post("/admin/liqueurStory_text")
             .then(response => {
-                this.liqueur_text = response.data;
+                this.desserts = response.data;
                 this.upload();
             })
             .catch(function (error) {
@@ -129,7 +155,30 @@ export default {
                 ["bold", "italic", "underline"],
                 [{ list: "ordered" }, { list: "bullet" }],
                 ["code-block"]
-            ]
+            ],
+            headers: [
+                {
+                    text: '酒的種類',
+                    align: 'center',
+                    sortable: false,
+                    value: 'name',
+                },
+                { text: '圖片', value: 'img' },
+                { text: '內文', value: 'content' },
+                { text: '標題', value: 'title' },
+                { text: '權重', value: 'sort' },
+                { text: '狀態', value: 'action' },
+            ],
+            desserts: [
+                {
+                    name: 'KitKat',
+                    calories: 518,
+                    fat: 26.0,
+                    carbs: 65,
+                    protein: 7,
+                    iron: '6%',
+                },
+            ],
         };
     },
     methods: {
@@ -238,6 +287,9 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        onButtonClick(item) {
+            console.log('click on ' + item.no)
         },
         //判斷是否有圖片上傳
         processFile(event) {
