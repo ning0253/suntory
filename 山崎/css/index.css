@@ -308,6 +308,7 @@ ul li {
   padding: 100px 0;
   background-color: black;
   color: balck;
+  overflow: hidden;
 }
 
 .sure .sure-title {
