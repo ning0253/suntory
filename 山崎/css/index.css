@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -44,6 +44,7 @@ body p {
 
 html {
   font-size: 24px;
+  scroll-behavior: smooth;
 }
 
 ul {
@@ -94,6 +95,16 @@ ul li {
   text-decoration: none;
 }
 
+.navbar_1.active {
+  -webkit-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .banner {
   background-color: black;
   padding: 180px 0;
@@ -107,6 +118,23 @@ ul li {
   background-color: #231815;
   padding: 100px 0;
   overflow: hidden;
+  position: relative;
+}
+
+.story .container {
+  position: unset;
+}
+
+.story .container .swiper-container {
+  position: unset;
+}
+
+.story .container .swiper-container .swiper-button-next {
+  color: #ffe282;
+}
+
+.story .container .swiper-container .swiper-button-prev {
+  color: #ffe282;
 }
 
 .story .container .story-title {
@@ -283,16 +311,16 @@ ul li {
   font-size: 2rem;
 }
 
-.method .container .carousel img {
+.method .container .swiper-container img {
   padding-bottom: 30px;
 }
 
-.method .container .carousel .title {
+.method .container .swiper-container .title {
   padding-bottom: 50px;
   font-size: 1.25rem;
 }
 
-.method .container .carousel .content {
+.method .container .swiper-container .content {
   font-size: 0.75rem;
 }
 
@@ -326,8 +354,12 @@ p {
 
 .footer {
   width: 100%;
-  height: 100px;
+  height: 50px;
   background-color: #231815;
   color: white;
+}
+
+.footer2 {
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */
