@@ -65,15 +65,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
    Route::post('liqueurMethod_text','liqueurMethodController@liqueurMethod_text');//獲得酒的態度資料
 
    //經銷商
-   Route::resource('Shop', 'ShopController');
-   Route::post('Shop_upload_img','ShopController@Shop_upload_img');//axios上傳圖片
-   Route::post('Shop_delete_img','ShopController@Shop_delete_img');//axios刪除圖片
-   Route::post('Shop_text','ShopController@Shop_text');//獲得經銷商資料
+   Route::resource('shop', 'shopController');
+   Route::post('shop_upload_img','shopController@shop_upload_img');//axios上傳圖片
+   Route::post('shop_delete_img','shopController@shop_delete_img');//axios刪除圖片
+   Route::post('shop_text','shopController@shop_text');//獲得經銷商資料
 
    //訂單
-   Route::resource('Order', 'OrderController');
-   Route::post('Order_upload_img','OrderController@Order_upload_img');//axios上傳圖片
-   Route::post('Order_delete_img','OrderController@Order_delete_img');//axios刪除圖片
-   Route::post('Order_kind','OrderController@Order_kind');//獲得酒的種類
-   Route::post('Order_text','OrderController@Order_text');//獲得訂單資料
+   Route::resource('order', 'orderController');
+   Route::post('order_upload_img','orderController@order_upload_img');//axios上傳圖片
+   Route::post('order_delete_img','orderController@order_delete_img');//axios刪除圖片
+   Route::post('order_kind','orderController@order_kind');//獲得酒的種類
+   Route::post('order_text','orderController@order_text');//獲得訂單資料
 });
