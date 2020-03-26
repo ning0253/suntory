@@ -38,7 +38,7 @@ class LiqueurMethodController extends Controller
     {
         $data = LiqueurMethod::find($id);
         $data->delete();
-        return 'successful';
+        return 'success';
     }
 
     public function liqueurMethod_upload_img()
