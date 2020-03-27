@@ -1,4 +1,4 @@
-.hvr-underline-from-center {
+.hvr-underline-from-center1 {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
@@ -7,13 +7,13 @@
   position: relative;
   overflow: hidden;
 }
-.hvr-underline-from-center:before {
+.hvr-underline-from-center1:before {
   content: "";
   position: absolute;
   z-index: -1;
   left: 51%;
   right: 51%;
-  bottom: 0;
+  bottom: -2px;
   background: white;
   height: 4px;
   -webkit-transition-property: left, right;
@@ -23,7 +23,7 @@
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+.hvr-underline-from-center1:hover:before, .hvr-underline-from-center1:focus:before, .hvr-underline-from-center1:active:before {
   left: 0;
   right: 0;
 }
