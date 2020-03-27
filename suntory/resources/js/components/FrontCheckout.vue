@@ -1,146 +1,118 @@
 <template>
-    <div>
-        <h1>Checkout Area</h1>
-        <div class="checkout-area">
-            <span> {{ cart | cartSize }} </span><i class="fa fa-shopping-cart"></i>
-            <table>
-                <thead>
-                    <tr>
-                        <th class="align-center">SKU</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th class="align-right">Amount</th>
-                        <th class="align-right">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(product, index) in cart" :key="index">
-                        <!-- track-by="$index" -->
-                        <td class="align-center">{{ product.sku }}</td>
-                        <td>{{ product.product }}</td>
-                        <td>{{ product.description }}</td>
-                        <td class="align-right">{{ cart[$index].quantity }}</td>
-                        <td class="align-right">{{ product.price | currency }}</td>
-                    </tr>
-                    <!-- <button @click="removeProduct(product)"> X </button></div> -->
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="align-right">Subtotal:</td>
-                        <td class="align-right">
-                            <h4 v-if="cartSubTotal != 0"> {{ cartSubTotal | currency }} </h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="align-right">Tax:</td>
-                        <td class="align-right">
-                            <h4 v-if="cartSubTotal != 0"> {{ cartTotal - cartSubTotal | currency }} </h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="align-right vert-bottom">Total:</td>
-                        <td class="align-right vert-bottom">
-                            <h2 v-if="cartSubTotal != 0"> {{ cartTotal | currency }} </h2>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button v-show="cartSubTotal" @click="checkoutModal()">Checkout</button>
-        </div>
-        <div class='modalWrapper' v-show='showModal'>
-            <div class='overlay' @click='hideModal()'></div>
-            <div class='modal checkout'>
-                <i class='close fa fa-times' @click='hideModal()'></i>
-                <h1>Checkout</h1>
-                <div>We accept: <i class='fa fa-stripe'></i> <i class='fa fa-cc-visa'></i> <i class='fa fa-cc-mastercard'></i> <i class='fa fa-cc-amex'></i> <i class='fa fa-cc-discover'></i></div><br>
-                <h3> Subtotal: {{ cartSubTotal | currency }} </h3>
-                <h3> Tax: {{ cartTotal - cartSubTotal | currency }} </h3>
-                <h1> Total: {{ cartTotal | currency }} </h1>
-                <br>
-                <div>This is where our payment processor goes</div>
+    <div id="app">
+        <div class="container mt-3 mt-sm-5">
+            <div class="row justify-content-between mb-3">
+                <div class="col-md-9">
+                    <h1 class="display-1">Shop</h1>
+                </div>
+                <div class="col-md-3 text-right"><button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart"></i> {{ cart.length }}</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" v-for="item in selling">
+                    <div class="card"><img class="card-img-top" :src="item.image" :alt="item.name" />
+                        <div class="card-block">
+                            <h4 class="card-title">{{ item.name }}</h4>
+                            <div class="card-text">${{ item.price / 100 }}</div>
+                            <div class="row justify-content-end"><button class="btn btn-primary" @click="addToCart" :data-id="item.id">Add to cart</button></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="modal fade" id="cart">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cart</h5><button class="close" type="button" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                    <tr>
+                                        <th>品名</th>
+                                        <th>數量</th>
+                                        <th>價錢</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in cart">
+                                    <td>{{ item.name }}</td>
+                                    <td></td>
+                                    <td>${{ item.price / 100 }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>${{ cartTotal / 100 }}</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">Continue shopping</button><button class="btn btn-primary">Check out</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-    props: ['cart', 'cartSize', 'cartSubTotal', 'tax', 'cartTotal'],
-
     data: function () {
         return {
-            showModal: false
+            cart: [],
+            selling: [
+                {
+                    id: 1,
+                    image: '//placehold.it/200',
+                    name: 'Doo-dad',
+                    price: 999,
+                },
+                {
+                    id: 2,
+                    image: '//placehold.it/200',
+                    name: 'Other Thing',
+                    price: 1499,
+                },
+                {
+                    id: 3,
+                    image: '//placehold.it/200',
+                    name: 'An Item',
+                    price: 499,
+                },
+                {
+                    id: 4,
+                    image: '//placehold.it/200',
+                    name: 'Thing',
+                    price: 299,
+                },
+            ],
         }
     },
+    computed: {
+        cartTotal: function () {
+            var i;
+            var total = 0;
 
-    filters: {
-        customPluralize: function (cart) {
-            var newName;
-
-            if (cart.quantity > 1) {
-                newName = cart.product + "s";
-                return newName;
+            for (i = 0; i < this.cart.length; i++) {
+                total += this.cart[i].price;
             }
 
-            return cart.product;
+            return total;
         },
-
-        cartSize: function (cart) {
-            var cartSize = 0;
-
-            for (var i = 0; i < cart.length; i++) {
-                cartSize += cart[i].quantity;
-            }
-
-            return cartSize;
-        }
     },
-
     methods: {
-        removeProduct: function (product) {
-            vue.cart.$remove(product);
-            vue.cartSubTotal = vue.cartSubTotal - (product.price * product.quantity);
-            vue.cartTotal = vue.cartSubTotal + (vue.tax * vue.cartSubTotal);
+        addToCart: function (e) {
+            var i;
+            var item;
 
-            if (vue.cart.length <= 0) {
-                vue.checkoutBool = false;
+            for (i = 0; i < this.selling.length; i++) {
+                if (this.selling[i].id == e.target.getAttribute('data-id')) {
+                    this.cart.push(this.selling[i]);
+                    break;
+                }
             }
-        },
-
-        checkoutModal: function () {
-            var self = this;
-            self.showModal = true;
-
-            console.log("CHECKOUT", self.cartTotal);
-
-        },
-
-        hideModal: function () {
-            //hide modal and empty modal data
-            var self = this;
-            self.showModal = false;
-        }
-    },
-
-    //intercept the checkout request broadcast
-    //run our function
-    events: {
-        "checkoutRequest": function () {
-            var self = this;
-            self.checkoutModal();
         }
     }
 }

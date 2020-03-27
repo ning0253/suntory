@@ -25,8 +25,8 @@ Vue.component('liqueur-test',require('./components/test.vue').default);
 Vue.component('liqueur-text',require('./components/Text.vue').default);
 Vue.component('content-editor', require('./components/vue2editor.vue').default);
 
-Vue.component('products-component', require('./components/FrontProducts.vue').default);
-Vue.component('cart-component', require('./components/FrontCart.vue').default);
+// Vue.component('products-component', require('./components/FrontProducts.vue').default);
+// Vue.component('cart-component', require('./components/FrontCart.vue').default);
 Vue.component('checkout-area', require('./components/FrontCheckout.vue').default);
 
 Vue.component('liqueur-main', require('./components/liqueur.vue').default);
