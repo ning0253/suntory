@@ -258,16 +258,16 @@ left: 26%;
 .footer2.active1{
   position: unset;
 }
-.footer2{
-  width: 100%;
-  background-color: white;
-  @media (max-width: 1183px) {
+  .footer2{
+    width: 100%;
+    background-color: white;
+    @media (max-width: 1183px) {
 
-  position: fixed;
-  bottom: 0px;
-  z-index: 10;
+    position: fixed;
+    bottom: 0px;
+    z-index: 10;
 
-  }
+    }
 
   
 }
