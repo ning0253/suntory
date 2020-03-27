@@ -20,6 +20,8 @@ Route::get('/product_list', 'FrontController@product_list');
 Route::post('/addcart', 'cartcontroller@addcart');
 Route::get('/getcontent', 'cartcontroller@getcontent');
 Route::get('/totalcart', 'cartcontroller@totalcart');
+Route::post('/onChange', 'cartcontroller@onChange');//更新產品數量
+Route::post('/deletecar', 'cartcontroller@deletecar');//刪除產品
 
 
 Auth::routes();

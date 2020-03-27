@@ -13,7 +13,7 @@
                         <div class="card-block">
                             <h4 class="card-title">{{ item.title }}</h4>
                             <div class="card-text">${{ item.price}}</div>
-                            <div class="row justify-content-end"><button class="btn btn-primary" @click="addToCart(index)" >Add to cart</button></div>
+                            <div class="row justify-content-end"><button class="btn btn-primary" @click="addToCart(index)">Add to cart</button></div>
                         </div>
                     </div>
                 </div>
@@ -29,24 +29,24 @@
                     <div class="modal-body">
                         <table class="table">
                             <thead>
-                                    <tr>
-                                        <th>品名</th>
-                                        <th>數量</th>
-                                        <th>單價</th>
-                                        <th>總價</th>
-                                        <th></th>
-                                    </tr>
+                                <tr>
+                                    <th>品名</th>
+                                    <th>數量</th>
+                                    <th>單價</th>
+                                    <th>總價</th>
+                                    <th></th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(item,index) in cart" :key="index">
-                                    <td >{{item.name}}</td>
-                                    <td style="width:50px">
-                                        <input type="number" v-model="item.quantity" @change="change(index)" min="1">
+                                    <td>{{item.name}}</td>
+                                    <td>
+                                        <input type="number" v-model="item.quantity" @change="change(index)" min="1" style="width:50px">
                                     </td>
-                                    <td >{{item.price}}</td>
+                                    <td>{{item.price}}</td>
                                     <td>${{ item.price *item.quantity}}</td>
                                     <th>
-                                        <button class="btn-sm btn-danger">
+                                        <button class="btn-sm btn-danger" @click="deleltecar(index)">
                                             <span>刪除</span>
                                         </button>
                                     </th>
@@ -58,7 +58,7 @@
                                     <td></td>
                                     <td></td>
                                     <td>{{countQuantity }}</td>
-                                    <td><strong >${{ total }}</strong></td>
+                                    <td><strong>${{ total }}</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -83,82 +83,98 @@ export default {
                 console.log(error);
             });
         axios.get('/totalcart')
-            .then((res)=>{
-               this.cart = res.data
+            .then(res => {
+                this.cart = res.data;
+                for (var i in this.cart) {
+                    this.carts.push(this.cart[i]);
+                }
 
-            }).catch((err)=>{
+
+            }).catch((err) => {
                 console.log(err);
 
             })
     },
     data: function () {
         return {
-            cart: {
-            },
+            cart: [],
             selling: [],
+            carts: []
 
         }
     },
-    computed:{
-        countQuantity:function(){
-					var countQuantity=0;
-					for (var i in this.cart) {
-						countQuantity += parseInt(this.cart[i].quantity);
-					}
-					return countQuantity;
-                },
-        total:function(){
-					var total=0;
-					for (var i in this.cart) {
-						total += parseInt(this.cart[i].price * this.cart[i].quantity);
-					}
-					return total;
-				},
-	},
+    computed: {
+        countQuantity: function () {
+            var countQuantity = 0;
+            for (var i in this.cart) {
+                countQuantity += parseInt(this.cart[i].quantity);
+            }
+            return countQuantity;
+        },
+        total: function () {
+            var total = 0;
+            for (var i in this.cart) {
+                total += parseInt(this.cart[i].price * this.cart[i].quantity);
+            }
+            return total;
+        },
+    },
     methods: {
 
         addToCart(index) {
-            axios.post('/addcart',this.selling[index])
-            .then((res)=>{
-                // this.cart.push(res.data)
-                console.log(res);
+            axios.post('/addcart', this.selling[index])
+                .then((res) => {
+                    this.cart.push(res.data)
+                    console.log(res);
 
-            }).catch((err)=>{
-                console.log(err);
+                }).catch((err) => {
+                    console.log(err);
 
-            })
+                })
         },
-        cartTotal(){
+        cartTotal() {
             //總價
-             axios.get('/getcontent')
-            .then((res)=>{
+            axios.get('/getcontent')
+                .then((res) => {
 
 
-            }).catch((err)=>{
-                console.log(err);
+                }).catch((err) => {
+                    console.log(err);
 
-            })
+                })
             //總數
             axios.get('/totalcart')
-            .then((res)=>{
-                this.cart=res.data
-            }).catch((err)=>{
-                console.log(err);
+                .then((res) => {
+                    // this.cart.push(res.data)
+                }).catch((err) => {
+                    console.log(err);
 
-            })
+                })
         },
-        change(){
-            console.log('change');
+        change(index) {
+            let target = this.cart[index]
 
             //總價
-             axios.get('/getcontent')
-            .then((res)=>{
+            axios.post('/onChange', target)
+                .then((res) => {
 
+                }).catch((err) => {
+                    console.log(err);
 
-            }).catch((err)=>{
-                console.log(err);
+                })
+        },
+        deleltecar(index) {
+            let target = this.cart[index]
+            //總價
+            axios.post('/deletecar', target)
+                .then((res) => {
 
-            })
+                }).catch((err) => {
+                    console.log(err);
+
+                })
+
+            cart.splice(index, 1);
         }
 
     }

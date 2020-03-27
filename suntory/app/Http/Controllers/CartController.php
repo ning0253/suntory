@@ -29,16 +29,26 @@ class CartController extends Controller
     {
         $total = \Cart::getContent();
         return $total;
-    }
-    public function onChange()
-    {
 
-        $total = \Cart::update(456, array(
+
+    }
+    public function onChange(Request $request)
+    {
+        $data = $request->all();
+
+        \Cart::update($data['id'], array(
             'quantity' => array(
                 'relative' => false,
-                'value' => 5
+                'value' => $data["quantity"]
             ),
         ));
-        return $total;
+        return 'successful';
+    }
+    public function deletecar(Request $request)
+    {
+        $data = $request->all();
+
+        \Cart::remove($data['id']);
+        return 'successful';
     }
 }
