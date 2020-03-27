@@ -4,6 +4,8 @@
 @section('css')
 {{-- datatables --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+{{-- Material Design Icons --}}
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 @endsection
 
 
