@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="content">蒸餾場內頁內容</label>
                                 <label for="content" id="warm" style="color: red;margin-left: 5px;" hidden="hidden">請輸入內容！</label>
-                                <vue-editor class="" id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
+                                <vue-editor  id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
                             </div>
                             <div class="form-group" v-if="input.edit != null">
                                 <label for="sort">權重</label>
