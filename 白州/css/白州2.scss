@@ -1,5 +1,4 @@
 body {
-  height: 800vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -16,7 +15,7 @@ html {
 .flex_1 {
   flex: 1;
 }
-.h5{
+.h5 {
   font-size: 1.5rem;
 }
 p,
@@ -32,14 +31,12 @@ h1 {
     display: flex;
     justify-content: center;
     h1 {
-     
       margin-bottom: 30px;
     }
   }
   .hakushu_text {
     text-align: center;
     p {
-      
       margin-bottom: 50px;
     }
   }
@@ -54,7 +51,7 @@ h1 {
       padding-right: 5%;
       h1 {
         text-align: center;
-        
+
         margin-bottom: 40px;
         position: relative;
         span {
@@ -67,7 +64,6 @@ h1 {
     }
     p {
       text-align: center;
-      
     }
     .img1 {
       background-size: cover;
@@ -86,7 +82,7 @@ h1 {
       padding-left: 5%;
       h1 {
         text-align: center;
-        
+
         margin-bottom: 40px;
         position: relative;
         span {
@@ -98,7 +94,6 @@ h1 {
       }
       p {
         text-align: center;
-        
       }
     }
     .img2 {
@@ -120,7 +115,7 @@ h1 {
 
       h1 {
         text-align: center;
-       
+
         margin-bottom: 40px;
         position: relative;
         span {
@@ -133,7 +128,6 @@ h1 {
     }
     p {
       text-align: center;
-    
     }
     .img3 {
       background-size: cover;
@@ -150,7 +144,6 @@ h1 {
       padding-bottom: 50px;
     }
     h1 {
-    
       position: relative;
       span {
         position: absolute;
@@ -174,7 +167,6 @@ h1 {
     text-align: center;
     padding-bottom: 50px;
     h1 {
-      
       position: relative;
       span {
         position: absolute;
@@ -223,6 +215,44 @@ h1 {
       .prod1_text {
         p {
           padding-bottom: 25px;
+          @media (max-width: 770px){
+            padding: 0;
+          }
+        }
+        a.add-to-cart {
+          width: 216px;
+          height: 48px;
+          background: #ffab00;
+          font-size: 18px;
+          line-height: 48px;
+          letter-spacing: 2px;
+          color: rgb(255, 255, 255);
+          text-transform: uppercase;
+          border-radius: 24px;
+          text-decoration: none;
+          text-align: center;
+          display: block;
+          box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16), 0 3px 6px rgba(255, 171, 0, 0.23);
+          @media (max-width: 770px) {
+            width: 180px;
+            height: 40px;
+            font-size: 16px;
+            line-height: 40px;
+          }
+          @media (max-width: 540px) {
+            width: 150px;
+            height: 30px;
+            font-size: 14px;
+            line-height: 30px;
+          }
+        }
+
+        a.add-to-cart:hover {
+          background-color: red;
+        }
+
+        a.add-to-cart:active {
+          background-color: salmon;
         }
       }
     }
@@ -240,7 +270,7 @@ h1 {
   h2 {
     font-size: 1.2rem;
   }
-  h5{
+  h5 {
     font-size: 1.2rem;
   }
 
@@ -260,19 +290,15 @@ h1 {
     padding-bottom: 50px;
   }
   .row .story_box .img1 {
-   
-    min-height: 300px
-  
+    min-height: 300px;
+  }
+  .row .manner_box .img2 {
+    min-height: 300px;
+  }
+  .row .distillery_box .img3 {
+    min-height: 300px;
+  }
 }
-.row .manner_box .img2 {
-    min-height: 300px
-}
-.row .distillery_box .img3 {
-    min-height: 300px
-}
-}
-
-
 
 @media (max-width: 540px) {
   .row {
@@ -286,7 +312,7 @@ h1 {
   h2 {
     font-size: 1rem;
   }
-  h5{
+  h5 {
     font-size: 1.2rem;
   }
 
@@ -334,7 +360,7 @@ h1 {
 
     .img1 {
       order: 1;
-      min-height: 200px
+      min-height: 200px;
     }
   }
   .row .manner_box {
@@ -355,7 +381,7 @@ h1 {
 
     .img2 {
       order: 1;
-      min-height: 200px
+      min-height: 200px;
     }
   }
   .row .distillery_box {
@@ -376,7 +402,7 @@ h1 {
 
     .img3 {
       order: 1;
-      min-height: 200px
+      min-height: 200px;
     }
   }
 }
