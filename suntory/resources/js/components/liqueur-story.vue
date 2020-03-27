@@ -150,7 +150,6 @@ export default {
                 {
                     text: '酒的種類',
                     align: 'center',
-                    sortable: false,
                     value: 'name',
                     filterable: "flase",
                 },

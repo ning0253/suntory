@@ -1,82 +1,103 @@
 <template>
     <div class="container">
-        <a id="add" href="#create" data-toggle="collapse" class="btn btn-success" @click="clear()">新增</a>
-
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" @click="clear()">
+            新增
+        </button>
         <hr />
 
-        <div class="collapse" id="create">
-            <div class="card card-body">
-                <form method="post" action="#" enctype="multipart/form-data" id="form1" @submit.prevent="store(input.index)">
-                    <div class="form-group">
-                        <div class="col-4">
-                            <img :src="input.oldimg" alt srcset class="img-fluid" />
-                        </div>
-                        <label for="img">比賽Logo</label>
-                        <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
-                        <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 v-if="this.input.edit == null" class="modal-title" id="staticBackdropLabel">新增</h5>
+                        <h5 v-else class="modal-title" id="staticBackdropLabel">編輯</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="contest">比賽名稱</label>
-                        <input type="text" class="form-control" v-model="input.contest" id="contest" name="contest" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="liqueur_product_id">得獎的酒</label>
-                        <select name="liqueur_product_id" id="liqueur_product_id" v-model="input.liqueur_product_id" class="form-control">
-                            <option v-for="item in liqueur_products" :key="item.id" :value="item.id">
-                                {{ item.title }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="year">得獎時間(年)</label>
-                        <input type="number" class="form-control" v-model="input.year" id="year" name="year" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="award">獎項</label>
-                        <input type="text" class="form-control" v-model="input.award" id="award" name="award" required />
-                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="form1" @submit.prevent="store(input.index)">
+                            <div class="form-group">
+                                <label for="liqueur_product_id">得獎的酒</label>
+                                <select required name="liqueur_product_id" id="liqueur_product_id" v-model="input.liqueur_product_id" class="form-control">
+                                    <option v-for="(item, index) in liqueur_products" :value="item.id" :key="index">{{ item.title }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="img">比賽Logo</label>
+                                <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                <div class="col-4">
+                                    <img :src="input.oldimg" alt srcset class="img-fluid" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contest">比賽名稱</label>
+                                <input type="text" class="form-control" v-model="input.contest" id="contest" name="contest" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="year">得獎時間(年)</label>
+                                <input type="text" class="form-control" v-model="input.year" id="year" name="year" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="award">獎項</label>
+                                <input type="text" class="form-control" v-model="input.award" id="award" name="award" required />
+                            </div>
+                            <!-- <div class="form-group" v-if="input.edit != null">
+                                <label for="sort">權重</label>
+                                <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" value="0" />
+                            </div> -->
 
-                    <button type="submit" class="btn btn-primary" data-target="#create">
-                        儲存
-                    </button>
-                </form>
+                            <button type="submit" class="btn btn-primary">儲存</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        </form>
+                    </div>
+                    <hr />
+                </div>
             </div>
-            <hr />
         </div>
 
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th width="20px">No.</th>
-                    <th width="80px">比賽Logo</th>
-                    <th width="80px">比賽名稱</th>
-                    <th width="80px">得獎的酒</th>
-                    <th width="100px">得獎時間(年)</th>
-                    <th>獎項</th>
-                    <th width="80px"></th>
-                </tr>
-            </thead>
-            <tbody class="tbody">
-                <tr v-for="(item, index) in liqueur_text" :key="index">
-                    <td>{{ (index + 1) }}</td>
-                    <td>
-                        <img :src="item.img" alt srcset class="img-fluid" />
-                    </td>
-                    <td>{{ item.contest }}</td>
-                    <td>{{ item.liqueur_product.title }}</td>
-                    <td>{{ item.year }}</td>
-                    <td>{{ item.award }}</td>
-                    <!-- <td v-if="item.sort == null">0</td>
-                    <td v-else>{{ item.sort }}</td> -->
-                    <td>
-                        <a href="#create" class="btn btn-success btn-sm" data-toggle="collapse" @click="editdata(index)">修改</a>
-                        <button class="btn btn-danger btn-sm" @click="deletedata(index)">
-                            刪除
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <button class="btn-lg btn-dark" @click="darks()">
+            <svg class="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+            </svg>
+        </button>
+
+        <v-app>
+            <v-card>
+                <v-card-title>
+                    酒的肯定
+                    <v-spacer></v-spacer>
+                    <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                </v-card-title>
+                <v-data-table :headers="headers" :items="liqueur_text" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true">
+                    <template v-slot:item="row">
+                        <tr>
+                            <td class="text-center">{{ (row.index + 1) }}</td>
+                            <td class="text-center">{{row.item.liqueur_product.title}}</td>
+                            <td class="text-center">
+                                <img :src="row.item.img" alt="" srcset="" style="width:150px;">
+                            </td>
+                            <td class="text-center">{{row.item.contest}}</td>
+                            <td class="text-center">{{row.item.year}}</td>
+                            <td class="text-center">{{row.item.award}}</td>
+                            <!-- <td class="text-center">{{row.item.sort}}</td> -->
+                            <td class="">
+                                <div class="d-flex justify-content-center">
+                                    <v-btn class="mx-2" fab dark small color="green" @click="onButtonClick(row.index)" data-toggle="modal" data-target="#staticBackdrop">
+                                        編輯
+                                    </v-btn>
+                                    <v-btn class="mx-2" fab dark small color="pink" @click="deletedata(row.index)">
+                                        刪除
+                                    </v-btn>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-app>
     </div>
 </template>
 
@@ -94,19 +115,20 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-        //獲取酒的獎項資料
+        //獲取酒的肯定
         axios
             .post("/admin/liqueurSure_text")
             .then(response => {
                 this.liqueur_text = response.data;
-                this.upload();
             })
             .catch(function (error) {
                 console.log(error);
             });
     },
     data() {
-        return {//定義變數
+        return {
+            search: '',
+            dark: false,
             liqueur_text: [],
             liqueur_products: [],
             input: {
@@ -119,12 +141,57 @@ export default {
                 // sort: 0,
                 edit: null, //若有值則為編輯，若無為新增
                 index: null //編輯或刪除第幾項
-            }
+            },
+            customToolbar: [
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["code-block"]
+            ],
+            headers: [
+                { text: 'No.', align: 'center', filterable: "flase"},
+                {
+                    text: '得獎的酒',
+                    value: 'liqueur_product.title',
+                    align: 'center',
+                    // filterable: "flase",
+                },
+                { text: '比賽Logo',value: 'img', align: 'center', },
+                { text: '比賽名稱',value: 'contest', align: 'center', },
+                { text: '得獎時間(年)',value: 'year', align: 'center', },
+                { text: '獎項',value: 'award', align: 'center', },
+                // { text: '權重', align: 'center', },
+                { text: '',value: 'action', align: 'center', filterable: "flase", },
+            ],
         };
     },
     methods: {
         //按下submit
+        darks() {
+            if (this.dark == true) {
+                this.dark = false
+                $('.text-center').css('color', 'black')
+            } else {
+                this.dark = true
+                $('.text-center').css('color', 'white')
+            }
+        },
+        checkForInput() {//偵測content變化
+            if (this.input.content == "") {//未輸入文字
+                $('#warm').removeAttr("hidden");
+                $('#content').addClass('border border-danger');
+            } else {
+                $('#warm').attr('hidden', 'hidden');//有輸入文字
+                $('#content').removeClass('border border-danger');
+            }
+        },
         store(index) {
+            if (this.input.content == "") {//content未輸入文字
+                $('#warm').removeAttr("hidden");
+                $('#content').addClass('border border-danger');
+                return;
+            }
+            $('#staticBackdrop').modal('hide');
+
             if (this.input.edit == null) {
                 axios
                     .post("/admin/liqueurSure", {
@@ -132,18 +199,18 @@ export default {
                         contest: this.input.contest,
                         liqueur_product_id: this.input.liqueur_product_id,
                         year: this.input.year,
-                        award: this.input.award
+                        award: this.input.award,
+                        sort: 0
                     })
                     .then(res => {
-                        this.clear();
                         this.sweetalert("add");
-                        this.liqueur_text.push(res.data);
+                        this.liqueur_text.unshift(res.data);
+                        this.clear();
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             } else {
-                //console.log(index);
                 axios
                     .put(`/admin/liqueurSure/${this.input.edit}`, {
                         img: this.input.oldimg,
@@ -154,23 +221,15 @@ export default {
                     })
                     .then(res => {
                         this.sweetalert("edit");
-                        this.clear();
                         //兩個方法都可以重新渲染
                         this.$set(this.liqueur_text, index, res.data);
                         // this.liqueur_text.splice(index,1, res.data)
+                        this.clear();
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             }
-        },
-        //當頁面讀取完成後執行datatable
-        upload() {
-            $(document).ready(function () {
-                $("#example").DataTable({
-                    order: [1, "desc"]
-                });
-            });
         },
         //刪除
         deletedata(index) {
@@ -229,6 +288,9 @@ export default {
                     console.log(err);
                 });
         },
+        onButtonClick(item) {
+            this.editdata(item);
+        },
         //判斷是否有圖片上傳
         processFile(event) {
             if (this.input.oldimg == null) {
@@ -270,9 +332,12 @@ export default {
                 (this.input.contest = ""),
                 (this.input.liqueur_product_id = ""),
                 (this.input.year = ""),
-                (this.input.award = "");
-            // (this.input.sort = "");
+                (this.input.award = ""),
+                (this.input.edit = null),
+                (this.input.index = null);
             $("#img").val("");
+            $('#warm').attr('hidden', 'hidden');
+            $('#content').removeClass('border border-danger');
         },
 
         sweetalert(action) {
