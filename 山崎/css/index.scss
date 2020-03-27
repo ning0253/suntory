@@ -67,6 +67,16 @@ ul {
 
 .navbar-top {
     padding: 0px !important;
+    .container{
+        .navbar{
+            padding: 0;
+        }
+    }
+
+    .navbar-brand {
+        margin-right: 0;
+    }
+
     span {
         font-size: 1rem;
     }
@@ -75,6 +85,7 @@ ul {
     }
 }
 
+
 .navbar_1 {
     background-color: black;
     font-size: 18px;
@@ -82,9 +93,6 @@ ul {
     //     background-image: url('/img/open-menu.svg');
     // }
     
-    .navbar-brand {
-        // display: none;
-    }
     .navbar-toggler {
         padding: 0 10px;
         border-color: white;
@@ -131,16 +139,10 @@ ul {
     // background-position: center;
 }
 
-// #banner {
-
-//     .carousel-control-next {
-//         right: 0;
-//     }
-
-//     .carousel-control-prev {
-//         left: 0;
-//     }
-// }
+.footer2.active1{
+    position: unset;
+    transition: 1s;
+}
 
 .story {
     background-color: #231815;
@@ -282,6 +284,12 @@ ul {
     padding: $sectionToTitle 0;
     color: white;
 
+    .lightbox-target{
+
+        z-index: 11 ;
+
+    }
+
     .detail {
         width: 500px;
         height: 500px;
@@ -310,6 +318,9 @@ ul {
                 padding-bottom: $ContentToContent;
             }
         }
+    }
+    .Tasting-Note{
+        padding-bottom:30px;
     }
 }
 
@@ -383,6 +394,9 @@ p {
 }
 .footer2{
     width: 100%;
-    
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    z-index: 10;
     
 }

@@ -99,8 +99,22 @@ img {
   }
   
 }
+
+.navbar_all{
+  @media (max-width: 1183px){
+
+      width: 100%;
+      position: fixed;
+      top: 0;
+
+      z-index: 2;
+      background-color: rgba(255, 255, 255, 0.5);
+  }
+
+
 .navbar{
   
+
   padding: 0px !important;
   span{
     font-size: 1rem;
@@ -112,6 +126,9 @@ img {
 }
 
 }
+
+}
+
 
 
 
@@ -204,5 +221,17 @@ img {
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: -6px;
+
+}
+.wine3-detail{
+  margin-bottom: 9%;
+}
+
+.footer{
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  bottom: 0px;
+  z-index: 10;
   
 }

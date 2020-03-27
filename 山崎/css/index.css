@@ -60,6 +60,14 @@ ul li {
   padding: 0px !important;
 }
 
+.navbar-top .container .navbar {
+  padding: 0;
+}
+
+.navbar-top .navbar-brand {
+  margin-right: 0;
+}
+
 .navbar-top span {
   font-size: 1rem;
 }
@@ -112,6 +120,12 @@ ul li {
 
 .banner img {
   width: 100%;
+}
+
+.footer2.active1 {
+  position: unset;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .story {
@@ -270,6 +284,10 @@ ul li {
   color: white;
 }
 
+.product .lightbox-target {
+  z-index: 11;
+}
+
 .product .detail {
   width: 500px;
   height: 500px;
@@ -295,6 +313,10 @@ ul li {
 }
 
 .product .product-content .content .pad {
+  padding-bottom: 30px;
+}
+
+.product .Tasting-Note {
   padding-bottom: 30px;
 }
 
@@ -361,5 +383,9 @@ p {
 
 .footer2 {
   width: 100%;
+  background-color: white;
+  position: fixed;
+  bottom: 0px;
+  z-index: 10;
 }
 /*# sourceMappingURL=index.css.map */

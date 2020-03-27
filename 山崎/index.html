@@ -30,6 +30,7 @@
                 <div class="d-flex flex-wrap w-100">
                     <div class="container">
                         <nav id="nav" class="navbar navbar-expand-md navbar-light">
+
                             <a class="navbar-brand" href="#">
                                 <img src="./img/SUNTORY_logo.svg.png" alt="" style="height: 20px;width: 119px;" />
                             </a>
@@ -320,7 +321,7 @@
                                     <div class="name pad">山崎單一麥芽威士忌</div>
                                     <div class="ml pad">700ml ‧ 43%</div>
                                     <p>Tasting Note</p>
-                                    <ul>
+                                    <ul class="Tasting-Note">
                                         <li>色澤&thinsp;|&thinsp;淺紅琥珀色。</li>
                                         <li>香氣&thinsp;|&thinsp;莓、櫻桃氣味。</li>
                                         <li>酒體&thinsp;|&thinsp;中度。</li>
@@ -635,6 +636,28 @@
             }
 
         })
+
+        $(window).scroll(function () {
+            var scrollVal = $(document).scrollTop()
+            var footerheight=$('.sure').offset().top ;
+
+            console.log(footerheight)
+            console.log(scrollVal)
+
+            if (scrollVal > footerheight) {
+                $('.footer2').addClass('active1');
+            }
+            else {
+                $('.footer2').removeClass('active1');
+
+            }
+
+        })
+        
+        var asd=$('.sure').height();
+        console.log(asd)
+
+
     </script>
     </script>
 </body>
