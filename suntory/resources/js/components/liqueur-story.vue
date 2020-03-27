@@ -44,7 +44,7 @@
             <hr />
         </div>
 
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <!-- <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>img</th>
@@ -80,13 +80,54 @@
                     </div>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+        <button class="btn-lg btn-dark" @click="darks()" >
+            <svg class="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+</svg>
+        </button>
+
+        <v-app>
+            <v-card>
+                <v-card-title>
+                    酒的故事
+                    <v-spacer></v-spacer>
+                    <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                </v-card-title>
+                <v-data-table :headers="headers" :items="desserts" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true">
+                    <template v-slot:item="row" >
+                        <tr>
+
+                            <td class="text-center">{{ row.item.name.name ,}}</td>
+                            <td class="text-center">
+                                <img :src="row.item.img" alt="" srcset="" style="width:150px;">
+                            </td>
+                            <td class="text-center" v-html="row.item.content"></td>
+                            <td class="text-center">{{row.item.title}}</td>
+                            <td class="text-center">{{row.item.sort}}</td>
+                            <td class="">
+                                <div class="d-flex justify-content-center">
+                                    <v-btn class="mx-2" fab dark small color="green" @click="onButtonClick(row.index)" href="#create" data-toggle="collapse">
+                                        編輯
+                                    </v-btn>
+                                    <v-btn class="mx-2" fab dark small color="pink" @click="deletedata(row.index)">
+                                        刪除
+                                    </v-btn>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-app>
+
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import { VueEditor } from "vue2-editor";
+
 export default {
     components: { VueEditor },
     mounted() {
@@ -104,7 +145,7 @@ export default {
         axios
             .post("/admin/liqueurStory_text")
             .then(response => {
-                this.liqueur_text = response.data;
+                this.desserts = response.data;
                 this.upload();
             })
             .catch(function (error) {
@@ -113,6 +154,8 @@ export default {
     },
     data() {
         return {
+            search: '',
+            dark: false,
             liqueur_text: [],
             input: {
                 newimg: null,
@@ -129,11 +172,44 @@ export default {
                 ["bold", "italic", "underline"],
                 [{ list: "ordered" }, { list: "bullet" }],
                 ["code-block"]
-            ]
+            ],
+            headers: [
+                {
+                    text: '酒的種類',
+                    align: 'center',
+                    sortable: false,
+                    value: 'name',
+                    filterable:"flase",
+                },
+                { text: '圖片', value: 'img', align: 'center', },
+                { text: '內文', value: 'content', align: 'center', },
+                { text: '標題', value: 'title', align: 'center', },
+                { text: '權重', value: 'sort', align: 'center', },
+                { text: '狀態', value: 'action', align: 'center', },
+            ],
+            desserts: [
+                {
+                    name: 'KitKat',
+                    calories: 518,
+                    fat: 26.0,
+                    carbs: 65,
+                    protein: 7,
+                    iron: '6%',
+                },
+            ],
         };
     },
     methods: {
         //按下submit
+        darks() {
+            if (this.dark == true) {
+                this.dark = false
+                $('.text-center').css('color', 'black')
+            } else {
+                this.dark = true
+                $('.text-center').css('color', 'white')
+            }
+        },
         store(index) {
             if (this.input.edit == null) {
                 let { content, title, img, id } = this.input;
@@ -148,7 +224,7 @@ export default {
                     .then(res => {
                         this.clear();
                         this.sweetalert("add");
-                        this.liqueur_text.push(res.data);
+                        this.desserts.unshift(res.data);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -168,7 +244,7 @@ export default {
                         this.sweetalert("edit");
                         this.clear();
                         //兩個方法都可以重新渲染
-                        this.$set(this.liqueur_text, index, res.data);
+                        this.$set(this.desserts, index, res.data);
                         // this.liqueur_text.splice(index,1, res.data)
                     })
                     .catch(function (error) {
@@ -187,7 +263,7 @@ export default {
         //刪除
         deletedata(index) {
             //console.log(index);
-            let target = this.liqueur_text[index];
+            let target = this.desserts[index];
 
             Swal.fire({
                 title: `確定要刪除 ${target.title} ?`,
@@ -202,7 +278,7 @@ export default {
                     axios
                         .delete("/admin/liqueurStory/" + target.id)
                         .then(res => {
-                            this.liqueur_text.splice(index, 1);
+                            this.desserts.splice(index, 1);
                             this.sweetalert("del");
                         })
                         .catch(err => {
@@ -213,7 +289,7 @@ export default {
         },
         //讀取編輯資料
         editdata(index) {
-            let target = this.liqueur_text[index];
+            let target = this.desserts[index];
             axios
                 .get(`/admin/liqueurStory/${target.id}/edit`)
                 .then(res => {
@@ -238,6 +314,9 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        onButtonClick(item) {
+            this.editdata(item);
         },
         //判斷是否有圖片上傳
         processFile(event) {
