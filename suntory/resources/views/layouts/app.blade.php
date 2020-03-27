@@ -19,6 +19,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .v-application--wrap{
+            min-height: unset;
+        }
+    </style>
     @yield('css')
 </head>
 
