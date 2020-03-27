@@ -23,6 +23,9 @@
         .v-application--wrap{
             min-height: unset;
         }
+        .v-application p{
+            margin-bottom: 0px;
+        }
     </style>
     @yield('css')
 </head>

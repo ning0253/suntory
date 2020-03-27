@@ -1,84 +1,106 @@
 <template>
     <div class="container">
-        <a id="add" href="#create" data-toggle="collapse" class="btn btn-success" @click="clear()">新增</a>
-
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" @click="clear()">
+            新增
+        </button>
         <hr />
 
-        <div class="collapse" id="create">
-            <div class="card card-body">
-                <form method="post" action="#" enctype="multipart/form-data" id="form1" @submit.prevent="store(input.index)">
-                    <div class="form-group">
-                        <label for="liqueur_id">產品系列</label>
-                        <select required name="liqueur_id" id v-model="input.id" class="form-control">
-                            <option v-for="(item, index) in liqueur_kind" :value="item.id" :key="index">{{ item.name }}</option>
-                        </select>
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 v-if="this.input.edit == null" class="modal-title" id="staticBackdropLabel">新增</h5>
+                        <h5 v-else class="modal-title" id="staticBackdropLabel">編輯</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="img">圖片</label>
-                        <input v-if="this.input.oldimg == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
-                        <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
-                        <div class="col-4 m-2">
-                            <img :src="input.oldimg" alt srcset class="img-fluid" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="title">態度的標題</label>
-                        <input type="text" class="form-control" v-model="input.title" id="title" name="title" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="content">態度的內容</label>
-                        <label for="content" id="warm" style="color: red;margin-left: 5px;" hidden="hidden">請輸入內容！</label>
-                        <vue-editor class="" id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
-                    </div>
-                    <div class="form-group" v-if="input.edit != null">
-                        <label for="sort">權重</label>
-                        <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" value="0" />
-                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="form1" @submit.prevent="store(input.index)">
+                            <div class="form-group">
+                                <label for="liqueur_id">產品系列</label>
+                                <select required name="liqueur_id" id="liqueur_id" v-model="input.liqueur_id" class="form-control">
+                                    <option v-for="(item, index) in liqueur_kind" :value="item.id" :key="index">{{ item.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="img">圖片</label>
+                                <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                <div class="col-4">
+                                    <img :src="input.oldimg" alt srcset class="img-fluid" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">態度的標題</label>
+                                <input type="text" class="form-control" v-model="input.title" id="title" name="title" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="content">態度的內容</label>
+                                <label for="content" id="warm" style="color: red;margin-left: 5px;" hidden="hidden">請輸入內容！</label>
+                                <vue-editor class="" id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
+                            </div>
+                            <div class="form-group" v-if="input.edit != null">
+                                <label for="sort">權重</label>
+                                <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" value="0" />
+                            </div>
 
-                    <button type="submit" class="btn btn-primary" data-target="#create">
-                        儲存
-                    </button>
-                </form>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary">儲存</button>
+                        </form>
+                    </div>
+                    <hr />
+                </div>
             </div>
-            <hr />
         </div>
 
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th width="50">系列</th>
-                    <th width="150">圖片</th>
-                    <th>標題</th>
-                    <th>內容</th>
-                    <th width="35">權重</th>
-                    <th width="80"></th>
-                </tr>
-            </thead>
-            <tbody class="tbody">
-                <tr v-for="(item, index) in liqueur_text" :key="index">
-                    <td>{{ item.name.name }}</td>
-                    <td style="display: flex; justify-content: center;">
-                        <img :src="item.img" alt srcset style="max-width: 100%;max-height: 100;"/>
-                    </td>
-                    <td>{{ item.title }}</td>
-                    <td v-html="item.content"></td>
-                    <td>{{ item.sort }}</td>
-                    <td>
-                        <a href="#create" class="btn btn-success btn-sm" data-toggle="collapse" @click="editdata(index)">修改</a>
-                        <button class="btn btn-danger btn-sm" @click="deletedata(index)">
-                            刪除
-                        </button>
-                    </td>
+        <button class="btn-lg btn-dark" @click="darks()">
+            <svg class="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+            </svg>
+        </button>
 
-                </tr>
-            </tbody>
-        </table>
+        <v-app>
+            <v-card>
+                <v-card-title>
+                    酒的態度
+                    <v-spacer></v-spacer>
+                    <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                </v-card-title>
+                <v-data-table :headers="headers" :items="liqueur_text" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true">
+                    <template v-slot:item="row">
+                        <tr>
+                            <td class="text-center">{{row.item.name.name}}</td>
+                            <td class="text-center">
+                                <img :src="row.item.img" alt="" srcset="" style="width:150px;">
+                            </td>
+                            <td class="text-center">{{row.item.title}}</td>
+                            <td class="text-center" v-html="row.item.content" ></td>
+                            <td class="text-center">{{row.item.sort}}</td>
+                            <td class="">
+                                <div class="d-flex justify-content-center">
+                                    <v-btn class="mx-2" fab dark small color="green" @click="onButtonClick(row.index)" data-toggle="modal" data-target="#staticBackdrop">
+                                        編輯
+                                    </v-btn>
+                                    <v-btn class="mx-2" fab dark small color="pink" @click="deletedata(row.index)">
+                                        刪除
+                                    </v-btn>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-app>
+
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import { VueEditor } from "vue2-editor";
+
 export default {
     components: { VueEditor },
     mounted() {
@@ -92,7 +114,7 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-        //獲取酒的態度
+        //獲取酒的故事
         axios
             .post("/admin/liqueurAttitude_text")
             .then(response => {
@@ -105,14 +127,16 @@ export default {
     },
     data() {
         return {
+            search: '',
+            dark: false,
             liqueur_text: [],
             liqueur_kind: [],
             input: {
-                id: "", //liqueur id
                 newimg: null,
                 oldimg: null,
-                title: "",
                 content: "",
+                title: "",
+                liqueur_id: "",
                 sort: 0,
                 edit: null,
                 index: null
@@ -121,10 +145,34 @@ export default {
                 ["bold", "italic", "underline"],
                 [{ list: "ordered" }, { list: "bullet" }],
                 ["code-block"]
-            ]
+            ],
+            headers: [
+                {
+                    text: '系列',
+                    align: 'center',
+                    sortable: false,
+                    value: 'name',
+                    filterable: "flase",
+                },
+                { text: '圖片', value: 'img', align: 'center', },
+                { text: '標題', value: 'title', align: 'center', },
+                { text: '內文', value: 'content', align: 'center', },
+                { text: '權重', value: 'sort', align: 'center', },
+                { text: '', value: 'action', align: 'center', },
+            ],
         };
     },
     methods: {
+        //按下submit
+        darks() {
+            if (this.dark == true) {
+                this.dark = false
+                $('.text-center').css('color', 'black')
+            } else {
+                this.dark = true
+                $('.text-center').css('color', 'white')
+            }
+        },
         checkForInput() {//偵測content變化
             if (this.input.content == "") {//未輸入文字
                 $('#warm').removeAttr("hidden");
@@ -134,18 +182,20 @@ export default {
                 $('#content').removeClass('border border-danger');
             }
         },
-        //按下submit
         store(index) {
             if (this.input.content == "") {//content未輸入文字
                 $('#warm').removeAttr("hidden");
                 $('#content').addClass('border border-danger');
                 return;
             }
+            $('#staticBackdrop').modal('hide');
 
             if (this.input.edit == null) {
+                let { content, title, img, liqueur_id } = this.input;
+
                 axios
                     .post("/admin/liqueurAttitude", {
-                        liqueur_id: this.input.id,
+                        liqueur_id: this.input.liqueur_id,
                         img: this.input.oldimg,
                         content: this.input.content,
                         title: this.input.title,
@@ -153,7 +203,8 @@ export default {
                     })
                     .then(res => {
                         this.sweetalert("add");
-                        this.liqueur_text.push(res.data);
+                        this.liqueur_text.unshift(res.data);
+                        this.clear();
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -161,7 +212,7 @@ export default {
             } else {
                 axios
                     .put(`/admin/liqueurAttitude/${this.input.edit}`, {
-                        liqueur_id: this.input.id,
+                        liqueur_id: this.input.liqueur_id,
                         img: this.input.oldimg,
                         content: this.input.content,
                         title: this.input.title,
@@ -172,20 +223,16 @@ export default {
                         //兩個方法都可以重新渲染
                         this.$set(this.liqueur_text, index, res.data);
                         // this.liqueur_text.splice(index,1, res.data)
+                        this.clear();
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             }
         },
-        //當頁面讀取完成後執行datatable
-        upload() {
-            $(document).ready(function () {
-                $("#example").DataTable();
-            });
-        },
         //刪除
         deletedata(index) {
+            //console.log(index);
             let target = this.liqueur_text[index];
 
             Swal.fire({
@@ -228,7 +275,7 @@ export default {
                     this.input.content = content;
                     this.input.title = title;
                     this.input.oldimg = img;
-                    this.input.id = liqueur_id;
+                    this.input.liqueur_id = liqueur_id;
                     this.input.edit = id;
                     this.input.index = index;
                     this.input.sort = sort;
@@ -237,6 +284,9 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        onButtonClick(item) {
+            this.editdata(item);
         },
         //判斷是否有圖片上傳
         processFile(event) {
@@ -274,15 +324,15 @@ export default {
         },
         //清除表單資料
         clear() {
-            (this.input.id = null),
-                (this.input.newimg = null),
-                (this.input.oldimg = null),
-                (this.input.title = ""),
+            (this.input.newimg = null),
+                (this.input.oldimg = ""),
                 (this.input.content = ""),
+                (this.input.title = ""),
+                (this.input.liqueur_id = ""),
                 (this.input.sort = 0),
                 (this.input.edit = null),
                 (this.input.index = null);
-            $('#img').val('');
+            $("#img").val("");
             $('#warm').attr('hidden', 'hidden');
             $('#content').removeClass('border border-danger');
         },
@@ -295,7 +345,6 @@ export default {
                     timer: 1500
                 }).then(result => {
                     $("#add").click();
-                    this.clear();
                 });
             } else {
                 Swal.fire({
