@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./scss/style.css">
     <link rel="stylesheet" href="./scss/hover.css">
+    <link rel="stylesheet" href="./scss/navbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -37,17 +38,21 @@
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto py-4 py-md-0">
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link hvr-underline-from-center text-dark" href="#">白州</a>
                                     </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link hvr-underline-from-center text-dark" href="#">響</a>
                                     </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link hvr-underline-from-center text-dark" href="#">山崎</a>
                                     </li>
 
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
+                                        <a class="nav-link hvr-underline-from-center text-dark" href="#">經銷商</a>
+                                    </li>
+
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link  text-dark" href="#">
                                             <img src="./img/facebook.png"
                                                 style="width: 30px;height: 30px;padding-right: 10p;margin-right: 13px;"
@@ -80,25 +85,25 @@
 
                     <div class="wine-title wine-title-style">
                         <div>
-                            <h1>日</h1>
+                            日
                         </div>
                         <div>
-                            <h1>本</h1>
+                            本
                         </div>
                         <div>
-                            <h1>頂</h1>
+                            頂
                         </div>
                         <div>
-                            <h1>級</h1>
+                            級
                         </div>
                         <div>
-                            <h1>威</h1>
+                            威
                         </div>
                         <div>
-                            <h1>士</h1>
+                            士
                         </div>
                         <div>
-                            <h1>忌</h1>
+                            忌
                         </div>
                     </div>
 
@@ -108,7 +113,7 @@
 
                         <div data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="200"
                             data-aos-duration="1000">
-                            <div class="wine1 flex align-items-end wine-style hvr-buzz">
+                            <div class="wine1 flex align-items-end w-wine-style hvr-buzz">
                                 <a href="">
                                     <img src="./img/白州.png" alt="白州">
                                 </a>
@@ -120,7 +125,7 @@
 
                         <div data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="200"
                             data-aos-duration="1500">
-                            <div class=" wine2 d-flex align-items-end wine-style hvr-buzz">
+                            <div class=" wine2 d-flex align-items-end w-wine-style hvr-buzz">
                                 <a href="">
                                     <img src="./img/響.png" alt="響">
 
@@ -130,7 +135,7 @@
 
                         <div data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="200"
                             data-aos-duration="2000">
-                            <div class="wine3 d-flex align-items-end wine-style hvr-buzz">
+                            <div class="wine3 d-flex align-items-end w-wine-style hvr-buzz">
                                 <a href="">
                                     <img src="./img/麥芽威士忌.png" alt=" ">
                                 </a>
@@ -158,12 +163,12 @@
             <div data-aos="fade-up" data-aos-duration="1500">
                 <div class="wine-detail display-rwd">
                     <div class="container">
+                        <div class="wine-detail-title title-space d-flex justify-content-center">
+                            <h1>白州單一麥芽威士忌</h1>
+                        </div>
 
                         <div class="row text-center">
-                            <div class="col-sm">
-                                <div class="wine-detail-title title-space">
-                                    <h1>白州<br />單一麥芽威士忌</h1>
-                                </div>
+                            <div class="col-sm d-flex align-items-center justify-content-center">
 
                                 <div class="wine1 flex align-items-end  hvr-buzz">
                                     <img src="./img/白州.png" alt="白州">
@@ -202,12 +207,12 @@
 
                 <div class="wine2-detail display-rwd">
                     <div class="container">
-
+                        <div class="wine-detail-title title-space d-flex justify-content-center">
+                            <h1>威士忌Hibiki</h1>
+                        </div>
                         <div class="row text-center">
-                            <div class="col-sm">
-                                <div class="wine-detail-title title-space">
-                                    <h1>威士忌Hibiki</h1>
-                                </div>
+                            <div class="col-sm d-flex align-items-center justify-content-center">
+
 
                                 <div class="wine1 flex align-items-end  hvr-buzz">
                                     <img src="./img/響.png" alt="響">
@@ -250,12 +255,12 @@
             <div data-aos="fade-up" data-aos-duration="1500">
                 <div class="wine3-detail display-rwd">
                     <div class="container">
-
-                        <div class="row text-center">
-                            <div class="col-sm">
-                                <div class="wine-detail-title title-space">
-                                    <h1>山崎<br />單一麥芽威士忌</h1>
+                       <div class="wine-detail-title title-space d-flex justify-content-center">
+                                    <h1>山崎單一麥芽威士忌</h1>
                                 </div>
+                        <div class="row text-center">
+                            <div class="col-sm d-flex align-items-center justify-content-center">
+         
 
                                 <div class="wine1 flex align-items-end  hvr-buzz">
                                     <img src="./img/麥芽威士忌.png" alt="響">
@@ -284,7 +289,10 @@
 
     <footer>
         <section>
-            <div class="footer d-flex justify-content-center">
+            <div class="footer d-flex justify-content-center align-items-center">
+                <span>Copyright ©</span>
+            </div>
+            <div class="footer2 d-flex justify-content-center">
 
                 <img src="./img/sxc-warning.gif" class="img-footer" alt="">
             </div>
@@ -306,9 +314,6 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-    <script src="path/to/parallax.js"></script>
-
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
@@ -320,10 +325,25 @@
         // var scene = document.getElementById('scene');
         // var parallaxInstance = new Parallax(scene);
 
-        var scene = document.getElementById('scene');
-        var parallaxInstance = new Parallax(scene, {
-            relativeInput: true
-        });
+
+
+        $(window).scroll(function () {
+            var scrollVal = $(document).scrollTop()
+            var footerheight=$('.wine3-detail-bg').offset().top ;
+
+            // console.log(footerheight)
+            // console.log(scrollVal)
+
+            if (scrollVal > footerheight) {
+                $('.footer2').addClass('active1');
+            }
+            else {
+                $('.footer2').removeClass('active1');
+
+            }
+
+        })
+
 
 
     </script>

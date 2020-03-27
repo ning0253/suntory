@@ -124,8 +124,6 @@ ul li {
 
 .footer2.active1 {
   position: unset;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .story {
