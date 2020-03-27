@@ -64,6 +64,17 @@ ul li {
   padding: 0;
 }
 
+.navbar-top .container .navbar .collapse ul li {
+  padding: 0 10px;
+  font-size: 0.75rem;
+}
+
+.navbar-top .container .navbar .collapse ul li a {
+  color: white;
+  text-decoration: none;
+  padding-left: 0;
+}
+
 .navbar-top .navbar-brand {
   margin-right: 0;
 }
