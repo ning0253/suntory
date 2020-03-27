@@ -58,12 +58,18 @@
                                     酒的肯定
                                 </a>
                                 <a class="dropdown-item" href="/admin/liqueurMethod">
-                                    蒸餾場
+                                    酒的蒸餾場
                                 </a>
                                 <a class="dropdown-item" href="/admin/liqueurProduct">
                                     酒的系列
                                 </a>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/shop">販售地點</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/order">訂單</a>
                         </li>
                     </ul>
 

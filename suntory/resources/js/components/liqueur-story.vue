@@ -56,7 +56,7 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr v-for="(item, index) in liqueur_text" :key="index">a
+                <tr v-for="(item, index) in liqueur_text" :key="index">
                     <td>
                         <img :src="item.img" alt srcset class="img-fluid" />
                     </td>
