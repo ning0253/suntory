@@ -47,7 +47,7 @@
                             </div>
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-primary">儲存</button>
+                            <button type="submit" class="btn btn-primary" >儲存</button>
                         </form>
                     </div>
                     <hr />

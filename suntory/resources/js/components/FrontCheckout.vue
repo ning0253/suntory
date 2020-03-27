@@ -5,20 +5,21 @@
                 <div class="col-md-9">
                     <h1 class="display-1">Shop</h1>
                 </div>
-                <div class="col-md-3 text-right"><button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart"></i> {{ cart.length }}</button></div>
+                <div class="col-md-3 text-right"><button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#cart" @click="cartTotal"><i class="fa fa-shopping-cart"></i> {{ Object.keys(cart).length }}</button></div>
             </div>
             <div class="row">
-                <div class="col-md-3" v-for="item in selling">
-                    <div class="card"><img class="card-img-top" :src="item.image" :alt="item.name" />
+                <div class="col-md-3" v-for="(item,index) in selling" :key="index">
+                    <div class="card"><img class="card-img-top" :src="item.img" :alt="item.name" />
                         <div class="card-block">
-                            <h4 class="card-title">{{ item.name }}</h4>
-                            <div class="card-text">${{ item.price / 100 }}</div>
-                            <div class="row justify-content-end"><button class="btn btn-primary" @click="addToCart" :data-id="item.id">Add to cart</button></div>
+                            <h4 class="card-title">{{ item.title }}</h4>
+                            <div class="card-text">${{ item.price}}</div>
+                            <div class="row justify-content-end"><button class="btn btn-primary" @click="addToCart(index)" >Add to cart</button></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="modal fade" id="cart">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -31,21 +32,33 @@
                                     <tr>
                                         <th>品名</th>
                                         <th>數量</th>
-                                        <th>價錢</th>
+                                        <th>單價</th>
+                                        <th>總價</th>
+                                        <th></th>
                                     </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in cart">
-                                    <td>{{ item.name }}</td>
-                                    <td></td>
-                                    <td>${{ item.price / 100 }}</td>
+                                <tr v-for="(item,index) in cart" :key="index">
+                                    <td >{{item.name}}</td>
+                                    <td style="width:50px">
+                                        <input type="number" v-model="item.quantity" @change="change(index)" min="1">
+                                    </td>
+                                    <td >{{item.price}}</td>
+                                    <td>${{ item.price *item.quantity}}</td>
+                                    <th>
+                                        <button class="btn-sm btn-danger">
+                                            <span>刪除</span>
+                                        </button>
+                                    </th>
+
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td><strong>${{ cartTotal / 100 }}</strong></td>
+                                    <td>{{countQuantity }}</td>
+                                    <td><strong >${{ total }}</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -59,64 +72,107 @@
 
 <script>
 export default {
+    created() {
+        //獲取產品
+        axios
+            .post("/admin/liqueurProduct_text")
+            .then(response => {
+                this.selling = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        axios.get('/totalcart')
+            .then((res)=>{
+               this.cart = res.data
+
+            }).catch((err)=>{
+                console.log(err);
+
+            })
+    },
     data: function () {
         return {
-            cart: [],
-            selling: [
-                {
-                    id: 1,
-                    image: '//placehold.it/200',
-                    name: 'Doo-dad',
-                    price: 999,
-                },
-                {
-                    id: 2,
-                    image: '//placehold.it/200',
-                    name: 'Other Thing',
-                    price: 1499,
-                },
-                {
-                    id: 3,
-                    image: '//placehold.it/200',
-                    name: 'An Item',
-                    price: 499,
-                },
-                {
-                    id: 4,
-                    image: '//placehold.it/200',
-                    name: 'Thing',
-                    price: 299,
-                },
-            ],
+            cart: {
+            },
+            selling: [],
+
         }
     },
-    computed: {
-        cartTotal: function () {
-            var i;
-            var total = 0;
-
-            for (i = 0; i < this.cart.length; i++) {
-                total += this.cart[i].price;
-            }
-
-            return total;
-        },
-    },
+    computed:{
+        countQuantity:function(){
+					var countQuantity=0;
+					for (var i in this.cart) {
+						countQuantity += parseInt(this.cart[i].quantity);
+					}
+					return countQuantity;
+                },
+        total:function(){
+					var total=0;
+					for (var i in this.cart) {
+						total += parseInt(this.cart[i].price * this.cart[i].quantity);
+					}
+					return total;
+				},
+	},
     methods: {
-        addToCart: function (e) {
-            var i;
-            var item;
 
-            for (i = 0; i < this.selling.length; i++) {
-                if (this.selling[i].id == e.target.getAttribute('data-id')) {
-                    this.cart.push(this.selling[i]);
-                    break;
-                }
-            }
+        addToCart(index) {
+            axios.post('/addcart',this.selling[index])
+            .then((res)=>{
+                // this.cart.push(res.data)
+                console.log(res);
+
+            }).catch((err)=>{
+                console.log(err);
+
+            })
+        },
+        cartTotal(){
+            //總價
+             axios.get('/getcontent')
+            .then((res)=>{
+
+
+            }).catch((err)=>{
+                console.log(err);
+
+            })
+            //總數
+            axios.get('/totalcart')
+            .then((res)=>{
+                this.cart=res.data
+            }).catch((err)=>{
+                console.log(err);
+
+            })
+        },
+        change(){
+            console.log('change');
+
+            //總價
+             axios.get('/getcontent')
+            .then((res)=>{
+
+
+            }).catch((err)=>{
+                console.log(err);
+
+            })
         }
+
     }
 }
+// axios.post('/addcart',this.selling[index])
+//             .then((res)=>{
+//                 console.log(res);
+
+
+//             }).catch((err)=>{
+//                 console.log(err);
+
+//             })
 </script>
 
-<style>
-</style>
+
+

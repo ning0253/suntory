@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 Route::get('/product_list', 'FrontController@product_list');
 
+//購物車
+Route::post('/addcart', 'cartcontroller@addcart');
+Route::get('/getcontent', 'cartcontroller@getcontent');
+Route::get('/totalcart', 'cartcontroller@totalcart');
+
+
 Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('admin');
