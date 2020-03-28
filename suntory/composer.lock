@@ -4,74 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "344c457a06ae9c113d1e3687c33b431a",
+    "content-hash": "81ff0e10d8c8f601ff648509a5b344fe",
     "packages": [
-        {
-            "name": "biscolab/laravel-recaptcha",
-            "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/biscolab/laravel-recaptcha.git",
-                "reference": "9bfe22ffb78efaff005659af68867d1ba52c0a00"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/biscolab/laravel-recaptcha/zipball/9bfe22ffb78efaff005659af68867d1ba52c0a00",
-                "reference": "9bfe22ffb78efaff005659af68867d1ba52c0a00",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^5.5|^6.0|^7.0",
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "6.*|7.*"
-            },
-            "suggest": {
-                "biscolab/laravel-authlog": "Allows logged-in users management and forced log-out"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Biscolab\\ReCaptcha\\ReCaptchaServiceProvider"
-                    ],
-                    "aliases": {
-                        "ReCaptcha": "Biscolab\\ReCaptcha\\Facades\\ReCaptcha"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Biscolab\\ReCaptcha\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Roberto Belotti",
-                    "email": "roby.belotti@gmail.com",
-                    "homepage": "https://biscolab.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple and painless Google reCAPTCHA package for Laravel 5, 6 and 7",
-            "homepage": "https://biscolab.com/laravel-recaptcha",
-            "keywords": [
-                "captcha",
-                "laravel",
-                "recaptcha",
-                "validation"
-            ],
-            "time": "2020-03-06T23:25:41+00:00"
-        },
         {
             "name": "darryldecode/cart",
             "version": "4.1.2",
@@ -3064,55 +2998,6 @@
             "time": "2019-10-24T08:53:34+00:00"
         },
         {
-            "name": "tsaiyihua/laravel-ecpay",
-            "version": "2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tsaiyihua/laravel-ecpay.git",
-                "reference": "a762a7a347ca9b4d9170378c53102fd3abf1688c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tsaiyihua/laravel-ecpay/zipball/a762a7a347ca9b4d9170378c53102fd3abf1688c",
-                "reference": "a762a7a347ca9b4d9170378c53102fd3abf1688c",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^6.0|^7.0",
-                "php": ">=7.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TsaiYiHua\\ECPay\\ECPayServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TsaiYiHua\\ECPay\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Yihua Tsai",
-                    "email": "tsaiyihua@gmail.com"
-                }
-            ],
-            "description": "ecpay library for laravel",
-            "keywords": [
-                "ecpay",
-                "laravel",
-                "payment"
-            ],
-            "time": "2020-03-05T07:06:09+00:00"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v3.6.1",
             "source": {
@@ -5593,5 +5478,6 @@
     "platform": {
         "php": "^7.2"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
