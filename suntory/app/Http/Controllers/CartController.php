@@ -13,10 +13,18 @@ class CartController extends Controller
             'id' => $data['id'], // inique row ID
             'name' => $data['title'],
             'price' => $data['price'],
+            'img' => $data['img'],
+            'quantity' => 1,
+            'attributes' => array($data['img'])
+        ));
+        $car = array(
+            'id' => $data['id'], // inique row ID
+            'name' => $data['title'],
+            'price' => $data['price'],
             'quantity' => 1,
             'attributes' => array()
-        ));
-        return 'successful';
+        );
+        return $car;
     }
 
     public function getContent()
