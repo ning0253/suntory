@@ -87,10 +87,5 @@ class LiqueurProductController extends Controller
     {
         $data = LiqueurProduct::with('liqueur')->get();
         return $data;
-
-    }
-    public function liqueurProduct_img(Request $request)
-    {
-        # code...
     }
 }

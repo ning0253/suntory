@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LiqueurProduct;
 use App\Order;
-use App\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -94,25 +92,5 @@ class OrderController extends Controller
         $data = Order::find($id);
         $data->delete();
         return 'successful';
-    }
-
-    public function productdata(Request $request)
-    {
-        $id = $request->all();
-        // $pro=[];
-        // $data = OrderDetail::where('order_id',$id['id'])->get();
-        // foreach( $data as $item){
-        //     $product = LiqueurProduct::where('liqueur_id',$item->product_id)->get();
-        //     array_push($pro, $product);
-        // };
-        $data = OrderDetail::with('product')->where('order_id',$id['id'])->get();
-       return $data;
-    }
-
-    public function Inquire($id)
-    {
-        $new_order = Order::where('order_no',$id)->first();
-        $message ='';
-        return view('fronts.orderfinish',compact('message','new_order'));
     }
 }

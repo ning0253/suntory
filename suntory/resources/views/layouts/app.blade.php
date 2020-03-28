@@ -15,15 +15,23 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- Material Design Icons --}}
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-        .v-application--wrap{
+        * {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .v-application--wrap {
             min-height: unset;
         }
-        .v-application p{
+
+        .v-application p {
             margin-bottom: 0px;
         }
     </style>
@@ -66,7 +74,7 @@
                                     酒的肯定
                                 </a>
                                 <a class="dropdown-item" href="/admin/liqueurMethod">
-                                    酒的蒸餾場
+                                    酒的蒸餾廠
                                 </a>
                                 <a class="dropdown-item" href="/admin/liqueurProduct">
                                     酒的系列
@@ -123,7 +131,11 @@
         </main>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     @yield('js')
+
     @if(config('app.env') == 'local')
     <script src="http://localhost:35729/livereload.js"></script>
     @endif
