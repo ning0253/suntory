@@ -1,145 +1,149 @@
 <template>
     <div class="container">
-        <a href="#create" id="add" data-toggle="collapse" class="btn btn-success">新增</a>
-        <hr />
-
-        <div class="collapse" id="create">
-            <div class="card card-body">
-                <form method="post" action="#" enctype="multipart/form-data" id="form1" @submit.prevent="store()">
-                    <div class="form-group">
-                        <div class="col-4">
-                            <img :src="input.oldimg" alt srcset class="img-fluid" />
+        <v-app>
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header v-toolbar v-toolbar--dense v-toolbar--flat grey d-flex align-center">
+                            <h5 v-if="this.input.edit == null" class="modal-title" id="staticBackdropLabel">新增</h5>
+                            <h5 v-else class="modal-title" id="staticBackdropLabel">編輯</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clear()">
+                                <span aria-hidden="true">X</span>
+                            </button>
                         </div>
-                        <label for="img">圖片</label>
-                        <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
-                        <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                        <div class="modal-body">
+                            <form method="post" id="form1" @submit.prevent="store(input.index)">
+                                <div class="form-group">
+                                    <label for="liqueur_id">系列</label>
+                                    <select required name="liqueur_id" id="liqueur_id" v-model="input.liqueur_id" class="form-control">
+                                        <option v-for="(item, index) in liqueur_kind" :value="item.id" :key="index">{{ item.name }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="img">圖片</label>
+                                    <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                    <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                    <div class="col-4 pb-0">
+                                        <img :src="input.oldimg" alt srcset class="img-fluid" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">名稱</label>
+                                    <input type="text" class="form-control" v-model="input.title" id="title" name="title" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">介紹</label>
+                                    <label for="content" id="warm" style="color: red;margin-left: 5px;" hidden="hidden">請輸入介紹！</label>
+                                    <vue-editor class="" id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="capacity">容量</label>
+                                    <input required type="text" class="form-control" v-model="input.capacity" id="capacity" name="capacity" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="density">濃度</label>
+                                    <input required type="text" class="form-control" v-model="input.density" id="density" name="density" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">價錢</label>
+                                    <input required type="number" class="form-control" v-model="input.price" id="price" name="price" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="color">色澤</label>
+                                    <input required type="text" class="form-control" v-model="input.color" id="color" name="color" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="aroma">香氣</label>
+                                    <input required type="text" class="form-control" v-model="input.aroma" id="aroma" name="aroma" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="body">酒體</label>
+                                    <input required type="text" class="form-control" v-model="input.body" id="body" name="body" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="taste">味覺</label>
+                                    <input required type="text" class="form-control" v-model="input.taste" id="taste" name="taste" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="aftertaste">餘覺</label>
+                                    <input required type="text" class="form-control" v-model="input.aftertaste" id="aftertaste" name="aftertaste" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="note">備註</label>
+                                    <input type="text" class="form-control" v-model="input.note" id="note" name="note" />
+                                </div>
+                                <div class="form-group" v-if="input.edit != null">
+                                    <label for="sort">權重</label>
+                                    <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" value="0" />
+                                </div>
+                                <br>
+                                <v-btn class="mx-2" fab dark small color="blue" type="submit">儲存</v-btn>
+                                <v-btn class="mx-2" fab dark small color="gray" data-dismiss="modal" @click="clear()">取消</v-btn>
+                                <br>
+                                <br>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="title">名稱</label>
-                        <input required type="text" class="form-control" v-model="input.title" id="title" name="title" />
-                    </div>
-                    <div class="form-group">
-                        <label for="liqueur_id">系列</label>
-                        <select name="liqueur_id" id="liqueur_id" v-model="input.liqueur_id" class="form-control">
-                            <option v-for="(item ,index) in liqueur_kind" :key="index" :value="item.id">
-                                {{ item.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">介紹</label>
-                        <vue-editor id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" />
-                    </div>
-                    <div class="form-group">
-                        <label for="capacity">容量</label>
-                        <input required type="text" class="form-control" v-model="input.capacity" id="capacity" name="capacity" />
-                    </div>
-                    <div class="form-group">
-                        <label for="density">濃度</label>
-                        <input required type="text" class="form-control" v-model="input.density" id="density" name="density" />
-                    </div>
-                    <div class="form-group">
-                        <label for="color">色澤</label>
-                        <input required type="text" class="form-control" v-model="input.color" id="color" name="color" />
-                    </div>
-                    <div class="form-group">
-                        <label for="aroma">香氣</label>
-                        <input required type="text" class="form-control" v-model="input.aroma" id="aroma" name="aroma" />
-                    </div>
-                    <div class="form-group">
-                        <label for="body">酒體</label>
-                        <input required type="text" class="form-control" v-model="input.body" id="body" name="body" />
-                    </div>
-                    <div class="form-group">
-                        <label for="taste">味覺</label>
-                        <input required type="text" class="form-control" v-model="input.taste" id="taste" name="taste" />
-                    </div>
-                    <div class="form-group">
-                        <label for="aftertaste">餘覺</label>
-                        <input required type="text" class="form-control" v-model="input.aftertaste" id="aftertaste" name="aftertaste" />
-                    </div>
-                    <div class="form-group">
-                        <label for="price">價錢</label>
-                        <input required type="number" class="form-control" v-model="input.price" id="price" name="price" />
-                    </div>
-                    <div class="form-group">
-                        <label for="note">備註</label>
-                        <input type="text" class="form-control" v-model="input.note" id="note" name="note" />
-                    </div>
-                    <div class="form-group" v-if="input.edit != null">
-                        <label for="sort">權重</label>
-                        <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" />
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-target="#create">
-                        儲存
-                    </button>
-                </form>
+                </div>
             </div>
-            <hr>
-        </div>
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th>圖片</th>
-                    <th>系列</th>
-                    <th>名稱</th>
-                    <th>介紹</th>
-                    <th>容量</th>
-                    <th>濃度</th>
-                    <th>色澤</th>
-                    <th>香氣</th>
-                    <th>酒體</th>
-                    <th>味覺</th>
-                    <th>餘覺</th>
-                    <th>價錢</th>
-                    <th>備註</th>
-                    <th>權重</th>
-                    <th width="80px"></th>
-                </tr>
-            </thead>
-            <tbody class="tbody">
-                <tr v-for="(item, index) in product_data" :key="index">
-                    <td>
-                        <img :src="item.img" alt srcset class="img-fluid" />
-                    </td>
-                    <td>{{ item.liqueur.name }}</td>
-                    <td>{{ item.title }}</td>
-                    <td>{{ item.content }}</td>
-                    <td>{{ item.capacity }}</td>
-                    <td>{{ item.density }}</td>
-                    <td>{{ item.color }}</td>
-                    <td>{{ item.aroma }}</td>
-                    <td>{{ item.body }}</td>
-                    <td>{{ item.taste }}</td>
-                    <td>{{ item.aftertaste }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.note }}</td>
-                    <td v-if="item.sort == null">0</td>
-                    <td v-else>{{ item.sort }}</td>
-                    <td>
-                        <a href="#create" class="btn btn-success btn-sm" data-toggle="collapse" @click="editdata(index)">修改</a>
-                        <button class="btn btn-danger btn-sm" @click="deletedata(index)">
-                            刪除
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+            <v-card>
+                <v-card-title class="v-toolbar v-toolbar--dense v-toolbar--flat grey lighten-2">
+                    <div class="d-flex justify-content-end mr-3">
+                        <v-btn class="mx-2" fab dark small color="blue" data-toggle="modal" data-target="#staticBackdrop" @click="clear()">
+                            新增
+                        </v-btn>
+
+                        <v-btn class="mx-2" fab dark small color="black" @click="darks()">
+                            <svg class="bi bi-circle-half" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+                            </svg>
+                        </v-btn>
+                    </div>
+                    <h1>酒的系列</h1>
+                    <v-spacer></v-spacer>
+                    <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+                </v-card-title>
+                <v-data-table :headers="headers" :items="liqueur_text" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true" :single-expand="singleExpand" show-expand>
+
+                    <template v-slot:item.img="{ item }">
+                        <div class="p-2 d-flex justify-content-center">
+                            <v-img :src="item.img" :alt="item.contest" style="max-width:100px;"></v-img>
+                        </div>
+                    </template>
+                    <template v-slot:item.content="{ item }">
+                        <p v-html="item.content"></p>
+                    </template>
+                    <template v-slot:item.action="{ item }">
+                        <div class="d-flex justify-content-center">
+                            <v-btn class="mx-2" fab dark small color="green" @click="editdata(liqueur_text.indexOf(item))" data-toggle="modal" data-target="#staticBackdrop">
+                                編輯
+                            </v-btn>
+                            <v-btn class="mx-2" fab dark small color="pink" @click="deletedata(liqueur_text.indexOf(item))">
+                                刪除
+                            </v-btn>
+                        </div>
+                    </template>
+                    <template v-slot:expanded-item="{ headers, item }">
+                        <td style="color: rgba(0,0,0,.6);" :colspan="headers.length">&emsp;色澤：{{ item.color }}&emsp;|&emsp;香氣：{{ item.aroma }}&emsp;|&emsp;酒體：{{ item.body }}&emsp;|&emsp;味覺：{{ item.taste }}&emsp;|&emsp;餘覺：{{ item.aftertaste }}&emsp;|&emsp;備註：{{ item.note }}</td>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-app>
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import { VueEditor } from "vue2-editor";
-
 export default {
     components: { VueEditor },
-
     mounted() {
         console.log("Component mounted.");
     },
     created() {
-        //獲取酒的種類
+        //獲取酒的系列
         axios
             .post("/admin/liqueurProduct_kind")
             .then(response => (this.liqueur_kind = response.data))
@@ -150,8 +154,7 @@ export default {
         axios
             .post("/admin/liqueurProduct_text")
             .then(response => {
-                this.product_data = response.data;
-                this.upload();
+                this.liqueur_text = response.data;
             })
             .catch(function (error) {
                 console.log(error);
@@ -159,8 +162,10 @@ export default {
     },
     data() {
         return {
+            search: '',
+            dark: false,
             liqueur_kind: [],
-            product_data: [],
+            liqueur_text: [],
             input: {
                 newimg: null,
                 oldimg: null,
@@ -176,27 +181,57 @@ export default {
                 aftertaste: "",
                 price: "",
                 note: "",
-                sort: 0
+                sort: 0,
+                edit: null,
+                index: null
             },
             customToolbar: [
                 ["bold", "italic", "underline"],
                 [{ list: "ordered" }, { list: "bullet" }],
                 ["code-block"]
-            ]
+            ],
+            expanded: [],
+            singleExpand: false,
+            headers: [
+                { text: '系列', value: 'liqueur.name', align: 'center', },
+                { text: '圖片', value: 'img', align: 'center', filterable: false, sortable: false, },
+                { text: '名稱', value: 'title', align: 'center', },
+                { text: '介紹', value: 'content', align: 'center', width: "30%" },
+                { text: '容量', value: 'capacity', align: 'center', },
+                { text: '濃度', value: 'density', align: 'center', },
+                { text: '權重', value: 'sort', align: 'center', },
+                { text: '更多', value: 'data-table-expand', align: 'center' },
+                { text: '', value: 'action', align: 'center', filterable: false, sortable: false, },
+            ],
         };
     },
     methods: {
-        //當頁面讀取完成後執行datatable
-        upload() {
-            $(document).ready(function () {
-                $("#example").DataTable({
-                    order: [1, "desc"]
-                });
-            });
+        darks() {
+            if (this.dark) {
+                $('td').css('color', 'black');
+            } else {
+                $('td').css('color', 'hsla(0,0%,100%,.7)');
+            }
+            this.dark = !this.dark
         },
-
+        checkForInput() {//偵測content變化
+            if (this.input.content == "") {//未輸入文字
+                $('#warm').removeAttr("hidden");
+                $('#content').addClass('border border-danger');
+            } else {
+                $('#warm').attr('hidden', 'hidden');//有輸入文字
+                $('#content').removeClass('border border-danger');
+            }
+        },
         //按下submit
         store(index) {
+            if (this.input.content == "") {//content未輸入文字
+                $('#warm').removeAttr("hidden");
+                $('#content').addClass('border border-danger');
+                return;
+            }
+            $('#staticBackdrop').modal('hide');
+
             if (this.input.edit == null) {
                 axios
                     .post("/admin/liqueurProduct", {
@@ -212,18 +247,18 @@ export default {
                         taste: this.input.taste,
                         aftertaste: this.input.aftertaste,
                         price: this.input.price,
-                        note: this.input.note
+                        note: this.input.note,
+                        sort: 0
                     })
                     .then(res => {
-                        this.clear();
                         this.sweetalert("add");
-                        this.product_data.push(res.data);
+                        this.liqueur_text.unshift(res.data);
+                        this.clear();
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             } else {
-                //console.log(index);
                 axios
                     .put(`/admin/liqueurProduct/${this.input.edit}`, {
                         liqueur_id: this.input.liqueur_id,
@@ -243,10 +278,10 @@ export default {
                     })
                     .then(res => {
                         this.sweetalert("edit");
-                        this.clear();
                         //兩個方法都可以重新渲染
-                        this.$set(this.product_data, index, res.data);
-                        // this.product_data.splice(index,1, res.data)
+                        this.$set(this.liqueur_text, index, res.data);
+                        // this.liqueur_text.splice(index,1, res.data)
+                        this.clear();
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -256,7 +291,7 @@ export default {
         //刪除
         deletedata(index) {
             //console.log(index);
-            let target = this.product_data[index];
+            let target = this.liqueur_text[index];
 
             Swal.fire({
                 title: `確定要刪除 ${target.title} ?`,
@@ -271,7 +306,7 @@ export default {
                     axios
                         .delete("/admin/liqueurProduct/" + target.id)
                         .then(res => {
-                            this.product_data.splice(index, 1);
+                            this.liqueur_text.splice(index, 1);
                             this.sweetalert("del");
                         })
                         .catch(err => {
@@ -282,37 +317,19 @@ export default {
         },
         //讀取編輯資料
         editdata(index) {
-            let target = this.product_data[index];
-            console.log(index);
-            console.log(target);
-
+            let target = this.liqueur_text[index];
             axios
                 .get(`/admin/liqueurProduct/${target.id}/edit`)
                 .then(res => {
-                    //console.log(res.data);
+                    this.input = res.data;
                     this.input.index = index;
                     this.input.edit = res.data.id;
                     this.input.oldimg = res.data.img;
-                    this.input.liqueur_id = res.data.liqueur_id;
-                    this.input.title = res.data.title;
-                    this.input.content = res.data.content;
-                    this.input.capacity = res.data.capacity;
-                    this.input.density = res.data.density;
-                    this.input.color = res.data.color;
-                    this.input.aroma = res.data.aroma;
-                    this.input.body = res.data.body;
-                    this.input.taste = res.data.taste;
-                    this.input.aftertaste = res.data.aftertaste;
-                    this.input.price = res.data.price;
-                    this.input.note = res.data.note;
-                    this.input.sort = res.data.sort;
-                    // console.log(res.data)
                 })
                 .catch(err => {
                     console.log(err);
                 });
         },
-
         //判斷是否有圖片上傳
         processFile(event) {
             if (this.input.oldimg == null) {
@@ -331,7 +348,7 @@ export default {
                         file_link: this.input.oldimg
                     })
                     .then(function (response) {
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -347,25 +364,28 @@ export default {
                     });
             }
         },
-
         //清除表單資料
         clear() {
-            (this.input.newimg = null),
-                (this.input.oldimg = ""),
-                (this.input.content = ""),
-                (this.input.title = ""),
-                (this.input.liqueur_id = ""),
-                (this.input.capacity = ""),
-                (this.input.density = ""),
-                (this.input.color = ""),
-                (this.input.aroma = ""),
-                (this.input.body = ""),
-                (this.input.taste = ""),
-                (this.input.aftertaste = ""),
-                (this.input.price = ""),
-                (this.input.note = ""),
-                (this.input.sort = ""),
-                $("#img").val("");
+            this.input.newimg = null;
+            this.input.oldimg = null;
+            this.input.content = "";
+            this.input.title = "";
+            this.input.liqueur_id = "";
+            this.input.capacity = "";
+            this.input.density = "";
+            this.input.color = "";
+            this.input.aroma = "";
+            this.input.body = "";
+            this.input.taste = "";
+            this.input.aftertaste = "";
+            this.input.price = "";
+            this.input.note = "";
+            this.input.sort = "";
+            this.input.edit = null;
+            this.input.index = null;
+            $("#img").val("");
+            $('#warm').attr('hidden', 'hidden');
+            $('#content').removeClass('border border-danger');
         },
 
         sweetalert(action) {

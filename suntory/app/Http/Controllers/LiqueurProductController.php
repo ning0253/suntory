@@ -29,8 +29,8 @@ class LiqueurProductController extends Controller
     public function update(Request $request, $id)
     {
         $new = $request->all();
+        LiqueurProduct::find($id)->update($new);
         $data = LiqueurProduct::with('liqueur')->find($id);
-        $data->update($new);
 
         return $data;
     }

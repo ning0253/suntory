@@ -1,84 +1,85 @@
 <template>
     <div class="container">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" @click="clear()">
-            新增
-        </button>
-        <hr />
-
-        <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 v-if="this.input.edit == null" class="modal-title" id="staticBackdropLabel">新增</h5>
-                        <h5 v-else class="modal-title" id="staticBackdropLabel">編輯</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">X</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" id="form1" @submit.prevent="store(input.index)">
-                            <div class="form-group">
-                                <label for="liqueur_id">產品系列</label>
-                                <select required name="liqueur_id" id="liqueur_id" v-model="input.liqueur_id" class="form-control">
-                                    <option v-for="(item, index) in liqueur_kind" :value="item.id" :key="index">{{ item.name }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="img">圖片</label>
-                                <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
-                                <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
-                                <div class="col-4">
-                                    <img :src="input.oldimg" alt srcset class="img-fluid" />
+        <v-app>
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header v-toolbar v-toolbar--dense v-toolbar--flat grey d-flex align-center">
+                            <h5 v-if="this.input.edit == null" class="modal-title" id="staticBackdropLabel">新增</h5>
+                            <h5 v-else class="modal-title" id="staticBackdropLabel">編輯</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clear()">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="form1" @submit.prevent="store(input.index)">
+                                <div class="form-group">
+                                    <label for="liqueur_id">產品系列</label>
+                                    <select required name="liqueur_id" id="liqueur_id" v-model="input.liqueur_id" class="form-control">
+                                        <option v-for="(item, index) in liqueur_kind" :value="item.id" :key="index">{{ item.name }}</option>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="title">故事標題</label>
-                                <input type="text" class="form-control" v-model="input.title" id="title" name="title" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="content">故事內容</label>
-                                <label for="content" id="warm" style="color: red;margin-left: 5px;" hidden="hidden">請輸入內容！</label>
-                                <vue-editor class="" id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
-                            </div>
-                            <div class="form-group" v-if="input.edit != null">
-                                <label for="sort">權重</label>
-                                <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" value="0" />
-                            </div>
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-primary" >儲存</button>
-                        </form>
+                                <div class="form-group">
+                                    <label for="img">圖片</label>
+                                    <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                    <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                                    <div class="col-4 pb-0">
+                                        <img :src="input.oldimg" alt srcset class="img-fluid" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">故事標題</label>
+                                    <input type="text" class="form-control" v-model="input.title" id="title" name="title" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">故事內容</label>
+                                    <label for="content" id="warm" style="color: red;margin-left: 5px;" hidden="hidden">請輸入內容！</label>
+                                    <vue-editor class="" id="content" name="content" v-model="input.content" :editor-toolbar="customToolbar" @text-change="checkForInput" />
+                                </div>
+                                <div class="form-group" v-if="input.edit != null">
+                                    <label for="sort">權重</label>
+                                    <input type="number" class="form-control" v-model="input.sort" id="sort" name="sort" value="0" />
+                                </div>
+                                <br>
+                                <v-btn class="mx-2" fab dark small color="blue" type="submit">儲存</v-btn>
+                                <v-btn class="mx-2" fab dark small color="gray" data-dismiss="modal" @click="clear()">取消</v-btn>
+                                <br>
+                                <br>
+                            </form>
+                        </div>
                     </div>
-                    <hr />
                 </div>
             </div>
-        </div>
 
-        <button class="btn-lg btn-dark" @click="darks()">
-            <svg class="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
-            </svg>
-        </button>
-
-        <v-app>
             <v-card>
-                <v-card-title>
-                    酒的故事
+                <v-card-title class="v-toolbar v-toolbar--dense v-toolbar--flat grey lighten-1">
+                    <div class="d-flex justify-content-end mr-3">
+                        <v-btn class="mx-2" fab dark small color="blue" data-toggle="modal" data-target="#staticBackdrop" @click="clear()">
+                            新增
+                        </v-btn>
+
+                        <v-btn class="mx-2" fab dark small color="black" @click="darks()">
+                            <svg class="bi bi-circle-half" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+                            </svg>
+                        </v-btn>
+                    </div>
+                    <h1>酒的故事</h1>
                     <v-spacer></v-spacer>
                     <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                 </v-card-title>
                 <v-data-table :headers="headers" :items="liqueur_text" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true">
                     <template v-slot:item="row">
                         <tr>
-                            <td class="text-center">{{row.item.name.name}}</td>
-                            <td class="text-center">
-                                <img :src="row.item.img" alt="" srcset="" style="width:150px;">
+                            <td class="text-center py-3">{{row.item.name.name}}</td>
+                            <td class="text-center py-3">
+                                <img :src="row.item.img" alt="" srcset="" style="max-width:100px;">
                             </td>
-                            <td class="text-center" v-html="row.item.content"></td>
-                            <td class="text-center">{{row.item.title}}</td>
-                            <td class="text-center">{{row.item.sort}}</td>
-                            <td class="">
+                            <td class="text-center py-3">{{row.item.title}}</td>
+                            <td class="text-center py-3" v-html="row.item.content"></td>
+                            <td class="text-center py-3">{{row.item.sort}}</td>
+                            <td class="py-3">
                                 <div class="d-flex justify-content-center">
                                     <v-btn class="mx-2" fab dark small color="green" @click="onButtonClick(row.index)" data-toggle="modal" data-target="#staticBackdrop">
                                         編輯
@@ -93,7 +94,6 @@
                 </v-data-table>
             </v-card>
         </v-app>
-
     </div>
 </template>
 
@@ -147,30 +147,23 @@ export default {
                 ["code-block"]
             ],
             headers: [
-                {
-                    text: '酒的種類',
-                    align: 'center',
-                    value: 'name',
-                    filterable: "flase",
-                },
-                { text: '圖片', value: 'img', align: 'center', },
-                { text: '內文', value: 'content', align: 'center', },
+                { text: '酒的種類', value: 'name.name', align: 'center', },
+                { text: '圖片', value: 'img', align: 'center', filterable: false, sortable: false, },
                 { text: '標題', value: 'title', align: 'center', },
-                { text: '權重', value: 'sort', align: 'center', },
-                { text: '', value: 'action', align: 'center', },
+                { text: '內文', value: 'content', align: 'center', width: "40%" },
+                { text: '權重', value: 'sort', align: 'center', filterable: false, },
+                { text: '', value: 'action', align: 'center', filterable: false, sortable: false, },
             ],
         };
     },
     methods: {
-        //按下submit
         darks() {
-            if (this.dark == true) {
-                this.dark = false
-                $('.text-center').css('color', 'black')
+            if (this.dark) {
+                $('td').css('color', 'black');
             } else {
-                this.dark = true
-                $('.text-center').css('color', 'white')
+                $('td').css('color', 'hsla(0,0%,100%,.7)');
             }
+            this.dark = !this.dark
         },
         checkForInput() {//偵測content變化
             if (this.input.content == "") {//未輸入文字
@@ -181,6 +174,7 @@ export default {
                 $('#content').removeClass('border border-danger');
             }
         },
+        //按下submit
         store(index) {
             if (this.input.content == "") {//content未輸入文字
                 $('#warm').removeAttr("hidden");
