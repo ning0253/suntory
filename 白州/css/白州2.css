@@ -1,34 +1,18 @@
 @charset "UTF-8";
 body {
+  height: 800vh;
   overflow-x: hidden;
   overflow-y: auto;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 .padbtm-100 {
   padding-bottom: 100px;
 }
 
-.sticky-top {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
 .flex_1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-}
-
-.h5 {
-  font-size: 1.5rem;
-}
-
-p,
-h1 {
-  font-family: "Noto Sans TC";
 }
 
 .row .bannerbox {
@@ -45,6 +29,7 @@ h1 {
 }
 
 .row .hakushu_title h1 {
+  font-family: "Noto Sans TC";
   margin-bottom: 30px;
 }
 
@@ -53,6 +38,7 @@ h1 {
 }
 
 .row .hakushu_text p {
+  font-family: "Noto Sans TC";
   margin-bottom: 50px;
 }
 
@@ -78,25 +64,19 @@ h1 {
 
 .row .story_box .story_title h1 {
   text-align: center;
+  font-family: "Noto Sans TC";
   margin-bottom: 40px;
-  position: relative;
-}
-
-.row .story_box .story_title h1 span {
-  position: absolute;
-  top: -83px;
-  width: 2px;
-  height: 100%;
 }
 
 .row .story_box p {
   text-align: center;
+  font-family: "Noto Sans TC";
 }
 
 .row .story_box .img1 {
   background-size: cover;
   background-position: center;
-  min-height: 420px;
+  min-height: 450px;
   width: 55%;
   background-image: url(../img/bg_top_01.jpg);
 }
@@ -119,19 +99,13 @@ h1 {
 
 .row .manner_box .story_title h1 {
   text-align: center;
+  font-family: "Noto Sans TC";
   margin-bottom: 40px;
-  position: relative;
-}
-
-.row .manner_box .story_title h1 span {
-  position: absolute;
-  top: -130px;
-  width: 2px;
-  height: 100%;
 }
 
 .row .manner_box .story_title p {
   text-align: center;
+  font-family: "Noto Sans TC";
 }
 
 .row .manner_box .img2 {
@@ -163,19 +137,13 @@ h1 {
 
 .row .distillery_box .story_title h1 {
   text-align: center;
+  font-family: "Noto Sans TC";
   margin-bottom: 40px;
-  position: relative;
-}
-
-.row .distillery_box .story_title h1 span {
-  position: absolute;
-  top: -118px;
-  width: 2px;
-  height: 100%;
 }
 
 .row .distillery_box p {
   text-align: center;
+  font-family: "Noto Sans TC";
 }
 
 .row .distillery_box .img3 {
@@ -197,14 +165,7 @@ h1 {
 }
 
 .row .Award h1 {
-  position: relative;
-}
-
-.row .Award h1 span {
-  position: absolute;
-  top: -118px;
-  width: 2px;
-  height: 100%;
+  font-family: "Noto Sans TC";
 }
 
 .row .change_view {
@@ -224,116 +185,39 @@ h1 {
   padding-bottom: 50px;
 }
 
-.row .product_title h1 {
-  position: relative;
-}
-
-.row .product_title h1 span {
-  position: absolute;
-  top: -118px;
-  width: 2px;
-  height: 100%;
-}
-
-.row .backg {
-  background-image: url(../img/樹林.jpg);
-  width: 100%;
-  background-attachment: fixed;
-}
-
-.row .backg .backdrop {
-  background-color: rgba(255, 255, 255, 0.7);
+.row .backdrop {
+  background-color: white;
   padding: 80px 5%;
 }
 
-.row .backg .backdrop .prod {
+.row .backdrop .prod {
   margin-bottom: 75px;
 }
 
-.row .backg .backdrop .prod .prod_img {
+.row .backdrop .prod .prod_img {
   height: 100%;
   width: 100%\9;
 }
 
-.row .backg .backdrop .prod_name {
+.row .backdrop .prod_name {
   text-align: center;
 }
 
-.row .backg .backdrop .prod1_title {
+.row .backdrop .prod1_title {
   padding: 0;
   margin: 0;
   margin-bottom: 25px;
 }
 
-.row .backg .backdrop .prod1_title h1 {
-  position: relative;
-}
-
-.row .backg .backdrop .prod1_title h1 span {
-  position: absolute;
-  top: -300px;
-  width: 2px;
-  height: 100%;
-}
-
-.row .backg .backdrop .prod1_min_title {
+.row .backdrop .prod1_min_title {
   margin-bottom: 25px;
 }
 
-.row .backg .backdrop .prod1_text p {
+.row .backdrop .prod1_text p {
   padding-bottom: 25px;
 }
 
-@media (max-width: 770px) {
-  .row .backg .backdrop .prod1_text p {
-    padding: 0;
-  }
-}
-
-.row .backg .backdrop .prod1_text a.add-to-cart {
-  width: 216px;
-  height: 48px;
-  background: #ffab00;
-  font-size: 18px;
-  line-height: 48px;
-  letter-spacing: 2px;
-  color: white;
-  text-transform: uppercase;
-  border-radius: 24px;
-  text-decoration: none;
-  text-align: center;
-  display: block;
-  -webkit-box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16), 0 3px 6px rgba(255, 171, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16), 0 3px 6px rgba(255, 171, 0, 0.23);
-}
-
-@media (max-width: 770px) {
-  .row .backg .backdrop .prod1_text a.add-to-cart {
-    width: 180px;
-    height: 40px;
-    font-size: 16px;
-    line-height: 40px;
-  }
-}
-
-@media (max-width: 540px) {
-  .row .backg .backdrop .prod1_text a.add-to-cart {
-    width: 150px;
-    height: 30px;
-    font-size: 14px;
-    line-height: 30px;
-  }
-}
-
-.row .backg .backdrop .prod1_text a.add-to-cart:hover {
-  background-color: red;
-}
-
-.row .backg .backdrop .prod1_text a.add-to-cart:active {
-  background-color: salmon;
-}
-
-@media (max-width: 770px) {
+@media (max-width: 720px) {
   .row {
     padding: 0;
     margin: 0;
@@ -342,9 +226,6 @@ h1 {
     font-size: 1.7rem;
   }
   h2 {
-    font-size: 1.2rem;
-  }
-  h5 {
     font-size: 1.2rem;
   }
   p {
@@ -362,15 +243,6 @@ h1 {
   .padbtm-100 {
     padding-bottom: 50px;
   }
-  .row .story_box .img1 {
-    min-height: 300px;
-  }
-  .row .manner_box .img2 {
-    min-height: 300px;
-  }
-  .row .distillery_box .img3 {
-    min-height: 300px;
-  }
 }
 
 @media (max-width: 540px) {
@@ -383,9 +255,6 @@ h1 {
   }
   h2 {
     font-size: 1rem;
-  }
-  h5 {
-    font-size: 1.2rem;
   }
   p {
     font-size: 0.5rem;
@@ -440,7 +309,6 @@ h1 {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
-    min-height: 200px;
   }
   .row .manner_box {
     display: -webkit-box;
@@ -471,7 +339,6 @@ h1 {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
-    min-height: 200px;
   }
   .row .distillery_box {
     display: -webkit-box;
@@ -502,7 +369,6 @@ h1 {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
-    min-height: 200px;
   }
 }
 /*# sourceMappingURL=白州2.css.map */

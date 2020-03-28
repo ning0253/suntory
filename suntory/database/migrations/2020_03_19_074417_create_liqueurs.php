@@ -16,11 +16,6 @@ class CreateLiqueurs extends Migration
         Schema::create('liqueurs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('story')->nullable();
-            $table->string('attitude')->nullable();
-            $table->string('sure')->nullable();
-            $table->string('product')->nullable();
-            $table->string('method')->nullable();
             $table->integer('sort')->default(0);
             $table->timestamps();
         });

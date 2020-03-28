@@ -10,7 +10,6 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@mdi/js": "^5.0.45",
         "axios": "^0.19.2",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
@@ -24,10 +23,5 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10",
         "webpack-livereload-plugin": "^1.2.0"
-    },
-    "dependencies": {
-        "vue-upload-component": "^2.8.20",
-        "vue2-editor": "^2.10.2",
-        "vuetify": "^2.2.19"
     }
 }

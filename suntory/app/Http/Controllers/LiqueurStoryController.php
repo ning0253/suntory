@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Liqueur;
-use App\LiqueurImg;
 use App\LiqueurStory;
-use Dotenv\Regex\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -129,12 +127,10 @@ class LiqueurStoryController extends Controller
 
     public function liqueurStory_delete_img(Request $request)
     {
-        // if(file_exists(public_path().$request->file_link)){
-        //     File::delete(public_path().$request->file_link);
-        // }
-        $data = LiqueurImg::where('img',$request->file_link)->delete();
-        // $data->delete();
-        return 'Success';
+        if(file_exists(public_path().$request->file_link)){
+            File::delete(public_path().$request->file_link);
+        }
+        return $request;
     }
 
     public function liqueurStory_kind()

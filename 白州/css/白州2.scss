@@ -1,28 +1,15 @@
 body {
+  height: 800vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
-html {
-  scroll-behavior: smooth;
-}
-
 .padbtm-100 {
   padding-bottom: 100px;
 }
-.sticky-top {
-  background-color: rgba(255, 255, 255, 0.7);
-}
+
 .flex_1 {
   flex: 1;
 }
-.h5 {
-  font-size: 1.5rem;
-}
-p,
-h1 {
-  font-family: "Noto Sans TC";
-}
-
 .row {
   .bannerbox {
     margin-bottom: 50px;
@@ -31,12 +18,14 @@ h1 {
     display: flex;
     justify-content: center;
     h1 {
+      font-family: "Noto Sans TC";
       margin-bottom: 30px;
     }
   }
   .hakushu_text {
     text-align: center;
     p {
+      font-family: "Noto Sans TC";
       margin-bottom: 50px;
     }
   }
@@ -51,24 +40,18 @@ h1 {
       padding-right: 5%;
       h1 {
         text-align: center;
-
+        font-family: "Noto Sans TC";
         margin-bottom: 40px;
-        position: relative;
-        span {
-          position: absolute;
-          top: -83px;
-          width: 2px;
-          height: 100%;
-        }
       }
     }
     p {
       text-align: center;
+      font-family: "Noto Sans TC";
     }
     .img1 {
       background-size: cover;
       background-position: center;
-      min-height: 420px;
+      min-height: 450px;
       width: 55%;
       background-image: url(../img/bg_top_01.jpg);
     }
@@ -82,18 +65,12 @@ h1 {
       padding-left: 5%;
       h1 {
         text-align: center;
-
+        font-family: "Noto Sans TC";
         margin-bottom: 40px;
-        position: relative;
-        span {
-          position: absolute;
-          top: -130px;
-          width: 2px;
-          height: 100%;
-        }
       }
       p {
         text-align: center;
+        font-family: "Noto Sans TC";
       }
     }
     .img2 {
@@ -115,19 +92,13 @@ h1 {
 
       h1 {
         text-align: center;
-
+        font-family: "Noto Sans TC";
         margin-bottom: 40px;
-        position: relative;
-        span {
-          position: absolute;
-          top: -118px;
-          width: 2px;
-          height: 100%;
-        }
       }
     }
     p {
       text-align: center;
+      font-family: "Noto Sans TC";
     }
     .img3 {
       background-size: cover;
@@ -144,13 +115,7 @@ h1 {
       padding-bottom: 50px;
     }
     h1 {
-      position: relative;
-      span {
-        position: absolute;
-        top: -118px;
-        width: 2px;
-        height: 100%;
-      }
+      font-family: "Noto Sans TC";
     }
   }
   .change_view {
@@ -166,99 +131,37 @@ h1 {
   .product_title {
     text-align: center;
     padding-bottom: 50px;
-    h1 {
-      position: relative;
-      span {
-        position: absolute;
-        top: -118px;
-        width: 2px;
-        height: 100%;
-      }
-    }
   }
 
-  .backg {
-    background-image: url(../img/樹林.jpg);
-    width: 100%;
-    background-attachment: fixed;
-
-    .backdrop {
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 80px 5%;
-      .prod {
-        margin-bottom: 75px;
-        .prod_img {
-          height: 100%;
-          width: 100%\9;
-        }
+  .backdrop {
+    background-color: white;
+    padding: 80px 5%;
+    .prod {
+      margin-bottom: 75px;
+      .prod_img {
+        height: 100%;
+        width: 100%\9;
       }
-      .prod_name {
-        text-align: center;
-      }
-      .prod1_title {
-        padding: 0;
-        margin: 0;
-        margin-bottom: 25px;
-        h1 {
-          position: relative;
-          span {
-            position: absolute;
-            top: -300px;
-            width: 2px;
-            height: 100%;
-          }
-        }
-      }
-      .prod1_min_title {
-        margin-bottom: 25px;
-      }
-      .prod1_text {
-        p {
-          padding-bottom: 25px;
-          @media (max-width: 770px){
-            padding: 0;
-          }
-        }
-        a.add-to-cart {
-          width: 216px;
-          height: 48px;
-          background: #ffab00;
-          font-size: 18px;
-          line-height: 48px;
-          letter-spacing: 2px;
-          color: rgb(255, 255, 255);
-          text-transform: uppercase;
-          border-radius: 24px;
-          text-decoration: none;
-          text-align: center;
-          display: block;
-          box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16), 0 3px 6px rgba(255, 171, 0, 0.23);
-          @media (max-width: 770px) {
-            width: 180px;
-            height: 40px;
-            font-size: 16px;
-            line-height: 40px;
-          }
-          @media (max-width: 540px) {
-            width: 150px;
-            height: 30px;
-            font-size: 14px;
-            line-height: 30px;
-          }
-        }
-
-        a.add-to-cart:hover {
-          background-color: red;
-        }
-
-        a.add-to-cart:active {
-          background-color: salmon;
-        }
+    }
+    .prod_name {
+      text-align: center;
+    }
+    .prod1_title {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 25px;
+    }
+    .prod1_min_title {
+      margin-bottom: 25px;
+    }
+    .prod1_text {
+      p {
+        padding-bottom: 25px;
       }
     }
   }
 }
-@media (max-width: 770px) {
+@media (max-width: 720px) {
   .row {
     padding: 0;
     margin: 0;
@@ -268,9 +171,6 @@ h1 {
   }
 
   h2 {
-    font-size: 1.2rem;
-  }
-  h5 {
     font-size: 1.2rem;
   }
 
@@ -289,15 +189,6 @@ h1 {
   .padbtm-100 {
     padding-bottom: 50px;
   }
-  .row .story_box .img1 {
-    min-height: 300px;
-  }
-  .row .manner_box .img2 {
-    min-height: 300px;
-  }
-  .row .distillery_box .img3 {
-    min-height: 300px;
-  }
 }
 
 @media (max-width: 540px) {
@@ -311,9 +202,6 @@ h1 {
 
   h2 {
     font-size: 1rem;
-  }
-  h5 {
-    font-size: 1.2rem;
   }
 
   p {
@@ -342,6 +230,7 @@ h1 {
     height: 300px;
   }
 
+  
   .row .story_box {
     display: flex;
     flex-wrap: wrap;
@@ -360,7 +249,6 @@ h1 {
 
     .img1 {
       order: 1;
-      min-height: 200px;
     }
   }
   .row .manner_box {
@@ -381,7 +269,6 @@ h1 {
 
     .img2 {
       order: 1;
-      min-height: 200px;
     }
   }
   .row .distillery_box {
@@ -402,7 +289,6 @@ h1 {
 
     .img3 {
       order: 1;
-      min-height: 200px;
     }
   }
 }

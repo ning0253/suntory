@@ -8,7 +8,7 @@ class Liqueur extends Model
 {
     protected $table = 'liqueurs';
     protected $fillable = [
-        'id', 'name', 'sort','story','attitude','sure','product','method'];
+        'id', 'name', 'sort'];
 
     public function imgs()
     {
