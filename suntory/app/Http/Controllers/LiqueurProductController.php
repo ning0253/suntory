@@ -89,8 +89,5 @@ class LiqueurProductController extends Controller
         return $data;
 
     }
-    public function liqueurProduct_img(Request $request)
-    {
-        # code...
-    }
+    
 }
