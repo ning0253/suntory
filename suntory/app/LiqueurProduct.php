@@ -32,6 +32,8 @@ class LiqueurProduct extends Model
      */
     protected $keyType = 'integer';
 
+    protected $table = 'liqueur_products';
+
     /**
      * @var array
      */

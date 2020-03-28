@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="./css/timeline.css"> -->
 
     <link rel="stylesheet" href="{{asset('css/time-line.css')}}">
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
@@ -20,12 +21,8 @@
     <link rel="stylesheet" href="{{asset('css/lightbox.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart-style.css')}}">
 
-    {{-- <link rel="stylesheet" href="{{asset('https://unpkg.com/aos@next/dist/aos.css')}}">
-    <link rel="stylesheet" href="{{asset('https://unpkg.com/aos@next/dist/aos.css')}}"> --}}
-
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
-
 </head>
 
 <body>
@@ -187,48 +184,26 @@
 
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
+
+                        @foreach ($stories as $story)
+
                         <div class="swiper-slide d-flex flex-wrap">
 
                             <div class="col-lg-6 col-12 img-6">
-                                <img src="./img/吃麥的怪獸.jpg" class="d-block w-100" alt="...">
+                                <img src="{{$story->img}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="col-lg-6 col-12 pading">
                                 <div class="small-title">
-                                    <h2>我是標題1</h2>
+                                    <h2>{{$story->title}}</h2>
                                 </div>
                                 <div class="small-content">
-                                    <p>我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</p>
+                                    <p>{{$story->content}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide d-flex flex-wrap">
 
-                            <div class="col-lg-6 col-12 img-6">
-                                <img src="./img/郊外的山崎蒸餾場.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col-lg-6 col-12 pading">
-                                <div class="small-title">
-                                    <h2>我是標題2</h2>
-                                </div>
-                                <div class="small-content">
-                                    <p>我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide d-flex flex-wrap">
+                        @endforeach
 
-                            <div class="col-lg-6 col-12 img-6">
-                                <img src="./img/山崎名字的秘密.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col-lg-6 col-12 pading">
-                                <div class="small-title">
-                                    <h2>我是標題3</h2>
-                                </div>
-                                <div class="small-content">
-                                    <p>我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- Add Arrows -->
                     <div class="swiper-button-next"></div>
@@ -248,14 +223,18 @@
 
                 <div data-aos="fade-up-left" data-aos-duration="1000">
                     <div class="attitude-content">
+
+
+                        @foreach ($attitudes as $attitude)
+
                         <div class="content-one d-flex flex-wrap">
                             <div class="col-lg-5 col-12">
                                 <div class="title">
-                                    <h2>我是標題</h2>
+                                <h2>{{$attitude->title}}</h2>
                                 </div>
                                 <div class="content">
                                     <p>
-                                        我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
+                                        {{$attitude->content}}
                                     </p>
                                 </div>
                             </div>
@@ -264,6 +243,8 @@
                                 <img class="img-fluid" src="./img/yam_hisimg00.jpg" alt="" srcset="" />
                             </div>
                         </div>
+
+
                         <div data-aos="fade-up-right" data-aos-duration="1000">
                             <div class="content-two d-flex flex-wrap">
                                 <div class="col-lg-6 col-12">
@@ -272,16 +253,18 @@
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-5 col-12">
                                     <div class="title text-lg-center">
-                                        <h2>我是標題二</h2>
+                                        <h2>{{$attitude->title}}</h2>
                                     </div>
                                     <div class="content">
                                         <p>
-                                            我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
+                                            {{$attitude->content}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -289,21 +272,12 @@
     </section>
 
     <section>
+        @foreach ($products as $product)
         <div class="product">
             <div class="lightbox-target d-flex justify-content-center align-items-center" id="dog">
                 <div class="detail text-left d-flex align-items-center" style="width: 600px;">
                     <p>
-                        由山崎蒸餾廠所擁有豐富多彩的原酒中，<br />
-                        調和師們精心挑選出理想的麥芽原酒調配而成。<br />
-                        內含代表山崎的水楢桶中所儲藏的麥芽威士忌，<br />
-                        及引領山崎邁入新境界的紅酒桶，<br />
-                        所儲藏富有獨特個性的麥芽威士忌兩者結合，<br />
-                        孕育而成嶄新的「新山崎」。<br />
-                        溫和，豐富多層次的香氣、香甜滑順的口感為其最大特點。<br />
-                        <br />
-                        香味特徵：具有新鮮的草苺，櫻桃的香氣。<br />
-                        蜂蜜的香甜味及微酸味隨著品嘗逐漸在口腔中散溢。<br />
-                        香甜香草，肉桂香讓人感受到心情愉悅的餘韻。
+                        {{$product->content}}
                     </p>
                 </div>
 
@@ -329,17 +303,19 @@
                         <div class="col-lg-8 col-12 border px-4 pb-3">
                             <div class="content">
                                 <div class="product-border-inner text-left">
-                                    <div class="name pad">山崎單一麥芽威士忌</div>
-                                    <div class="ml pad">700ml ‧ 43%</div>
+                                    <div class="name pad">{{$product->title}}</div>
+                                    <div class="ml pad">{{$product->capacity}}</div>
                                     <p>Tasting Note</p>
                                     <ul class="Tasting-Note">
-                                        <li>色澤&thinsp;|&thinsp;淺紅琥珀色。</li>
+                                        <li>色澤&thinsp;|&thinsp;{{$product->color}}。</li>
                                         <li>香氣&thinsp;|&thinsp;莓、櫻桃氣味。</li>
                                         <li>酒體&thinsp;|&thinsp;中度。</li>
                                         <li>
                                             味覺&thinsp;|&thinsp;蜂蜜，滑順的在口中散開的甜味。
                                         </li>
-                                        <li>餘覺&thinsp;|&thinsp;甜香草、肉桂味。</li>
+                                        <li>餘覺&thinsp;|&thinsp;甜香草、肉桂味。</li><br />
+                                        <li>{{$product->price}}</li>
+
                                     </ul>
                                 </div>
 
@@ -361,6 +337,9 @@
                 </div>
             </div>
         </div>
+
+        @endforeach
+
     </section>
 
     <section>
@@ -540,10 +519,9 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-
-    <link rel="stylesheet" href="{{asset('js/time-line.js')}}">
-    <link rel="stylesheet" href="{{asset('js/cart-style.js')}}">
-    <link rel="stylesheet" href="{{asset('js/swiper.js')}}">
+    <script src="{{asset('js/time-line.js')}}"></script>
+    <script src="{{asset('js/cart-style.js')}}"></script>
+    <script src="{{asset('js/swiper.js')}}"></script>
 
 
     <script>
