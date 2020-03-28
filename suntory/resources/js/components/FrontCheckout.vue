@@ -63,10 +63,16 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">Continue shopping</button><button class="btn btn-primary">Check out</button></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal">Continue shopping</button>
+                        <a href="/checkout"><button class="btn btn-primary">Check out</button></a>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </template>
 
@@ -84,9 +90,9 @@ export default {
             });
         axios.get('/totalcart')
             .then(res => {
-                this.cart = res.data;
-                for (var i in this.cart) {
-                    this.carts.push(this.cart[i]);
+                this.carts = res.data;
+                for (var i in this.carts) {
+                    this.cart.push(this.carts[i]);
                 }
 
 
@@ -124,32 +130,43 @@ export default {
         addToCart(index) {
             axios.post('/addcart', this.selling[index])
                 .then((res) => {
-                    this.cart.push(res.data)
-                    console.log(res);
+                    for (var i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i].id == this.selling[index].id) {
+                            this.cart[i].quantity += 1
+                            return
+                        } else {
+                        }
+                    }
+                    // this.cart.push(this.selling[index])
+                    // console.log(this.cart.length);
+                    console.log(res.data);
 
+                    this.cart.push(res.data)
                 }).catch((err) => {
                     console.log(err);
 
                 })
         },
         cartTotal() {
-            //總價
-            axios.get('/getcontent')
-                .then((res) => {
+            console.log('aa');
+
+            // //總價
+            // axios.get('/getcontent')
+            //     .then((res) => {
 
 
-                }).catch((err) => {
-                    console.log(err);
+            //     }).catch((err) => {
+            //         console.log(err);
 
-                })
-            //總數
-            axios.get('/totalcart')
-                .then((res) => {
-                    // this.cart.push(res.data)
-                }).catch((err) => {
-                    console.log(err);
+            //     })
+            // //總數
+            // axios.get('/totalcart')
+            //     .then((res) => {
+            //         // this.cart.push(res.data)
+            //     }).catch((err) => {
+            //         console.log(err);
 
-                })
+            //     })
         },
         change(index) {
             let target = this.cart[index]
@@ -168,13 +185,13 @@ export default {
             //總價
             axios.post('/deletecar', target)
                 .then((res) => {
-
+                    this.cart.splice(index, 1);
                 }).catch((err) => {
                     console.log(err);
 
                 })
 
-            cart.splice(index, 1);
+
         }
 
     }
