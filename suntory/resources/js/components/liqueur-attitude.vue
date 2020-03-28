@@ -343,8 +343,6 @@ export default {
                     icon: "success",
                     title: "儲存成功",
                     timer: 1500
-                }).then(result => {
-                    $("#add").click();
                 });
             } else {
                 Swal.fire({

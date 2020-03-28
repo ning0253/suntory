@@ -95,7 +95,7 @@
                             新增
                         </v-btn>
 
-                        <v-btn class="mx-2" fab dark small color="black" @click="darks()">
+                        <v-btn class="mx-2" fab dark small color="black" @click="toggleDark()">
                             <svg class="bi bi-circle-half" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 15V1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
                             </svg>
@@ -105,8 +105,7 @@
                     <v-spacer></v-spacer>
                     <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                 </v-card-title>
-                <v-data-table :headers="headers" :items="liqueur_text" :search="search" :items-per-page="10" :loading="false" :dark="dark" :multi-sort="true" :single-expand="singleExpand" show-expand>
-
+                <v-data-table :headers="headers" :items="liqueur_text" :search="search" :items-per-page="10" :loading="false" :dark="isDark" :multi-sort="true" :single-expand="singleExpand" show-expand>
                     <template v-slot:item.img="{ item }">
                         <div class="p-2 d-flex justify-content-center">
                             <v-img :src="item.img" :alt="item.contest" style="max-width:100px;"></v-img>
@@ -126,7 +125,7 @@
                         </div>
                     </template>
                     <template v-slot:expanded-item="{ headers, item }">
-                        <td style="color: rgba(0,0,0,.6);" :colspan="headers.length">&emsp;色澤：{{ item.color }}&emsp;|&emsp;香氣：{{ item.aroma }}&emsp;|&emsp;酒體：{{ item.body }}&emsp;|&emsp;味覺：{{ item.taste }}&emsp;|&emsp;餘覺：{{ item.aftertaste }}&emsp;|&emsp;備註：{{ item.note }}</td>
+                        <td :style="{ color: isDark? 'hsla(0,0%,100%,.7)':'rgba(0,0,0,0.6)' }" :colspan="headers.length">&emsp;色澤：{{ item.color }}&emsp;|&emsp;香氣：{{ item.aroma }}&emsp;|&emsp;酒體：{{ item.body }}&emsp;|&emsp;味覺：{{ item.taste }}&emsp;|&emsp;餘覺：{{ item.aftertaste }}&emsp;|&emsp;備註：{{ item.note }}</td>
                     </template>
                 </v-data-table>
             </v-card>
@@ -163,7 +162,7 @@ export default {
     data() {
         return {
             search: '',
-            dark: false,
+            isDark: false,
             liqueur_kind: [],
             liqueur_text: [],
             input: {
@@ -206,13 +205,13 @@ export default {
         };
     },
     methods: {
-        darks() {
-            if (this.dark) {
+        toggleDark() {
+            if (this.isDark) {
                 $('td').css('color', 'black');
             } else {
-                $('td').css('color', 'hsla(0,0%,100%,.7)');
+                $('td').css('color', 'white');
             }
-            this.dark = !this.dark
+            this.isDark = !this.isDark
         },
         checkForInput() {//偵測content變化
             if (this.input.content == "") {//未輸入文字
@@ -394,8 +393,6 @@ export default {
                     icon: "success",
                     title: "儲存成功",
                     timer: 1500
-                }).then(result => {
-                    $("#add").click();
                 });
             } else {
                 Swal.fire({

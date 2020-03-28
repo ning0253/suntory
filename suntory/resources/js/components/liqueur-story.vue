@@ -161,7 +161,7 @@ export default {
             if (this.dark) {
                 $('td').css('color', 'black');
             } else {
-                $('td').css('color', 'hsla(0,0%,100%,.7)');
+                $('td').css('color', 'white');
             }
             this.dark = !this.dark
         },
@@ -336,8 +336,6 @@ export default {
                     icon: "success",
                     title: "儲存成功",
                     timer: 1500
-                }).then(result => {
-                    $("#add").click();
                 });
             } else {
                 Swal.fire({

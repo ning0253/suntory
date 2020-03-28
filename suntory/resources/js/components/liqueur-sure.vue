@@ -160,26 +160,12 @@ export default {
             if (this.dark) {
                 $('td').css('color', 'black');
             } else {
-                $('td').css('color', 'hsla(0,0%,100%,.7)');
+                $('td').css('color', 'white');
             }
             this.dark = !this.dark
         },
-        checkForInput() {//偵測content變化
-            if (this.input.content == "") {//未輸入文字
-                $('#warm').removeAttr("hidden");
-                $('#content').addClass('border border-danger');
-            } else {
-                $('#warm').attr('hidden', 'hidden');//有輸入文字
-                $('#content').removeClass('border border-danger');
-            }
-        },
         //按下submit
         store(index) {
-            if (this.input.content == "") {//content未輸入文字
-                $('#warm').removeAttr("hidden");
-                $('#content').addClass('border border-danger');
-                return;
-            }
             $('#staticBackdrop').modal('hide');
 
             if (this.input.edit == null) {
@@ -326,8 +312,6 @@ export default {
                 (this.input.edit = null),
                 (this.input.index = null);
             $("#img").val("");
-            $('#warm').attr('hidden', 'hidden');
-            $('#content').removeClass('border border-danger');
         },
 
         sweetalert(action) {
@@ -336,8 +320,6 @@ export default {
                     icon: "success",
                     title: "儲存成功",
                     timer: 1500
-                }).then(result => {
-                    $("#add").click();
                 });
             } else {
                 Swal.fire({
