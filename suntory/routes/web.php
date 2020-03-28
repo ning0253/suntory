@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/product_list', 'FrontController@product_list');
+Route::get('/product_list', 'FrontController@product_list');//購物頁面
+
+Route::get('/checkout', 'FrontController@checkout');//確認訂單頁面
+Route::post('/checkout', 'FrontController@post_checkout');//送出訂單至綠界
 
 //購物車
 Route::post('/addcart', 'cartcontroller@addcart');
@@ -23,6 +26,18 @@ Route::get('/totalcart', 'cartcontroller@totalcart');
 Route::post('/onChange', 'cartcontroller@onChange');//更新產品數量
 Route::post('/deletecar', 'cartcontroller@deletecar');//刪除產品
 
+//綠界api
+Route::prefix('cart_ecpay')->group(function(){
+
+    //當消費者付款完成後，綠界會將付款結果參數以幕後(Server POST)回傳到該網址。
+    Route::post('notify', 'FrontController@notifyUrl')->name('notify');
+
+    //付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址
+    Route::post('return', 'FrontController@returnUrl')->name('return');
+});
+
+
+Route::get('Inquire/{id}', 'orderController@Inquire'); //查詢訂單資料
 
 Auth::routes();
 
@@ -47,6 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('liqueurProduct_delete_img', 'LiqueurProductController@liqueurProduct_delete_img'); //axios刪除圖片
     Route::post('liqueurProduct_kind', 'LiqueurProductController@liqueurProduct_kind'); //獲得酒的種類
     Route::post('liqueurProduct_text', 'LiqueurProductController@liqueurProduct_text'); //獲得酒的產品資料
+    Route::post('liqueurProduct_img', 'LiqueurProductController@liqueurProduct_img');
 
     //酒類態度
     Route::resource('liqueurAttitude', 'liqueurAttitudeController');
@@ -81,4 +97,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('order_delete_img', 'orderController@order_delete_img'); //axios刪除圖片
     Route::post('order_kind', 'orderController@order_kind'); //獲得酒的種類
     Route::post('order_text', 'orderController@order_text'); //獲得訂單資料
+
+    // 詳細資料
+    Route::post('productdata', 'orderController@productdata'); //獲得訂單資料
+
 });

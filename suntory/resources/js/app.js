@@ -38,6 +38,9 @@ Vue.component('liqueur-product', require('./components/liqueur-product.vue').def
 
 Vue.component('shop-component', require('./components/shop.vue').default);
 Vue.component('order-component', require('./components/order.vue').default);
+Vue.component('checkout-table', require('./components/checkout_table.vue').default);
+Vue.component('order-finish', require('./components/orderfinish.vue').default);
+/**
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
