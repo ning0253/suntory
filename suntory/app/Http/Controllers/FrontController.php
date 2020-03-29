@@ -21,10 +21,11 @@ class FrontController extends Controller
         $stories = DB::table('liqueur_stroys')->orderBy('sort','desc')->get();
         $attitudes = DB::table('liqueur_attitudes')->orderBy('sort','desc')->get();
         $products = DB::table('liqueur_products')->orderBy('sort','desc')->get();
+        $methods = DB::table('liqueur_methods')->orderBy('sort','desc')->get();
+        $sures = DB::table('liqueur_sures')->orderBy('sort','desc')->get();
 
+        // dd($attitudes);
 
-        // dd($products);
-
-        return view('Yamasaki', compact('stories','attitudes','products'));
+        return view('Yamasaki', compact('stories','attitudes','products','methods','sures'));
     }
 }

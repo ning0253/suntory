@@ -227,6 +227,7 @@
 
                         @foreach ($attitudes as $attitude)
 
+                        
                         <div class="content-one d-flex flex-wrap">
                             <div class="col-lg-5 col-12">
                                 <div class="title">
@@ -273,6 +274,7 @@
 
     <section>
         @foreach ($products as $product)
+
         <div class="product">
             <div class="lightbox-target d-flex justify-content-center align-items-center" id="dog">
                 <div class="detail text-left d-flex align-items-center" style="width: 600px;">
@@ -296,7 +298,7 @@
                 <div data-aos="flip-right" data-aos-duration="1000">
                     <div class="product-content d-flex flex-wrap">
                         <div class="col-lg-3 col-12 d-flex justify-content-center">
-                            <img class="product-img" src="./img/山崎12年單一麥芽威士忌.png" alt="" srcset="" />
+                            <img class="product-img" src="{{$product->img}}" alt="" srcset="" />
                         </div>
                         <div class="col-lg-1"></div>
 
@@ -308,12 +310,12 @@
                                     <p>Tasting Note</p>
                                     <ul class="Tasting-Note">
                                         <li>色澤&thinsp;|&thinsp;{{$product->color}}。</li>
-                                        <li>香氣&thinsp;|&thinsp;莓、櫻桃氣味。</li>
-                                        <li>酒體&thinsp;|&thinsp;中度。</li>
+                                    <li>香氣&thinsp;|&thinsp;{{$product->aroma}}</li>
+                                        <li>酒體&thinsp;|&thinsp;{{$product->body}}</li>
                                         <li>
-                                            味覺&thinsp;|&thinsp;蜂蜜，滑順的在口中散開的甜味。
+                                            味覺&thinsp;|&thinsp;{{$product->taste}}
                                         </li>
-                                        <li>餘覺&thinsp;|&thinsp;甜香草、肉桂味。</li><br />
+                                        <li>餘覺&thinsp;|&thinsp;{{$product->aftertaste}}</li><br />
                                         <li>{{$product->price}}</li>
 
                                     </ul>
@@ -342,6 +344,7 @@
 
     </section>
 
+
     <section>
         <div class="method" id="method">
             <div class="container">
@@ -354,47 +357,27 @@
                 </div>
                 <div class="swiper-container" id="swiper2">
                     <div class="swiper-wrapper">
+
+                        @foreach ($methods as $method)
                         <div class="swiper-slide d-flex flex-wrap">
                             <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="" />
+                                <img class="img-fluid" src="{{$method->img}}" alt="" srcset="" />
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="title">
-                                    <h2>我是標題1</h2>
+                                <h2>{{$method->title}}</h2>
                                 </div>
                                 <div class="content">
                                     <p>
-                                        我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
+                                        {{$method->content}}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide d-flex flex-wrap">
-                            <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="" />
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="title">
-                                    <h2>我是標題2</h2>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide d-flex flex-wrap">
-                            <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="" />
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="title">我是標題3</div>
-                                <div class="content">
-                                    我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
-                                </div>
-                            </div>
-                        </div>
+
+
+                        @endforeach
+
 
                     </div>
 

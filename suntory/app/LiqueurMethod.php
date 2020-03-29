@@ -22,6 +22,7 @@ class LiqueurMethod extends Model
      * @var string
      */
     protected $keyType = 'integer';
+    protected $table = 'liqueur_methods';
 
     /**
      * @var array

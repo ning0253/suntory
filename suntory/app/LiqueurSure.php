@@ -22,6 +22,7 @@ class LiqueurSure extends Model
      * @var string
      */
     protected $keyType = 'integer';
+    protected $table = 'liqueur_sures';
 
     /**
      * @var array
