@@ -11,15 +11,17 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
     <!-- <link rel="stylesheet" href="./css/timeline.css"> -->
-    <link rel="stylesheet" href="./css/time-line.css" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/hover.css" />
-    <link rel="stylesheet" href="./css/navbar.css" />
-    <link rel="stylesheet" href="./css/hover2.css">
-    <link rel="stylesheet" href="./css/navbar2.css">
+
+    <link rel="stylesheet" href="{{asset('css/time-line.css')}}">
+    <link rel="stylesheet" href="{{asset('css/index.css')}}">
+    <link rel="stylesheet" href="{{asset('css/hover.css')}}">
+    <link rel="stylesheet" href="{{asset('css/navbar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/hover2.css')}}">
+    <link rel="stylesheet" href="{{asset('css/navbar2.css')}}">
+    <link rel="stylesheet" href="{{asset('css/lightbox.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cart-style.css')}}">
+
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="./css/lightbox.css" />
-    <link rel="stylesheet" href="/css/cart-style.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
 </head>
 
@@ -155,16 +157,21 @@
         <div class="banner">
             <div class="container">
                 <div class="row">
+
+                    @foreach ($banners as $banner)
                     <div class="col-sm d-flex justify-content-center align-items-center">
                         <div class="banner-title">
-                            <img src="./img/top_logo.png" alt="" />
+                        <img src="{{$banner->img}}" alt="" />
                         </div>
                     </div>
-                    <div class="col-sm  d-flex justify-content-center align-items-center">
+                    @endforeach
+
+
+                    {{-- <div class="col-sm  d-flex justify-content-center align-items-center">
                         <div class="banner-img">
                             <img src="./img/keyvisual.jpg.png" alt="" />
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -182,48 +189,26 @@
 
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
+
+                        @foreach ($stories as $story)
+
                         <div class="swiper-slide d-flex flex-wrap">
 
                             <div class="col-lg-6 col-12 img-6">
-                                <img src="./img/吃麥的怪獸.jpg" class="d-block w-100" alt="...">
+                                <img src="{{$story->img}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="col-lg-6 col-12 pading">
                                 <div class="small-title">
-                                    <h2>我是標題1</h2>
+                                    <h2>{{$story->title}}</h2>
                                 </div>
                                 <div class="small-content">
-                                    <p>我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</p>
+                                    <p>{{$story->content}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide d-flex flex-wrap">
 
-                            <div class="col-lg-6 col-12 img-6">
-                                <img src="./img/郊外的山崎蒸餾場.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col-lg-6 col-12 pading">
-                                <div class="small-title">
-                                    <h2>我是標題2</h2>
-                                </div>
-                                <div class="small-content">
-                                    <p>我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide d-flex flex-wrap">
+                        @endforeach
 
-                            <div class="col-lg-6 col-12 img-6">
-                                <img src="./img/山崎名字的秘密.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col-lg-6 col-12 pading">
-                                <div class="small-title">
-                                    <h2>我是標題3</h2>
-                                </div>
-                                <div class="small-content">
-                                    <p>我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- Add Arrows -->
                     <div class="swiper-button-next"></div>
@@ -243,14 +228,23 @@
 
                 <div data-aos="fade-up-left" data-aos-duration="1000">
                     <div class="attitude-content">
+
+                        <?php
+                         $i=0;
+                        ?>
+
+                        @foreach ($attitudes as $attitude)
+                        <?php
+                            if($i%2 == 0){
+                        ?>
                         <div class="content-one d-flex flex-wrap">
                             <div class="col-lg-5 col-12">
                                 <div class="title">
-                                    <h2>我是標題</h2>
+                                <h2>{{$attitude->title}}</h2>
                                 </div>
                                 <div class="content">
                                     <p>
-                                        我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
+                                        {{$attitude->content}}
                                     </p>
                                 </div>
                             </div>
@@ -259,6 +253,10 @@
                                 <img class="img-fluid" src="./img/yam_hisimg00.jpg" alt="" srcset="" />
                             </div>
                         </div>
+                        <?php
+                            } else{
+                        ?>
+
                         <div data-aos="fade-up-right" data-aos-duration="1000">
                             <div class="content-two d-flex flex-wrap">
                                 <div class="col-lg-6 col-12">
@@ -267,16 +265,25 @@
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-5 col-12">
                                     <div class="title text-lg-center">
-                                        <h2>我是標題二</h2>
+                                        <h2>{{$attitude->title}}</h2>
                                     </div>
                                     <div class="content">
                                         <p>
-                                            我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
+                                            {{$attitude->content}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            }
+                        ?>
+
+                        <?php
+                            $i++;
+                        ?>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -284,21 +291,13 @@
     </section>
 
     <section>
+        @foreach ($products as $product)
+
         <div class="product">
             <div class="lightbox-target d-flex justify-content-center align-items-center" id="dog">
                 <div class="detail text-left d-flex align-items-center" style="width: 600px;">
                     <p>
-                        由山崎蒸餾廠所擁有豐富多彩的原酒中，<br />
-                        調和師們精心挑選出理想的麥芽原酒調配而成。<br />
-                        內含代表山崎的水楢桶中所儲藏的麥芽威士忌，<br />
-                        及引領山崎邁入新境界的紅酒桶，<br />
-                        所儲藏富有獨特個性的麥芽威士忌兩者結合，<br />
-                        孕育而成嶄新的「新山崎」。<br />
-                        溫和，豐富多層次的香氣、香甜滑順的口感為其最大特點。<br />
-                        <br />
-                        香味特徵：具有新鮮的草苺，櫻桃的香氣。<br />
-                        蜂蜜的香甜味及微酸味隨著品嘗逐漸在口腔中散溢。<br />
-                        香甜香草，肉桂香讓人感受到心情愉悅的餘韻。
+                        {{$product->content}}
                     </p>
                 </div>
 
@@ -317,24 +316,26 @@
                 <div data-aos="flip-right" data-aos-duration="1000">
                     <div class="product-content d-flex flex-wrap">
                         <div class="col-lg-3 col-12 d-flex justify-content-center">
-                            <img class="product-img" src="./img/山崎12年單一麥芽威士忌.png" alt="" srcset="" />
+                            <img class="product-img" src="{{$product->img}}" alt="" srcset="" />
                         </div>
                         <div class="col-lg-1"></div>
 
                         <div class="col-lg-8 col-12 border px-4 pb-3">
                             <div class="content">
                                 <div class="product-border-inner text-left">
-                                    <div class="name pad">山崎單一麥芽威士忌</div>
-                                    <div class="ml pad">700ml ‧ 43%</div>
+                                    <div class="name pad">{{$product->title}}</div>
+                                    <div class="ml pad">{{$product->capacity}}</div>
                                     <p>Tasting Note</p>
                                     <ul class="Tasting-Note">
-                                        <li>色澤&thinsp;|&thinsp;淺紅琥珀色。</li>
-                                        <li>香氣&thinsp;|&thinsp;莓、櫻桃氣味。</li>
-                                        <li>酒體&thinsp;|&thinsp;中度。</li>
+                                        <li>色澤&thinsp;|&thinsp;{{$product->color}}。</li>
+                                    <li>香氣&thinsp;|&thinsp;{{$product->aroma}}</li>
+                                        <li>酒體&thinsp;|&thinsp;{{$product->body}}</li>
                                         <li>
-                                            味覺&thinsp;|&thinsp;蜂蜜，滑順的在口中散開的甜味。
+                                            味覺&thinsp;|&thinsp;{{$product->taste}}
                                         </li>
-                                        <li>餘覺&thinsp;|&thinsp;甜香草、肉桂味。</li>
+                                        <li>餘覺&thinsp;|&thinsp;{{$product->aftertaste}}</li><br />
+                                        <li>{{$product->price}}</li>
+
                                     </ul>
                                 </div>
 
@@ -356,7 +357,11 @@
                 </div>
             </div>
         </div>
+
+        @endforeach
+
     </section>
+
 
     <section>
         <div class="method" id="method">
@@ -370,47 +375,27 @@
                 </div>
                 <div class="swiper-container" id="swiper2">
                     <div class="swiper-wrapper">
+
+                        @foreach ($methods as $method)
                         <div class="swiper-slide d-flex flex-wrap">
                             <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="" />
+                                <img class="img-fluid" src="{{$method->img}}" alt="" srcset="" />
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="title">
-                                    <h2>我是標題1</h2>
+                                <h2>{{$method->title}}</h2>
                                 </div>
                                 <div class="content">
                                     <p>
-                                        我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
+                                        {{$method->content}}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide d-flex flex-wrap">
-                            <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="" />
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="title">
-                                    <h2>我是標題2</h2>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide d-flex flex-wrap">
-                            <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_facimg01.jpg" alt="" srcset="" />
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="title">我是標題3</div>
-                                <div class="content">
-                                    我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文我室內文
-                                </div>
-                            </div>
-                        </div>
+
+
+                        @endforeach
+
 
                     </div>
 
@@ -431,50 +416,65 @@
                 </div>
 
                 <div id="timeline">
+                    <?php
+                        $i=0;
+                    ?>
+                    @foreach ($sures as $sure)
+
+                    <?php
+                        if($i%2 == 0){
+                    ?>
+
                     <div class="timeline-block">
                         <div class="timeline-year right" data-anime="scroll">
-                            <strong>2001</strong>
+                        <strong>{{$sure->title}}</strong>
                         </div>
                         <!-- timeline-year -->
                         <div class="timeline-content" data-anime-left="scroll-left">
                             <div class="award-img my-4">
-                                <img src="./img/aff_logo_iwsc.gif" alt="">
+                                <img src="{{$sure->img}}" alt="">
                             </div>
                             <p>
-                                Em Alagoas, a percepção do desempenho de estudantes é foco de
-                                políticas públicas desde 2001, quando o
-                                <strong>Sistema de Avaliação Educacional de Alagoas (SAVEAL) </strong>é implementado,
-                                para diagnóstico em leitura e matemática da
-                                4ª série do ensino fundamental, com o objetivo de subsidiar o
-                                estado e os municípios alagoanos na (re)formulação de ações as
-                                quais permitissem a reorientação da prática docente e, por
-                                conseguinte, da formação de estudantes.
+                                {{$sure->award}}
                             </p>
                         </div>
                         <!-- timeline-content -->
                     </div>
+                    <?php
+                        } else{
+                    ?>
                     <!-- timeline-block -->
 
                     <div class="timeline-block">
                         <div class="timeline-year left" data-anime="scroll">
-                            <strong>2003</strong>
+                            <strong>{{$sure->title}}</strong>
                         </div>
                         <!-- timeline-year -->
                         <div class="timeline-content" data-anime-right="scroll-right">
+                            <div class="award-img my-4">
+                                <img src="{{$sure->img}}" alt="">
+                            </div>
                             <p>
-                                Em 2003, o <strong>SAVEAL</strong> incorpora a avaliação da 8ª
-                                série do ensino fundamental e do 3º ano do ensino médio.
+                                {{$sure->award}}
                             </p>
                         </div>
                         <!-- timeline-content -->
                     </div>
+                        <?php
+                            }
+                        ?>
+
+                        <?php
+                            $i++;
+                        ?>
+                    @endforeach
+
                     <!-- timeline-block -->
 
-                    <div class="timeline-block">
+                    {{-- <div class="timeline-block">
                         <div class="timeline-year right" data-anime="scroll">
                             <strong>2005</strong>
                         </div>
-                        <!-- timeline-year -->
                         <div class="timeline-content" data-anime-left="scroll-left">
                             <p>
                                 Em 2005, de modo complementar à Prova Brasil, o
@@ -485,15 +485,12 @@
                                 escolaridade integram o Sistema.
                             </p>
                         </div>
-                        <!-- timeline-content -->
                     </div>
-                    <!-- timeline-block -->
 
                     <div class="timeline-block">
                         <div class="timeline-year left" data-anime="scroll">
                             <strong>2011</strong>
                         </div>
-                        <!-- timeline-year -->
                         <div class="timeline-content" data-anime-right="scroll-right">
                             <p>
                                 Em 2011, o <strong>SAVEAL</strong> repete a observação dos
@@ -501,9 +498,7 @@
                                 da rede pública estadual.
                             </p>
                         </div>
-                        <!-- timeline-content -->
-                    </div>
-                    <!-- timeline-block -->
+                    </div> --}}
                 </div>
                 <!-- timeline -->
             </div>
@@ -530,7 +525,6 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <!-- <script src="./js/timeline.js"></script> -->
-    <script src="./js/time-line.js"></script>
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
@@ -538,8 +532,11 @@
         crossorigin="anonymous"></script>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="/js/cart-style.js"></script>
-    <script src="/js/swiper.js"></script>
+
+    <script src="{{asset('js/time-line.js')}}"></script>
+    <script src="{{asset('js/cart-style.js')}}"></script>
+    <script src="{{asset('js/swiper.js')}}"></script>
+
 
     <script>
         AOS.init();
@@ -586,7 +583,6 @@
 
 
 
-    </script>
     </script>
 </body>
 
