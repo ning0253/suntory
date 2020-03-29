@@ -297,7 +297,7 @@
             <div class="lightbox-target d-flex justify-content-center align-items-center" id="dog">
                 <div class="detail text-left d-flex align-items-center" style="width: 600px;">
                     <p>
-                        {{$product->content}}
+                        {{$product->note}}
                     </p>
                 </div>
 
