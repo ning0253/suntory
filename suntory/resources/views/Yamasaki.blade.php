@@ -226,8 +226,12 @@
 
 
                         @foreach ($attitudes as $attitude)
+                        <?php
+                            $count = 0;
 
-                        
+                        ?>
+                        @if ($count%2 == 0)
+
                         <div class="content-one d-flex flex-wrap">
                             <div class="col-lg-5 col-12">
                                 <div class="title">
@@ -245,7 +249,7 @@
                             </div>
                         </div>
 
-
+                        @else
                         <div data-aos="fade-up-right" data-aos-duration="1000">
                             <div class="content-two d-flex flex-wrap">
                                 <div class="col-lg-6 col-12">
@@ -264,6 +268,14 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                        <?php
+                            $count++;
+
+                        ?>
+
+
+
 
                         @endforeach
                     </div>
