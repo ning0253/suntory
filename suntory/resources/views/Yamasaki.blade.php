@@ -157,16 +157,21 @@
         <div class="banner">
             <div class="container">
                 <div class="row">
+
+                    @foreach ($banners as $banner)
                     <div class="col-sm d-flex justify-content-center align-items-center">
                         <div class="banner-title">
-                            <img src="./img/top_logo.png" alt="" />
+                        <img src="{{$banner->img}}" alt="" />
                         </div>
                     </div>
-                    <div class="col-sm  d-flex justify-content-center align-items-center">
+                    @endforeach
+
+
+                    {{-- <div class="col-sm  d-flex justify-content-center align-items-center">
                         <div class="banner-img">
                             <img src="./img/keyvisual.jpg.png" alt="" />
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -224,14 +229,14 @@
                 <div data-aos="fade-up-left" data-aos-duration="1000">
                     <div class="attitude-content">
 
+                        <?php
+                         $i=0;
+                        ?>
 
                         @foreach ($attitudes as $attitude)
                         <?php
-                            $count = 0;
-
+                            if($i%2 == 0){
                         ?>
-                        @if ($count%2 == 0)
-
                         <div class="content-one d-flex flex-wrap">
                             <div class="col-lg-5 col-12">
                                 <div class="title">
@@ -248,8 +253,10 @@
                                 <img class="img-fluid" src="./img/yam_hisimg00.jpg" alt="" srcset="" />
                             </div>
                         </div>
+                        <?php
+                            } else{
+                        ?>
 
-                        @else
                         <div data-aos="fade-up-right" data-aos-duration="1000">
                             <div class="content-two d-flex flex-wrap">
                                 <div class="col-lg-6 col-12">
@@ -268,14 +275,13 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
                         <?php
-                            $count++;
-
+                            }
                         ?>
 
-
-
+                        <?php
+                            $i++;
+                        ?>
 
                         @endforeach
                     </div>
@@ -410,47 +416,59 @@
                 </div>
 
                 <div id="timeline">
+                    <?php
+                        $i=0;
+                    ?>
+                    @foreach ($sures as $sure)
+
+                    <?php
+                        if($i%2 == 0){
+                    ?>
+
                     <div class="timeline-block">
                         <div class="timeline-year right" data-anime="scroll">
-                            <strong>2001</strong>
+                        <strong>{{$sure->title}}</strong>
                         </div>
                         <!-- timeline-year -->
                         <div class="timeline-content" data-anime-left="scroll-left">
                             <p>
-                                Em Alagoas, a percepção do desempenho de estudantes é foco de
-                                políticas públicas desde 2001, quando o
-                                <strong>Sistema de Avaliação Educacional de Alagoas (SAVEAL) </strong>é implementado,
-                                para diagnóstico em leitura e matemática da
-                                4ª série do ensino fundamental, com o objetivo de subsidiar o
-                                estado e os municípios alagoanos na (re)formulação de ações as
-                                quais permitissem a reorientação da prática docente e, por
-                                conseguinte, da formação de estudantes.
+                                {{$sure->award}}
                             </p>
                         </div>
                         <!-- timeline-content -->
                     </div>
+                    <?php
+                        } else{
+                    ?>
                     <!-- timeline-block -->
 
                     <div class="timeline-block">
                         <div class="timeline-year left" data-anime="scroll">
-                            <strong>2003</strong>
+                            <strong>{{$sure->title}}</strong>
                         </div>
                         <!-- timeline-year -->
                         <div class="timeline-content" data-anime-right="scroll-right">
                             <p>
-                                Em 2003, o <strong>SAVEAL</strong> incorpora a avaliação da 8ª
-                                série do ensino fundamental e do 3º ano do ensino médio.
+                                {{$sure->award}}
                             </p>
                         </div>
                         <!-- timeline-content -->
                     </div>
+                        <?php
+                            }
+                        ?>
+
+                        <?php
+                            $i++;
+                        ?>
+                    @endforeach
+
                     <!-- timeline-block -->
 
-                    <div class="timeline-block">
+                    {{-- <div class="timeline-block">
                         <div class="timeline-year right" data-anime="scroll">
                             <strong>2005</strong>
                         </div>
-                        <!-- timeline-year -->
                         <div class="timeline-content" data-anime-left="scroll-left">
                             <p>
                                 Em 2005, de modo complementar à Prova Brasil, o
@@ -461,15 +479,12 @@
                                 escolaridade integram o Sistema.
                             </p>
                         </div>
-                        <!-- timeline-content -->
                     </div>
-                    <!-- timeline-block -->
 
                     <div class="timeline-block">
                         <div class="timeline-year left" data-anime="scroll">
                             <strong>2011</strong>
                         </div>
-                        <!-- timeline-year -->
                         <div class="timeline-content" data-anime-right="scroll-right">
                             <p>
                                 Em 2011, o <strong>SAVEAL</strong> repete a observação dos
@@ -477,9 +492,7 @@
                                 da rede pública estadual.
                             </p>
                         </div>
-                        <!-- timeline-content -->
-                    </div>
-                    <!-- timeline-block -->
+                    </div> --}}
                 </div>
                 <!-- timeline -->
             </div>
