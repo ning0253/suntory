@@ -18,7 +18,7 @@
                     <td>{{orderfinish.dealer_address}}</td>
                     <td>{{orderfinish.payment_status}}</td>
                     <td>{{orderfinish.totalPrice}}</td>
-                    <td><button class="btn btn-dark" data-toggle="collapse" data-target="#collapseExample" >詳細</button></td>
+                    <td><button class="btn btn-dark" data-toggle="collapse" data-target="#collapseExample">詳細</button></td>
                 </tr>
             </tbody>
         </table>
@@ -35,15 +35,15 @@
                     </div>
                     <div class="Cart__product" v-for="(item,index) in prodcut" :key="index">
 
-                            <div class="Cart__productGrid Cart__productImg">
-                                <img :src="item.product[0].img" alt="" srcset="" class="img-fluid">
-                            </div>
-                            <div class="Cart__productGrid Cart__productTitle">
-                                {{item.product[0].title}}
-                            </div>
-                            <div class="Cart__productGrid Cart__productPrice">${{item.price}}</div>
-                            <div class="Cart__productGrid Cart__productQuantity">{{item.qty}}</div>
-                            <div class="Cart__productGrid Cart__productTotal">{{item.price*item.qty}}</div>
+                        <div class="Cart__productGrid">
+                            <img :src="item.product[0].img" alt="" srcset="" class="img-fluid">
+                        </div>
+                        <div class="Cart__productGrid Cart__productTitle">
+                            {{item.product[0].title}}
+                        </div>
+                        <div class="Cart__productGrid Cart__productPrice">${{item.price}}</div>
+                        <div class="Cart__productGrid Cart__productQuantity">{{item.qty}}</div>
+                        <div class="Cart__productGrid Cart__productTotal">{{item.price*item.qty}}</div>
                     </div>
                 </div>
             </div>
@@ -56,27 +56,30 @@
 export default {
     props: ['orderMessage', 'finishOrder'],
     mounted() {
-        if(this.message){
-            alert(this.message)
+        if (this.message) {
+            Swal.fire({
+                icon: "success",
+                title: this.message,
+                timer: 1500
+            });
         }
-
     },
     created() {
         axios
-                .post("/admin/productdata", { id: this.orderfinish.id })//訂單詳細
-                .then(res => {
-                    for (var i = 0; i < res.data.length; i++) {
-                        this.prodcut.push(res.data[i])
-                        console.log(res.data);
+            .post("/admin/productdata", { id: this.orderfinish.id })//訂單詳細
+            .then(res => {
+                for (var i = 0; i < res.data.length; i++) {
+                    this.prodcut.push(res.data[i])
+                    console.log(res.data);
 
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
     },
-    computed:{
+    computed: {
         countQuantity(data) {
 
             return data;

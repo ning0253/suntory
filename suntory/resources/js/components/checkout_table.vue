@@ -9,7 +9,7 @@
 
             </div>
             <div class="Cart__product" v-for="(item,index) in data" :key="index">
-                <div class="Cart__productGrid Cart__productImg">
+                <div class="Cart__productGrid">
                     <img :src="item.attributes" alt="" srcset="" class="img-fluid">
                 </div>
                 <div class="Cart__productGrid Cart__productTitle">
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 

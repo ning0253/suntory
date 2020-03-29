@@ -20,7 +20,7 @@
     grid-template-columns: 2fr 7fr 3fr 3fr 3fr ;
     grid-gap: 2px;
     margin-bottom: 2px;
-    height: 70px;
+    /* height: 70px; */
   }
 
   .Cart__productGrid {

@@ -19,7 +19,7 @@ class CreateOrders extends Migration
             $table->string('Recipient_name');
             $table->string('Recipient_phone');
             $table->string('dealer_address');
-            $table->string('payment_status');
+            $table->string('payment_status')->default('未付款');
             $table->string('totalPrice');
             $table->timestamps();
         });
