@@ -161,17 +161,17 @@
                 <br>是日本單一麥芽威士忌的啟示。</p>
         </div>
         @foreach ($store as $item)
-            <div class="story_box ">
-                <div class=" d-flex align-items-center story_text">
-                    <div class="story_title">
-                        <h1>白州的故事 <span id="story_tag"></span></h1>
+        <div class="story_box ">
+            <div class=" d-flex align-items-center story_text">
+                <div class="story_title">
+                    <h1>白州的故事 <span id="story_tag"></span></h1>
                     {!! $item->content!!}
-                    </div>
-                </div>
-                <div class="img1  " data-aos="fade-left" data-aos-once="true" data-aos-offset="300" data-aos-duration="700"
-            data-aos-easing="ease-in-sine" style="background-image: url('{{$item->img}}')">
                 </div>
             </div>
+            <div class="img1  " data-aos="fade-left" data-aos-once="true" data-aos-offset="300" data-aos-duration="700"
+                data-aos-easing="ease-in-sine" style="background-image: url('{{$item->img}}')">
+            </div>
+        </div>
         @endforeach
 
 
@@ -221,23 +221,35 @@
             </div>
         </div>
 
+        <div class="manner_box ">
+            @foreach ($attitude as $item)
 
-        <div class="distillery_box">
+            <div class="img2" data-aos="fade-right" data-aos-once="true" data-aos-offset="300" data-aos-duration="1000"
+        data-aos-easing="ease-in-sine" style="background-image: url('{{$item->img}}')"></div>
             <div class=" d-flex align-items-center story_text">
                 <div class="story_title">
-                    <h1>森の蒸溜所 <span id="distillery_tag"></span></h1>
-                    <p>世界上罕見的森林釀酒廠<br>
-                        南阿爾卑斯山的山麓小丘。<br>
-                        被海拔約700米的清澈大氣所包圍，<br>
-                        約有820,000平方米的廣闊森林。<br>
-                        白州釀酒廠在適應季節自然和各種生物的同時，<br>
-                        還從各種自然中受益，生產威士忌。<br>
-                        清澈的水和自然空氣。缺少任何一種，<br>
-                        白書的氣味和味道都不會誕生。 </p>
+                    <h1>{{$item->title}} <span id="manner_tag"></span></h1>
+                    <p>{!!$item->content!!}</p>
                 </div>
             </div>
-            <div class="img3" data-aos="fade-left" data-aos-once="true" data-aos-offset="300" data-aos-duration="1000"
-                data-aos-easing="ease-in-sine">></div>
+            @endforeach
+
+        </div>
+
+
+        <div class="distillery_box">
+            @foreach ($method as $item)
+                <div class=" d-flex align-items-center story_text">
+                    <div class="story_title">
+                    <h1>{{$item->title}}<span id="distillery_tag"></span></h1>
+                        <p>{!!$item->content!!}</p>
+                    </div>
+                </div>
+                <div class="img3" data-aos="fade-left" data-aos-once="true" data-aos-offset="300" data-aos-duration="1000"
+                    data-aos-easing="ease-in-sine"style="background-image: url('{{$item->img}}')">
+                </div>
+            @endforeach
+
         </div>
 
         <div class="container">
@@ -252,6 +264,41 @@
         <section class="container">
 
             <div class="row active-with-click d-flex justify-content-center">
+                @foreach ($product as $item=>$value)
+
+                <div class="col-xl-4 col-md-6 col-sm-12 ">
+                    <article class="material-card Light-Green">
+                        <h2>
+                            {{$value->title}}
+                        </h2>
+                        <div class="mc-content">
+                            <div class="img-container">
+                                <img class="img-responsive card_img_style" src="./img/img_04.jpg">
+                                <div class="mask"></div>
+                                <img class="liquor" src="{{$value->img}}" alt="">
+                                <img class="Medals" src="./img/awards_swsc_2015.png" alt="">
+
+                            </div>
+                            <div class="mc-description">
+                                @foreach ($value->sure as $item)
+                                    {{$item->year}}{{$value->title}}{{$item->contest}}<br>
+                                @endforeach
+                            </div>
+                        </div>
+                        <a class="mc-btn-action">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <div class="mc-footer">
+                            <h4>
+                                Social
+                            </h4>
+                            <a class="fa fa-fw fa-facebook"></a>
+                            <a class="fa fa-fw fa-twitter"></a>
+                            <a class="fa fa-fw fa-google-plus"></a>
+                        </div>
+                    </article>
+                </div>
+                @endforeach
                 <div class="col-xl-4 col-md-6 col-sm-12 ">
                     <article class="material-card Light-Green">
                         <h2>
@@ -363,8 +410,6 @@
                         </div>
                     </article>
                 </div>
-
-
             </div>
         </section>
 
@@ -431,29 +476,29 @@
                 <div class="row d-flex align-items-center padbtm-100 " data-aos="fade-up" data-aos-once="true"
                     data-aos-offset="300" data-aos-duration="900">
                     @foreach ($product as $item)
-
-                    @endforeach
-                    <div class="prod1 col-xl-7 col-lg-6 col-md-5 col-sm-12 d-flex justify-content-center">
-                    <img src="{{$item->img}}" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-xl-5 col-lg-6 col-md-7 col-sm-12 ">
-                        <div class="prod1_title  row">
-                            <h1>白州&thinsp;|&thinsp;<span id="prod1_tag"></span></h1>
-                            <h5>THE<br>HAKUSHU</h5>
+                        <div class="prod1 col-xl-7 col-lg-6 col-md-5 col-sm-12 d-flex justify-content-center">
+                            <img src="{{$item->img}}" alt="" class="img-fluid">
                         </div>
-                        <div class="prod1_min_title">
-                            <h5>新鮮的氣味，像森林中的幼葉淡淡的味道。</h5>
-                        </div>
-                        <div class="prod1_text">
+                        <div class="col-xl-5 col-lg-6 col-md-7 col-sm-12 ">
+                            <div class="prod1_title  row">
+                                <h1>白州&thinsp;|&thinsp;<span id="prod1_tag"></span></h1>
+                                <h5>THE<br>HAKUSHU</h5>
+                            </div>
+                            <div class="prod1_min_title">
+                                <h5>新鮮的氣味，像森林中的幼葉淡淡的味道。</h5>
+                            </div>
+                            <div class="prod1_text">
                                 {!!$item->content!!}
-                            <p>{{$item->color}}</p>
-                            <p>{{$item->aroma}}</p>
-                            <p>{{$item->body}}</p>
-                            <p>{{$item->aftertaste}}</p>
-                            <a href="#" class="add-to-cart">立即購買</a>
-                        </div>
+                                <p>{{$item->color}}</p>
+                                <p>{{$item->aroma}}</p>
+                                <p>{{$item->body}}</p>
+                                <p>{{$item->aftertaste}}</p>
+                                <a href="#" class="add-to-cart">立即購買</a>
+                            </div>
 
-                    </div>
+                        </div>
+                    @endforeach
+
                 </div>
                 <div class="row d-flex align-items-center padbtm-100 " data-aos="fade-up" data-aos-once="true"
                     data-aos-offset="300" data-aos-duration="900">

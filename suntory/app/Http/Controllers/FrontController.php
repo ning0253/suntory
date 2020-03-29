@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\LiqueurAttitude;
+use App\LiqueurMethod;
 use App\Order;
 use Carbon\Carbon;
 use App\OrderDetail;
 use App\LiqueurProduct;
 use App\LiqueurStory;
+use App\LiqueurSure;
 use Darryldecode\Cart\Cart;
 use TsaiYiHua\ECPay\Checkout;
 use Illuminate\Http\Request;
@@ -135,8 +138,11 @@ class FrontController extends Controller
     //白州頁面
     public function hak_his()
     {
-        $product = LiqueurProduct::where('liqueur_id',3)->get();
+
+        $product = LiqueurProduct::with('sure')->where('liqueur_id',3)->get();
         $store = LiqueurStory::where('liqueur_id',3)->get();
-        return view('hak_his',compact('product','store'));
+        $attitude = LiqueurAttitude::where('liqueur_id',3)->get();
+        $method = LiqueurMethod::where('liqueur_id',3)->get();
+        return view('hak_his',compact('product','store','attitude','method'));
     }
 }

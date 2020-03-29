@@ -42,4 +42,8 @@ class LiqueurProduct extends Model
         return $this->belongsTo('App\Liqueur', 'liqueur_id', 'id')->orderBy('sort', 'desc');
     }
 
+    public function sure()
+    {
+        return $this->hasMany('App\LiqueurSure', 'liqueur_product_id', 'id');
+    }
 }
