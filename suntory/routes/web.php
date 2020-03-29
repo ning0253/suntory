@@ -15,7 +15,7 @@
 //     return view('Yamasaki');
 // });
 
-Route::get('/', 'FrontController@Yamasaki');
+Route::get('/Yamasaki/{id}', 'FrontController@Yamasaki');
 
 Auth::routes();
 
