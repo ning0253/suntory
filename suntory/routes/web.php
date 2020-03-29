@@ -12,8 +12,10 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/hak_his', 'FrontController@hak_his');//白州頁面
 Route::get('/product_list', 'FrontController@product_list');//購物頁面
 
 Route::get('/checkout', 'FrontController@checkout');//確認訂單頁面

@@ -6,6 +6,7 @@ use App\Order;
 use Carbon\Carbon;
 use App\OrderDetail;
 use App\LiqueurProduct;
+use App\LiqueurStory;
 use Darryldecode\Cart\Cart;
 use TsaiYiHua\ECPay\Checkout;
 use Illuminate\Http\Request;
@@ -130,5 +131,12 @@ class FrontController extends Controller
                 return view('fronts.orderfinish',compact('message','new_order'));
             }
         }
+    }
+    //白州頁面
+    public function hak_his()
+    {
+        $product = LiqueurProduct::where('liqueur_id',3)->get();
+        $store = LiqueurStory::where('liqueur_id',3)->get();
+        return view('hak_his',compact('product','store'));
     }
 }
