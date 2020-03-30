@@ -89,7 +89,7 @@
             </div>
 
             <v-card>
-                <v-card-title class="v-toolbar v-toolbar--dense v-toolbar--flat grey lighten-2">
+                <v-card-title class="v-toolbar v-toolbar--dense v-toolbar--flat grey lighten-1">
                     <div class="d-flex justify-content-end mr-3">
                         <v-btn class="mx-2" fab dark small color="blue" data-toggle="modal" data-target="#staticBackdrop" @click="clear()">
                             新增

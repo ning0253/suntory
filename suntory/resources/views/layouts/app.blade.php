@@ -68,14 +68,14 @@
                                 <a class="dropdown-item" href="/admin/liqueurAttitude">
                                     酒的態度
                                 </a>
-                                <a class="dropdown-item" href="/admin/liqueurSure">
-                                    酒的肯定
-                                </a>
                                 <a class="dropdown-item" href="/admin/liqueurMethod">
                                     酒的蒸餾廠
                                 </a>
                                 <a class="dropdown-item" href="/admin/liqueurProduct">
                                     酒的系列
+                                </a>
+                                <a class="dropdown-item" href="/admin/liqueurSure">
+                                    酒的肯定
                                 </a>
                             </div>
                         </li>
