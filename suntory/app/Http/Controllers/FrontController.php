@@ -21,14 +21,14 @@ class FrontController extends Controller
     }
 
 
-    public function Yamasaki($id)
+    public function Yamasaki()
     {
-        $banners = LiqueurImg::find($id)->orderBy('sort','desc')->get();
-        $stories = LiqueurStory::find($id)->orderBy('sort','desc')->get();
-        $attitudes = LiqueurAttitude::find($id)->orderBy('sort','desc')->get();
-        $products = LiqueurProduct::find($id)->orderBy('sort','desc')->get();
-        $methods = LiqueurMethod::find($id)->orderBy('sort','desc')->get();
-        $sures = LiqueurSure::find($id)->orderBy('sort','desc')->get();
+        $banners = LiqueurImg::find(1)->orderBy('sort','desc')->get();
+        $stories = LiqueurStory::find(1)->orderBy('sort','desc')->get();
+        $attitudes = LiqueurAttitude::find(1)->orderBy('sort','desc')->get();
+        $products = LiqueurProduct::find(1)->orderBy('sort','desc')->get();
+        $methods = LiqueurMethod::find(1)->orderBy('sort','desc')->get();
+        $sures = LiqueurSure::find(1)->orderBy('sort','desc')->get();
 
 
 

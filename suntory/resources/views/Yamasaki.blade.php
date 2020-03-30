@@ -250,7 +250,7 @@
                             </div>
                             <div class="col-lg-1"></div>
                             <div class="col-lg-6 col-12">
-                                <img class="img-fluid" src="./img/yam_hisimg00.jpg" alt="" srcset="" />
+                                <img class="img-fluid" src="{{$attitude->img}}" alt="" srcset="" />
                             </div>
                         </div>
                         <?php
@@ -260,7 +260,7 @@
                         <div data-aos="fade-up-right" data-aos-duration="1000">
                             <div class="content-two d-flex flex-wrap">
                                 <div class="col-lg-6 col-12">
-                                    <img src="./img/yam_hisimg02.jpg" class="img-fluid" alt="" srcset="" />
+                                    <img src="{{$attitude->img}}" class="img-fluid" alt="" srcset="" />
                                 </div>
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-5 col-12">
