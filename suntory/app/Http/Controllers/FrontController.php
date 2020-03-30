@@ -170,4 +170,10 @@ class FrontController extends Controller
         // dd($sure_data);
         return view('hibiki', compact('nav_data', 'story_data', 'attitude_data', 'sure_data', 'product_data'));
     }
+
+
+    public function Dealer()
+    {
+        return view('fronts.Dealer');
+    }
 }

@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.nav')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>響 HIBIKI</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/hibiki.css')}}">
-    <link rel="stylesheet" href="{{asset('css/hover.css')}}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
+@section('title')
+響 HIBIKI
+@endsection
 
-<body>
+@section('content')
     <a href="#" class="cart"><span></span></a>
 
     <header class="row sticky-top" style="margin: 0;">
@@ -366,6 +356,8 @@
         });
 
     </script>
-</body>
+
+@endsection
+
 
 </html>
