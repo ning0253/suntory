@@ -2110,20 +2110,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   },
   created: function created() {
     var _this = this;
 
     //獲取酒的種類
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_kind').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurProduct_kind").then(function (response) {
       return _this.input.liqueur_kind = response.data;
-    })["catch"](function (error) {}); //獲取酒的產品
+    })["catch"](function (error) {
+      console.log(error);
+    }); //獲取酒的產品
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_text').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurProduct_text").then(function (response) {
       _this.product_data = response.data;
 
       _this.upload();
@@ -2137,19 +2229,19 @@ __webpack_require__.r(__webpack_exports__);
       input: {
         newimg: null,
         oldimg: null,
-        liqueur_id: '',
+        liqueur_id: "",
         liqueur_kind: null,
-        title: '',
-        content: '',
-        capacity: '',
-        density: '',
-        color: '',
-        aroma: '',
-        body: '',
-        taste: '',
-        aftertaste: '',
-        price: '',
-        note: '',
+        title: "",
+        content: "",
+        capacity: "",
+        density: "",
+        color: "",
+        aroma: "",
+        body: "",
+        taste: "",
+        aftertaste: "",
+        price: "",
+        note: "",
         sort: 0
       }
     };
@@ -2159,7 +2251,7 @@ __webpack_require__.r(__webpack_exports__);
     store: function store() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurProduct", {
         liqueur_id: this.input.liqueur_id,
         img: this.input.oldimg,
         content: this.input.content,
@@ -2174,19 +2266,22 @@ __webpack_require__.r(__webpack_exports__);
         price: this.input.price,
         note: this.input.note
       }).then(function (res) {
-        console.log(res);
+        _this2.clear();
+
+        Swal.fire("Deleted!", "Your file has been deleted.", "OK").then(function (result) {
+          $("#add").click();
+        });
 
         _this2.product_data.push(res.data);
       })["catch"](function (error) {
         console.log(error);
       });
-      this.clear(); //alert('成功');
     },
     //當頁面讀取完成後執行datatable
     upload: function upload() {
       $(document).ready(function () {
-        $('#example').DataTable({
-          "order": [1, 'desc']
+        $("#example").DataTable({
+          order: [1, "desc"]
         });
       });
     },
@@ -2197,14 +2292,14 @@ __webpack_require__.r(__webpack_exports__);
       if (this.input.oldimg == null) {
         this.input.newimg = event.target.files[0];
         var fd = new FormData();
-        fd.append('file', this.input.newimg, this.input.newimg.name);
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_upload_img', fd).then(function (response) {
+        fd.append("file", this.input.newimg, this.input.newimg.name);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurProduct_upload_img", fd).then(function (response) {
           return _this3.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_delete_img', {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurProduct_delete_img", {
           file_link: this.input.oldimg
         }).then(function (response) {
           console.log(response);
@@ -2215,9 +2310,9 @@ __webpack_require__.r(__webpack_exports__);
 
         var _fd = new FormData();
 
-        _fd.append('file', this.input.newimg, this.input.newimg.name);
+        _fd.append("file", this.input.newimg, this.input.newimg.name);
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurProduct_upload_img', _fd).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurProduct_upload_img", _fd).then(function (response) {
           return _this3.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
@@ -2226,7 +2321,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     //清除表單資料
     clear: function clear() {
-      this.input.newimg = null, this.input.oldimg = '', this.content = '', this.title = '', this.id = '', this.capacity = '', this.density = '', this.color = '', this.aroma = '', this.body = '', this.taste = '', this.aftertaste = '', this.price = '', this.note = '', $('#img').val('');
+      this.input.newimg = null, this.input.oldimg = "", this.input.content = "", this.input.title = "", this.input.liqueur_id = "", this.input.capacity = "", this.input.density = "", this.input.color = "", this.input.aroma = "", this.input.body = "", this.input.taste = "", this.input.aftertaste = "", this.input.price = "", this.input.note = "", $("#img").val("");
     }
   }
 });
@@ -2438,22 +2533,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   },
   created: function created() {
     var _this = this;
 
     //獲取酒的種類
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_kind').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_kind").then(function (response) {
       return _this.input.liqueur_kind = response.data;
     })["catch"](function (error) {
       console.log(error);
     }); //獲取酒的故事
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_text').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_text").then(function (response) {
       _this.liqueur_text = response.data;
 
       _this.upload();
@@ -2467,10 +2614,10 @@ __webpack_require__.r(__webpack_exports__);
       input: {
         newimg: null,
         oldimg: null,
-        content: '',
-        title: '',
+        content: "",
+        title: "",
         liqueur_kind: null,
-        id: '',
+        id: "",
         sort: 0,
         edit: null,
         index: null
@@ -2479,7 +2626,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     //按下submit
-    store: function store() {
+    store: function store(index) {
       var _this2 = this;
 
       if (this.input.edit == null) {
@@ -2488,44 +2635,49 @@ __webpack_require__.r(__webpack_exports__);
             title = _this$input.title,
             img = _this$input.img,
             id = _this$input.id;
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory', {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory", {
           liqueur_id: this.input.id,
           img: this.input.oldimg,
           content: this.input.content,
           title: this.input.title
         }).then(function (res) {
+          _this2.clear();
+
+          _this2.sweetalert(true);
+
           _this2.liqueur_text.push(res.data);
         })["catch"](function (error) {
           console.log(error);
         });
-        this.clear();
-        alert('成功');
+        this.clear(index);
+        alert("成功");
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/admin/liqueurStory/".concat(this.input.edit), this.input).then(function (res) {
-          console.log(res.data);
-          console.log('aa'); // let target = this.liqueur_text[this.input.index]
-          // console.log('olde');
-          // console.log(target)
-          // // target.content = res.data.content
-          // // target.img = res.data.img
+        console.log(index);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/admin/liqueurStory/".concat(this.input.edit), {
+          liqueur_id: this.input.id,
+          img: this.input.oldimg,
+          content: this.input.content,
+          title: this.input.title,
+          sort: this.input.sort
+        }).then(function (res) {
+          _this2.sweetalert(false);
 
-          _this2.liqueur_text[_this2.input.index].content = res.data.content;
-          _this2.liqueur_text[_this2.input.index].img = res.data.img;
-          _this2.liqueur_text[_this2.input.index].title = res.data.title;
-          _this2.liqueur_text[_this2.input.index].sort = res.data.sort;
-          _this2.liqueur_text[_this2.input.index] = res.data; // console.log('new')
+          _this2.clear(); //兩個方法都可以重新渲染
+
+
+          _this2.$set(_this2.liqueur_text, index, res.data); // this.liqueur_text.splice(index,1, res.data)
+
         })["catch"](function (error) {
           console.log(error);
         });
-        this.clear();
-        alert('成功');
+        alert("成功");
       }
     },
     //當頁面讀取完成後執行datatable
     upload: function upload() {
       $(document).ready(function () {
-        $('#example').DataTable({
-          "order": [1, 'desc']
+        $("#example").DataTable({
+          order: [1, "desc"]
         });
       });
     },
@@ -2537,14 +2689,14 @@ __webpack_require__.r(__webpack_exports__);
       var target = this.liqueur_text[index];
 
       if (confirm("\u662F\u5426\u522A\u9664?".concat(target.title))) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/admin/liqueurStory/' + target.id).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/admin/liqueurStory/" + target.id).then(function (res) {
           _this3.liqueur_text.splice(index, 1);
         })["catch"](function (err) {
           console.log(err);
         });
       }
     },
-    //編輯
+    //讀取編輯資料
     editdata: function editdata(index) {
       var _this4 = this;
 
@@ -2564,7 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.input.id = liqueur_id;
         _this4.input.edit = id;
         _this4.input.index = index;
-        _this4.input.sort = sort;
+        _this4.input.sort = sort; // console.log(res.data)
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2576,14 +2728,14 @@ __webpack_require__.r(__webpack_exports__);
       if (this.input.oldimg == null) {
         this.input.newimg = event.target.files[0];
         var fd = new FormData();
-        fd.append('file', this.input.newimg, this.input.newimg.name);
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_upload_img', fd).then(function (response) {
+        fd.append("file", this.input.newimg, this.input.newimg.name);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_upload_img", fd).then(function (response) {
           return _this5.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_delete_img', {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_delete_img", {
           file_link: this.input.oldimg
         }).then(function (response) {
           console.log(response);
@@ -2594,9 +2746,9 @@ __webpack_require__.r(__webpack_exports__);
 
         var _fd = new FormData();
 
-        _fd.append('file', this.input.newimg, this.input.newimg.name);
+        _fd.append("file", this.input.newimg, this.input.newimg.name);
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/liqueurStory_upload_img', _fd).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/admin/liqueurStory_upload_img", _fd).then(function (response) {
           return _this5.input.oldimg = response.data;
         })["catch"](function (error) {
           console.log(error);
@@ -2605,8 +2757,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     //清除表單資料
     clear: function clear() {
-      this.input.newimg = null, this.input.oldimg = '', this.input.content = '', this.input.title = '', this.input.id = '', this.input.sort = '';
-      $('#img').val('');
+      console.log("aa");
+      this.input.newimg = null, this.input.oldimg = "", this.input.content = "", this.input.title = "", this.input.id = "", this.input.sort = "";
+      $("#img").val("");
+    },
+    sweetalert: function sweetalert(isAdd) {
+      console.log(isAdd);
+      Swal.fire("完成!", "資料已儲存", "OK").then(function (result) {
+        if (isAdd) {
+          $("#add").click();
+        }
+      });
     }
   }
 });
@@ -38177,7 +38338,7 @@ var render = function() {
       "a",
       {
         staticClass: "btn btn-success",
-        attrs: { href: "#create", "data-toggle": "collapse" }
+        attrs: { href: "#create", id: "add", "data-toggle": "collapse" }
       },
       [_vm._v("新增")]
     ),
@@ -38206,7 +38367,7 @@ var render = function() {
             _c("div", { staticClass: "form-group" }, [
               _c("div", { staticClass: "col-4" }, [
                 _c("img", {
-                  staticClass: "img-fluid ",
+                  staticClass: "img-fluid",
                   attrs: { src: _vm.input.oldimg, alt: "", srcset: "" }
                 })
               ]),
@@ -38215,7 +38376,13 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "file", id: "img", name: "img", value: "" },
+                attrs: {
+                  required: "",
+                  type: "file",
+                  id: "img",
+                  name: "img",
+                  value: ""
+                },
                 on: {
                   change: function($event) {
                     return _vm.processFile($event)
@@ -38237,7 +38404,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "title", name: "title" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "title",
+                  name: "title"
+                },
                 domProps: { value: _vm.input.title },
                 on: {
                   input: function($event) {
@@ -38289,13 +38461,17 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.input.liqueur_kind, function(item) {
-                  return _c("option", { domProps: { value: item.id } }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(item.name) +
-                        "\n                        "
-                    )
-                  ])
+                  return _c(
+                    "option",
+                    { key: item.id, domProps: { value: item.id } },
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(item.name) +
+                          "\n                        "
+                      )
+                    ]
+                  )
                 }),
                 0
               )
@@ -38314,7 +38490,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "content", name: "content" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "content",
+                  name: "content"
+                },
                 domProps: { value: _vm.input.content },
                 on: {
                   input: function($event) {
@@ -38340,7 +38521,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "capacity", name: "capacity" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "capacity",
+                  name: "capacity"
+                },
                 domProps: { value: _vm.input.capacity },
                 on: {
                   input: function($event) {
@@ -38366,7 +38552,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "density", name: "density" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "density",
+                  name: "density"
+                },
                 domProps: { value: _vm.input.density },
                 on: {
                   input: function($event) {
@@ -38392,7 +38583,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "color", name: "color" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "color",
+                  name: "color"
+                },
                 domProps: { value: _vm.input.color },
                 on: {
                   input: function($event) {
@@ -38418,7 +38614,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "aroma", name: "aroma" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "aroma",
+                  name: "aroma"
+                },
                 domProps: { value: _vm.input.aroma },
                 on: {
                   input: function($event) {
@@ -38444,7 +38645,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "body", name: "body" },
+                attrs: { required: "", type: "text", id: "body", name: "body" },
                 domProps: { value: _vm.input.body },
                 on: {
                   input: function($event) {
@@ -38470,7 +38671,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "taste", name: "taste" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "taste",
+                  name: "taste"
+                },
                 domProps: { value: _vm.input.taste },
                 on: {
                   input: function($event) {
@@ -38496,7 +38702,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "aftertaste", name: "aftertaste" },
+                attrs: {
+                  required: "",
+                  type: "text",
+                  id: "aftertaste",
+                  name: "aftertaste"
+                },
                 domProps: { value: _vm.input.aftertaste },
                 on: {
                   input: function($event) {
@@ -38522,7 +38733,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "number", id: "price", name: "price" },
+                attrs: {
+                  required: "",
+                  type: "number",
+                  id: "price",
+                  name: "price"
+                },
                 domProps: { value: _vm.input.price },
                 on: {
                   input: function($event) {
@@ -38565,13 +38781,9 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-primary",
-                attrs: {
-                  type: "submit",
-                  "data-toggle": "collapse",
-                  "data-target": "#create"
-                }
+                attrs: { type: "submit", "data-target": "#create" }
               },
-              [_vm._v("Submit")]
+              [_vm._v("\n                    Submit\n                ")]
             )
           ]
         )
@@ -38581,7 +38793,7 @@ var render = function() {
     _c(
       "table",
       {
-        staticClass: "table table-striped table-bordered ",
+        staticClass: "table table-striped table-bordered",
         staticStyle: { width: "100%" },
         attrs: { id: "example" }
       },
@@ -38591,8 +38803,8 @@ var render = function() {
         _c(
           "tbody",
           { staticClass: "tbody" },
-          _vm._l(_vm.product_data, function(item, index) {
-            return _c("tr", { key: index }, [
+          _vm._l(_vm.product_data, function(item) {
+            return _c("tr", { key: item.id }, [
               _c("td", [
                 _c("img", {
                   staticClass: "img-fluid",
@@ -38600,113 +38812,33 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.liqueur.name) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.liqueur.name))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.title) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.title))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.content) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.content))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.capacity) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.capacity))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.density) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.density))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.color) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.color))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.aroma) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.aroma))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.body) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.body))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.taste) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.taste))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.aftertaste) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.aftertaste))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.price) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.price))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.note) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.note))]),
               _vm._v(" "),
               item.sort == null
-                ? _c("td", [
-                    _vm._v("\n                    0\n                ")
-                  ])
-                : _c("td", [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(item.sort) +
-                        "\n                "
-                    )
-                  ]),
+                ? _c("td", [_vm._v("0")])
+                : _c("td", [_vm._v(_vm._s(item.sort))]),
               _vm._v(" "),
               _vm._m(1, true),
               _vm._v(" "),
@@ -38780,7 +38912,7 @@ var staticRenderFns = [
           staticClass: "btn btn-danger btn-sm",
           attrs: { onclick: "show_confirm()" }
         },
-        [_vm._v("刪除")]
+        [_vm._v("\n                        刪除\n                    ")]
       )
     ])
   },
@@ -38934,7 +39066,7 @@ var render = function() {
         staticClass: "btn btn-success",
         attrs: { href: "#create", "data-toggle": "collapse" },
         on: {
-          submit: function($event) {
+          click: function($event) {
             return _vm.clear()
           }
         }
@@ -38956,7 +39088,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.store()
+                return _vm.store(_vm.input.index)
               }
             }
           },
@@ -38964,7 +39096,7 @@ var render = function() {
             _c("div", { staticClass: "form-group" }, [
               _c("div", { staticClass: "col-4" }, [
                 _c("img", {
-                  staticClass: "img-fluid ",
+                  staticClass: "img-fluid",
                   attrs: { src: _vm.input.oldimg, alt: "", srcset: "" }
                 })
               ]),
@@ -39084,11 +39216,7 @@ var render = function() {
                 },
                 _vm._l(_vm.input.liqueur_kind, function(item) {
                   return _c("option", { domProps: { value: item.id } }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(item.name) +
-                        "\n                        "
-                    )
+                    _vm._v(_vm._s(item.name))
                   ])
                 }),
                 0
@@ -39133,7 +39261,7 @@ var render = function() {
                   "data-target": "#create"
                 }
               },
-              [_vm._v("Submit")]
+              [_vm._v("\n                    Submit\n                ")]
             )
           ]
         )
@@ -39143,7 +39271,7 @@ var render = function() {
     _c(
       "table",
       {
-        staticClass: "table table-striped table-bordered ",
+        staticClass: "table table-striped table-bordered",
         staticStyle: { width: "100%" },
         attrs: { id: "example" }
       },
@@ -39162,41 +39290,15 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.name.name) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.name.name))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.title) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.title))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(item.content) +
-                    "\n                "
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.content))]),
               _vm._v(" "),
               item.sort == null
-                ? _c("td", [
-                    _vm._v("\n                    0\n                ")
-                  ])
-                : _c("td", [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(item.sort) +
-                        "\n                "
-                    )
-                  ]),
+                ? _c("td", [_vm._v("0")])
+                : _c("td", [_vm._v(_vm._s(item.sort))]),
               _vm._v(" "),
               _c("td", [
                 _c(
@@ -39223,7 +39325,11 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("刪除")]
+                  [
+                    _vm._v(
+                      "\n                        刪除\n                    "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -52071,15 +52177,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/hibiki.scss":
+/*!************************************!*\
+  !*** ./resources/sass/hibiki.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!******************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/hibiki.scss ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\user\Documents\GitHub\suntory\suntory\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\user\Documents\GitHub\suntory\suntory\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\user\Documents\GitHub\suntory\suntory\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\user\Documents\GitHub\suntory\suntory\resources\sass\hibiki.scss */"./resources/sass/hibiki.scss");
 
 
 /***/ })
