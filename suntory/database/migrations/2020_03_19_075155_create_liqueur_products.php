@@ -17,7 +17,7 @@ class CreateLiqueurProducts extends Migration
             $table->bigIncrements('id');
             $table->integer('liqueur_id');
             $table->string('img');
-            $table->string('content');
+            $table->longText('content');
             $table->string('title');
             $table->string('capacity');
             $table->string('density');

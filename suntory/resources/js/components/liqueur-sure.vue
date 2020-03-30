@@ -82,7 +82,7 @@
                         </div>
                     </template>
                     <template v-slot:item.action="{ item }">
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center my-3">
                             <v-btn class="mx-2" fab dark small color="green" @click="editdata(liqueur_text.indexOf(item))" data-toggle="modal" data-target="#staticBackdrop">
                                 編輯
                             </v-btn>

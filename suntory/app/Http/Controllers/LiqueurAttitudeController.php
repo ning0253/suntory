@@ -16,7 +16,7 @@ class LiqueurAttitudeController extends Controller
      */
     public function index()
     {
-        
+
         return view('auth.liqueur_attitude.index');
     }
 
@@ -114,13 +114,13 @@ class LiqueurAttitudeController extends Controller
                 mkdir('upload/');
             }
             //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
-            if ( ! is_dir('upload/Storyimg')) {
-                mkdir('upload/Storyimg');
+            if ( ! is_dir('upload/AttitudeImg')) {
+                mkdir('upload/AttitudeImg');
             }
-            $destination = public_path().'/upload/Storyimg/'. $filename; //change this directory
+            $destination = public_path().'/upload/AttitudeImg/'. $filename; //change this directory
             $location = $_FILES["file"]["tmp_name"];
             move_uploaded_file($location, $destination);
-            echo "/upload/Storyimg/".$filename;//change this URL
+            echo "/upload/AttitudeImg/".$filename;//change this URL
         }
         exit;
     }

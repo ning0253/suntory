@@ -17,7 +17,7 @@ class CreateLiqueurMethods extends Migration
             $table->bigIncrements('id');
             $table->integer('liqueur_id');
             $table->string('img');
-            $table->string('content');
+            $table->longText('content');
             $table->string('title');
             $table->integer('sort')->default(0);
             $table->timestamps();

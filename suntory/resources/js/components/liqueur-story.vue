@@ -80,7 +80,7 @@
                             <td class="text-center py-3" v-html="row.item.content"></td>
                             <td class="text-center py-3">{{row.item.sort}}</td>
                             <td class="py-3">
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center my-3">
                                     <v-btn class="mx-2" fab dark small color="green" @click="onButtonClick(row.index)" data-toggle="modal" data-target="#staticBackdrop">
                                         編輯
                                     </v-btn>

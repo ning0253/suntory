@@ -115,7 +115,7 @@
                         <p v-html="item.content"></p>
                     </template>
                     <template v-slot:item.action="{ item }">
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center my-3">
                             <v-btn class="mx-2" fab dark small color="green" @click="editdata(liqueur_text.indexOf(item))" data-toggle="modal" data-target="#staticBackdrop">
                                 編輯
                             </v-btn>
@@ -125,7 +125,7 @@
                         </div>
                     </template>
                     <template v-slot:expanded-item="{ headers, item }">
-                        <td :style="{ color: isDark? 'hsla(0,0%,100%,.7)':'rgba(0,0,0,0.6)' }" :colspan="headers.length">&emsp;色澤：{{ item.color }}&emsp;|&emsp;香氣：{{ item.aroma }}&emsp;|&emsp;酒體：{{ item.body }}&emsp;|&emsp;味覺：{{ item.taste }}&emsp;|&emsp;餘覺：{{ item.aftertaste }}&emsp;|&emsp;備註：{{ item.note }}</td>
+                        <td :style="{ color: isDark? 'hsla(0,0%,100%,.7)':'rgba(0,0,0,0.6)' }" :colspan="headers.length">色澤：{{ item.color }}&emsp;|&emsp;香氣：{{ item.aroma }}&emsp;|&emsp;酒體：{{ item.body }}&emsp;|&emsp;味覺：{{ item.taste }}&emsp;|&emsp;餘覺：{{ item.aftertaste }}&emsp;|&emsp;備註：{{ item.note }}</td>
                     </template>
                 </v-data-table>
             </v-card>
