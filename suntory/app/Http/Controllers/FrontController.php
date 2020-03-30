@@ -144,12 +144,13 @@ class FrontController extends Controller
     //山崎
     public function Yamasaki()
     {
-        $banners = LiqueurImg::find(1)->orderBy('sort','desc')->get();
-        $stories = LiqueurStory::find(1)->orderBy('sort','desc')->get();
-        $attitudes = LiqueurAttitude::find(1)->orderBy('sort','desc')->get();
-        $products = LiqueurProduct::find(1)->orderBy('sort','desc')->get();
-        $methods = LiqueurMethod::find(1)->orderBy('sort','desc')->get();
-        $sures = LiqueurSure::find(1)->orderBy('sort','desc')->get();
+        $id = Liqueur::where('name','山崎')->first();
+        $banners = LiqueurImg::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+        $stories = LiqueurStory::find($id->id)->orderBy('sort','desc')->get();
+        $attitudes = LiqueurAttitude::find($id->id)->orderBy('sort','desc')->get();
+        $products = LiqueurProduct::find($id->id)->orderBy('sort','desc')->get();
+        $methods = LiqueurMethod::find($id->id)->orderBy('sort','desc')->get();
+        $sures = LiqueurSure::find($id->id)->get();
 
         // dd($stories);
         return view('Yamasaki', compact('stories','attitudes','products','methods','sures','banners'));
@@ -169,7 +170,7 @@ class FrontController extends Controller
     //響讀取資料
     public function hibiki()
     {
-        $liqueurId = 3;
+        $liqueurId = 1;
         $nav_data = Liqueur::with('imgs')->find($liqueurId);
         $story_data = LiqueurStory::with('name')->where('liqueur_id', $liqueurId)->orderBy('sort', 'desc')->get();
         $attitude_data = LiqueurAttitude::with('name')->where('liqueur_id', $liqueurId)->orderBy('sort', 'desc')->get();

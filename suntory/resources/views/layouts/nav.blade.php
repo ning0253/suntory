@@ -19,24 +19,24 @@
 <body>
 
     <nav>
-        <section>
+        <section style="padding:0 0;">
 
-            <div class="d-flex flex-wrap navbar_all" style="display: block;">
+            <div class="d-flex flex-wrap navbar_all" style="display: block; background-color:white; ">
                 <div class="d-flex flex-wrap w-100">
                     <div class="container">
-                        <nav id="nav" class="navbar navbar-expand-md navbar-light">
+                        <nav id="nav1" class="navbar navbar-expand-md navbar-light">
                             <a class="navbar-brand" href="#">
                                 <img src="./img/SUNTORY_logo.svg.png" alt="" style="height: 20px;width: 119px;">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                data-target="#navbar" aria-controls="navbar"
                                 aria-expanded="false" aria-label="Toggle navigation">
                                 <div class="">
                                     <span>menu</span>
                                 </div>
                             </button>
 
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="collapse navbar-collapse" id="navbar">
                                 <ul class="navbar-nav ml-auto py-4 py-md-0">
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/hak_his">白州</a>
@@ -45,7 +45,7 @@
                                         <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">響</a>
                                     </li>
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">山崎</a>
+                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/yamasaki">山崎</a>
                                     </li>
 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
@@ -76,7 +76,7 @@
     @yield('content')
 
     <footer>
-        <section>
+        <section style="padding:0 0;">
             <div class="footer d-flex justify-content-center align-items-center">
                 <span>Copyright ©</span>
             </div>
@@ -115,22 +115,22 @@
 
 
 
-        $(window).scroll(function () {
-            var scrollVal = $(document).scrollTop()
-            var footerheight=$('.wine3-detail-bg').offset().top ;
+        // $(window).scroll(function () {
+        //     var scrollVal = $(document).scrollTop()
+        //     var footerheight=$('.wine3-detail-bg').offset().top ;
 
-            // console.log(footerheight)
-            // console.log(scrollVal)
+        //     // console.log(footerheight)
+        //     // console.log(scrollVal)
 
-            if (scrollVal > footerheight) {
-                $('.footer2').addClass('active1');
-            }
-            else {
-                $('.footer2').removeClass('active1');
+        //     if (scrollVal > footerheight) {
+        //         $('.footer2').addClass('active1');
+        //     }
+        //     else {
+        //         $('.footer2').removeClass('active1');
 
-            }
+        //     }
 
-        })
+        // })
 
 
 

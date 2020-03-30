@@ -157,21 +157,16 @@
         <div class="banner">
             <div class="container">
                 <div class="row">
-
-                    @foreach ($banners as $banner)
                     <div class="col-sm d-flex justify-content-center align-items-center">
                         <div class="banner-title">
-                        <img src="{{$banner->img}}" alt="" />
+                            <img src="./img/top_logo.png" alt="" />
                         </div>
                     </div>
-                    @endforeach
-
-
-                    {{-- <div class="col-sm  d-flex justify-content-center align-items-center">
+                    <div class="col-sm  d-flex justify-content-center align-items-center">
                         <div class="banner-img">
                             <img src="./img/keyvisual.jpg.png" alt="" />
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,7 +197,7 @@
                                     <h2>{{$story->title}}</h2>
                                 </div>
                                 <div class="small-content">
-                                    <p>{{$story->content}}</p>
+                                    {!!$story->content!!}
                                 </div>
                             </div>
                         </div>
@@ -243,9 +238,9 @@
                                 <h2>{{$attitude->title}}</h2>
                                 </div>
                                 <div class="content">
-                                    <p>
-                                        {{$attitude->content}}
-                                    </p>
+
+                                        {!!$attitude->content!!}
+
                                 </div>
                             </div>
                             <div class="col-lg-1"></div>
