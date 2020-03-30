@@ -200,15 +200,8 @@
 
 [data-anime-left].animate {
   opacity: 1;
-  -webkit-transform: translate3d(-320px, 0, 0);
-          transform: translate3d(-320px, 0, 0);
-}
-
-@media (max-width: 1170px) {
-  [data-anime-left].animate {
-    -webkit-transform: translate3d(-320px, 0, 0);
-            transform: translate3d(-320px, 0, 0);
-  }
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 }
 
 [data-anime-right] {
