@@ -12,7 +12,7 @@
                             <img :src="input.oldimg" alt srcset class="img-fluid" />
                         </div>
                         <label for="img">地圖</label>
-                        <input v-if="this.input.edit == null" required type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
+                        <input v-if="this.input.edit == null" type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
                         <input v-else type="file" class="form-control" @change="processFile($event)" id="img" name="img" value />
                     </div>
                     <div class="form-group">

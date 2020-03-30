@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/yamasaki', 'FrontController@Yamasaki');//山崎
 Route::get('/hak_his', 'FrontController@hak_his');//白州頁面
 Route::get('/hibiki', 'FrontController@hibiki');//響
+Route::get('/Dealer', 'FrontController@Dealer');//經銷商頁面
 
 Route::get('/product_list', 'FrontController@product_list');//購物頁面
 
