@@ -53,7 +53,8 @@ class LiqueurController extends Controller
             $image->img = $img;
             $image->save();
         }
-        return $liqueur;
+        $new = Liqueur::with('imgs')->find($liqueur->id);
+        return $new;
     }
 
     /**
