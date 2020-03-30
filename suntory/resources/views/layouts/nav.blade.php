@@ -49,7 +49,7 @@
                                     </li>
 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">經銷商</a>
+                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/Dealer">經銷商</a>
                                     </li>
 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
