@@ -42,7 +42,7 @@
                                         <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/hak_his">白州</a>
                                     </li>
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">響</a>
+                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/hibiki">響</a>
                                     </li>
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/yamasaki">山崎</a>
@@ -50,6 +50,9 @@
 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
                                         <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/Dealer">經銷商</a>
+                                    </li>
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
+                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="/product_list">產品列表</a>
                                     </li>
 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 md-4 d-flex">
