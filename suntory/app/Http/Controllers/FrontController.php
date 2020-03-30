@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Liqueur;
 use Carbon\Carbon;
+use App\LiqueurImg;
+use App\LiqueurSure;
 use App\OrderDetail;
 use App\LiqueurStory;
 use App\LiqueurMethod;
@@ -138,6 +140,21 @@ class FrontController extends Controller
             }
         }
     }
+
+    //山崎
+    public function Yamasaki()
+    {
+        $banners = LiqueurImg::find(1)->orderBy('sort','desc')->get();
+        $stories = LiqueurStory::find(1)->orderBy('sort','desc')->get();
+        $attitudes = LiqueurAttitude::find(1)->orderBy('sort','desc')->get();
+        $products = LiqueurProduct::find(1)->orderBy('sort','desc')->get();
+        $methods = LiqueurMethod::find(1)->orderBy('sort','desc')->get();
+        $sures = LiqueurSure::find(1)->orderBy('sort','desc')->get();
+
+        // dd($stories);
+        return view('Yamasaki', compact('stories','attitudes','products','methods','sures','banners'));
+    }
+
     //白州頁面
     public function hak_his()
     {
