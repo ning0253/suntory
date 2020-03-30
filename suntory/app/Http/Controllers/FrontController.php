@@ -185,7 +185,7 @@ class FrontController extends Controller
                             ->where('liqueurs.id', '=', $liqueurId);
                     });
             })->select('liqueur_sures.*', 'liqueur_products.title')->orderBy('year', 'desc')->get();
-        // dd($sure_data);
+
         return view('hibiki', compact('nav_data', 'story_data', 'attitude_data', 'sure_data', 'product_data'));
     }
 
