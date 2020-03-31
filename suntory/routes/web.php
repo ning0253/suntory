@@ -51,6 +51,11 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('admin');
 
+
+Route::post('admin/liqueurProduct_text', 'LiqueurProductController@liqueurProduct_text'); //獲得酒的產品資料
+// 詳細資料
+Route::post('admin/productdata', 'orderController@productdata'); //獲得訂單資料
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('liqueur', 'LiqueurController'); //酒類管理
     Route::post('liqueur_upload_img', 'LiqueurController@liqueur_upload_img'); //ajax 新增圖片
@@ -69,7 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('liqueurProduct_upload_img', 'LiqueurProductController@liqueurProduct_upload_img'); //axios上傳圖片
     Route::post('liqueurProduct_delete_img', 'LiqueurProductController@liqueurProduct_delete_img'); //axios刪除圖片
     Route::post('liqueurProduct_kind', 'LiqueurProductController@liqueurProduct_kind'); //獲得酒的種類
-    Route::post('liqueurProduct_text', 'LiqueurProductController@liqueurProduct_text'); //獲得酒的產品資料
+
     Route::post('liqueurProduct_img', 'LiqueurProductController@liqueurProduct_img');
 
     //酒類態度
@@ -106,7 +111,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('order_kind', 'orderController@order_kind'); //獲得酒的種類
     Route::post('order_text', 'orderController@order_text'); //獲得訂單資料
 
-    // 詳細資料
-    Route::post('productdata', 'orderController@productdata'); //獲得訂單資料
+
 
 });

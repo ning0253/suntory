@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('scss/style.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/hover.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/navbar.css') }}">
@@ -26,7 +26,7 @@
                 <div class="d-flex flex-wrap w-100">
                     <div class="container">
                         <nav id="nav1" class="navbar navbar-expand-md navbar-light">
-                            <a class="navbar-brand" href="#">
+                            <a class="navbar-brand" href="/">
                                 <img src="./img/SUNTORY_logo.svg.png" alt="" style="height: 20px;width: 119px;">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -77,9 +77,9 @@
 
     </nav>
     <div id="app">
-        <main class="py-4">
+
             @yield('content')
-        </main>
+        
     </div>
 
 
@@ -111,7 +111,7 @@
 
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
         AOS.init();
     </script>
