@@ -11,7 +11,6 @@ $interval_xl: 100px;
 
 html {
     scroll-behavior: smooth;
-    font-size: 18px;
 }
 body {
     margin: 0;
@@ -21,30 +20,30 @@ body {
     display: flex;
     flex-direction: column;
     h1 {
-        font-size: 2.7rem;
+        font-size: 2rem;
         @media (max-width: 960px) {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
         }
         @media (max-width: 540px) {
-            font-size: 2.3rem;
+            font-size: 1.6rem;
         }
     }
     h2 {
-        font-size: 1.8rem;
+        font-size: 1.25rem;
         @media (max-width: 960px) {
-            font-size: 1.6rem;
+            font-size: 1.15rem;
         }
         @media (max-width: 540px) {
-            font-size: 1.5rem;
+            font-size: 1.05rem;
         }
     }
     p {
-        font-size: 1rem;
+        font-size: 0.75rem;
         @media (max-width: 960px) {
-            font-size: 0.9rem;
+            font-size: 0.65rem;
         }
         @media (max-width: 540px) {
-            font-size: 0.8rem;
+            font-size: 0.55rem;
         }
     }
     .navbar-toggler {
@@ -65,11 +64,25 @@ li {
 }
 a {
     text-decoration: none;
-    font-size: 1rem;
     &:hover {
         text-decoration: none;
     }
 }
+img {
+    width: unset;
+}
+
+.navbar {
+    padding: 0
+}
+
+@media (max-width:575px) {
+
+    #nav {
+        padding: 0 30px;
+    }
+}
+
 .nav-link {
     padding: 0rem;
     margin: 0 0.5rem;
@@ -77,6 +90,9 @@ a {
 
 .navbar-expand-md .navbar-nav .nav-link {
     padding: 5px 0;
+    @media (min-width: 768px) {
+        padding-right: 0;
+    }
 }
 
 /*購物車*/
@@ -148,7 +164,7 @@ a.cart > span.counter {
 /*Content*/
 header {
     background-color: $header_background_color;
-    box-shadow: 0px 5px 15px rgba(65, 65, 65, 0.7);
+    box-shadow: 0 5px 15px -4px rgba(65, 65, 65, 0.7);
     z-index: 2;
     height: $header_height;
 }
@@ -167,7 +183,7 @@ main {
     #banner {
         img {
             display: block;
-            height: calc(100vh - #{$header_height});
+            height: calc(100vh - #{$header_height} - 60px);
             object-fit: cover;
 
             @media (max-width: 769px) {
@@ -588,6 +604,9 @@ main {
                     .series_content {
                         margin-bottom: 18px;
                     }
+                    a{
+                        font-size: 0.75rem;
+                    }
                 }
             }
         }
@@ -623,17 +642,6 @@ main {
             }
         }
         @media (max-width: 541px) {
-            .nav-link {
-                padding: 0rem;
-            }
-
-            #nav {
-                padding: 0 30px;
-            }
-
-            .navbar-brand {
-                margin: 0;
-            }
             .accordion {
                 flex-direction: column;
                 box-shadow: none;

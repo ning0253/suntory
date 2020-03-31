@@ -1,229 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.nav')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>響 HIBIKI</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/hibiki.css')}}">
-    <link rel="stylesheet" href="{{asset('css/hover.css')}}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
+@section('title')
+響 HIBIKI
+@endsection
 
-<body>
-    <a href="/product_list" class="cart"><span></span></a>
+@section('css')
+<link rel="stylesheet" href="{{asset('css/hibiki.css')}}">
+<link rel="stylesheet" href="{{asset('css/hover.css')}}">
+@endsection
 
-    <header class="row sticky-top" style="margin: 0;">
+@section('content')
+<a href="/product_list" class="cart"><span></span></a>
 
-        <div class="container d-flex justify-content-end align-items-center">
-            <nav id="nav" class=" navbar navbar-expand-md navbar-light">
-                {{-- <a class="navbar-brand" href="#">
-                    <img src="../../public/img/00.響_logo01.png" alt="響 HIBIKI" style="height: 68px;">
-                </a> --}}
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<header class="row sticky-top" style="margin: 0;">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto py-4 py-md-0">
-                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                            <a class="nav-link hvr-underline-from-center text-body" href=#story>
-                                {{$nav_data->story != null ? $nav_data->story : ""}}
-                            </a>
-                        </li>
-                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                            <a class="nav-link hvr-underline-from-center text-body"
-                                href="#movement">{{$nav_data->attitude != null ? $nav_data->attitude : ""}}</a>
-                        </li>
-                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                            <a class="nav-link hvr-underline-from-center text-body"
-                                href="#award">{{$nav_data->sure != null ? $nav_data->sure : ""}}</a>
-                        </li>
-                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                            <a class="nav-link hvr-underline-from-center text-body"
-                                href="#series">{{$nav_data->product != null ? $nav_data->product : ""}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    <div class="container">
+        <nav id="nav" class=" navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" href="#">
+                    <img src="./img/00.響_logo01.png" alt="響 HIBIKI" style="height: 68px;">
+                </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        </div>
-    </header>
-
-    <main>
-        <div id="banner" class="bannerbox carousel slide carousel-fade" data-ride="carousel">
-            <div class="carousel-inner">
-                @foreach ($nav_data->imgs as $item)
-                @if ($loop->index == 1)
-                <div class="carousel-item active">
-                    <img src="{{asset($item->img)}}" class="d-block w-100 " alt="HIBIKI">
-                </div>
-                @else
-                <div class="carousel-item">
-                    <img src="{{asset($item->img)}}" class="d-block w-100" alt="HIBIKI">
-                </div>
-                @endif
-                @endforeach
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto py-4 py-md-0">
+                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
+                        <a class="nav-link hvr-underline-from-center text-body" href=#story>
+                            {{$nav_data->story != null ? $nav_data->story : ""}}
+                        </a>
+                    </li>
+                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
+                        <a class="nav-link hvr-underline-from-center text-body"
+                            href="#movement">{{$nav_data->attitude != null ? $nav_data->attitude : ""}}</a>
+                    </li>
+                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
+                        <a class="nav-link hvr-underline-from-center text-body"
+                            href="#award">{{$nav_data->sure != null ? $nav_data->sure : ""}}</a>
+                    </li>
+                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
+                        <a class="nav-link hvr-underline-from-center text-body"
+                            href="#series">{{$nav_data->product != null ? $nav_data->product : ""}}</a>
+                    </li>
+                </ul>
             </div>
-            <a class="carousel-control-prev" href="#banner" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#banner" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        </nav>
 
-        <section id="story">
-            <div class="container">
-                <h1>{{$nav_data->story}}</h1>
+    </div>
+</header>
+
+<main>
+    <div id="banner" class="bannerbox carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            @foreach ($nav_data->imgs as $item)
+            @if ($loop->index == 1)
+            <div class="carousel-item active">
+                <img src="{{asset($item->img)}}" class="d-block w-100 " alt="HIBIKI">
             </div>
-            <div class="row w-100 m-0">
-                <div class="col-xl-9 col-lg-10 col-md-12  p-0 d-flex justify-content-start flex-wrap"
-                    data-aos="zoom-in-right" data-aos-duration="2000">
-                    <div class="top" style="background-image: url('{{$story_data[0]->img}}');">
-                        <div class="content ">
-                            <h2>{{$story_data[0]->title}}</h2>
-                            <div>
-                                {!! $story_data[0]->content !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="phone_text ">
+            @else
+            <div class="carousel-item">
+                <img src="{{asset($item->img)}}" class="d-block w-100" alt="HIBIKI">
+            </div>
+            @endif
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#banner" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#banner" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <section id="story">
+        <div class="container">
+            <h1>{{$nav_data->story}}</h1>
+        </div>
+        <div class="row w-100 m-0">
+            <div class="col-xl-9 col-lg-10 col-md-12  p-0 d-flex justify-content-start flex-wrap"
+                data-aos="zoom-in-right" data-aos-duration="2000">
+                <div class="top" style="background-image: url('{{$story_data[0]->img}}');">
+                    <div class="content ">
                         <h2>{{$story_data[0]->title}}</h2>
                         <div>
                             {!! $story_data[0]->content !!}
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-2 col-md-0 "></div>
-            </div>
-
-
-            <div class="row w-100 m-0">
-                <div class="col-xl-3 col-lg-2 col-md-0 "></div>
-                <div class="col-xl-9 col-lg-10 col-md-12  p-0 d-flex flex-wrap" data-aos="zoom-in-left"
-                    data-aos-duration="2000">
-                    <div class="bottom" style="background-image: url('{{$story_data[1]->img}}');">
-                        <div class="content">
-                            <h2>{{$story_data[1]->title}}</h2>
-                            <div>
-                                {!! $story_data[1]->content !!}
-                            </div>
-                        </div>
+                <div class="phone_text ">
+                    <h2>{{$story_data[0]->title}}</h2>
+                    <div>
+                        {!! $story_data[0]->content !!}
                     </div>
-                    <div class="phone_text">
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-2 col-md-0 "></div>
+        </div>
+
+
+        <div class="row w-100 m-0">
+            <div class="col-xl-3 col-lg-2 col-md-0 "></div>
+            <div class="col-xl-9 col-lg-10 col-md-12  p-0 d-flex flex-wrap" data-aos="zoom-in-left"
+                data-aos-duration="2000">
+                <div class="bottom" style="background-image: url('{{$story_data[1]->img}}');">
+                    <div class="content">
                         <h2>{{$story_data[1]->title}}</h2>
                         <div>
                             {!! $story_data[1]->content !!}
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-
-
-        <section id="movement">
-            <div class="container">
-                <h1 class="text-center">{{$nav_data->attitude}}</h1>
-                <div class="bg" style="background-image: url('{{$attitude_data[0]->img}}');"></div>
-                {{-- <img src="{{$attitude_data[0]->img}}" alt="whiskey" class="w-100 mb-2"> --}}
-                <div class="row  d-flex justify-content-center">
-                    <div class="text-center">
-                        {!! $attitude_data[0]->content !!}
+                <div class="phone_text">
+                    <h2>{{$story_data[1]->title}}</h2>
+                    <div>
+                        {!! $story_data[1]->content !!}
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
 
-        <section id="award">
-            <div class="container">
-                <h1>{{$nav_data->sure}}</h1>
-            </div>
-            <div class="timeline" data-aos="fade-up" data-aos-duration="3000">
-                <ol>
-                    @foreach ($sure_data as $item)
-                    <li>
-                        <div>
-                            <time>{{$item->year}}</time>
-                            <span>{{$item->contest}}</span>
-                            <img src="{{asset($item->img)}}">
-                            <p>
-                                {{$item->title}}<br><br>
-                                {{$item->award}}
-                            </p>
-                        </div>
-                    </li>
-                    @endforeach
-                    <li></li>
-                </ol>
 
-                <div class="arrows">
-                    <button class="arrow arrow__prev disabled" disabled>
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </button>
-                    <button class="arrow arrow__next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </button>
+    <section id="movement">
+        <div class="container">
+            <h1 class="text-center">{{$nav_data->attitude}}</h1>
+            <div class="bg" style="background-image: url('{{$attitude_data[0]->img}}');"></div>
+            {{-- <img src="{{$attitude_data[0]->img}}" alt="whiskey" class="w-100 mb-2"> --}}
+            <div class="row  d-flex justify-content-center">
+                <div class="text-center">
+                    {!! $attitude_data[0]->content !!}
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
 
-        <section id="series">
-            <div class="container">
-                <h1>{{$nav_data->product}}</h1>
-                <div class="accordion">
-
-                    @foreach ($product_data as $item)
-                    <div class="box d-flex">
-                        <div class="img">
-                            <img src="{{asset($item->img)}}" height=100%>
-                        </div>
-                        <div class="text">
-                            <h2>{{$item->title}}</h2>
-                            <div class="series_content">
-                                {!! $item->content !!}
-                            </div>
-                            <p>色&thinsp;|&thinsp;{{$item->color}}。</p>
-                            <p>香&thinsp;|&thinsp;{{$item->aroma}}</p>
-                            <p>味&thinsp;|&thinsp;{{$item->taste}}</p>
-                            <p>餘&thinsp;|&thinsp;{{$item->aftertaste}}</p>
-                            <br>
-                            <a href="#" class="add-to-cart" onclick="addcart({{$item->id}})">立即購買</a>
-                        </div>
+    <section id="award">
+        <div class="container">
+            <h1>{{$nav_data->sure}}</h1>
+        </div>
+        <div class="timeline" data-aos="fade-up" data-aos-duration="3000">
+            <ol>
+                @foreach ($sure_data as $item)
+                <li>
+                    <div>
+                        <time>{{$item->year}}</time>
+                        <span>{{$item->contest}}</span>
+                        <img src="{{asset($item->img)}}">
+                        <p>
+                            {{$item->title}}<br><br>
+                            {{$item->award}}
+                        </p>
                     </div>
-                    @endforeach
+                </li>
+                @endforeach
+                <li></li>
+            </ol>
 
-                </div>
+            <div class="arrows">
+                <button class="arrow arrow__prev disabled" disabled>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="arrow arrow__next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-    </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
 
-        //時間軸js
+    <section id="series">
+        <div class="container">
+            <h1>{{$nav_data->product}}</h1>
+            <div class="accordion">
+
+                @foreach ($product_data as $item)
+                <div class="box d-flex">
+                    <div class="img">
+                        <img src="{{asset($item->img)}}" height=100%>
+                    </div>
+                    <div class="text">
+                        <h2>{{$item->title}}</h2>
+                        <div class="series_content">
+                            {!! $item->content !!}
+                        </div>
+                        <p>色&thinsp;|&thinsp;{{$item->color}}。</p>
+                        <p>香&thinsp;|&thinsp;{{$item->aroma}}</p>
+                        <p>味&thinsp;|&thinsp;{{$item->taste}}</p>
+                        <p>餘&thinsp;|&thinsp;{{$item->aftertaste}}</p>
+                        <br>
+                        <a href="#" class="add-to-cart" onclick="addcart({{$item->id}})">立即購買</a>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </section>
+</main>
+@endsection
+
+@section('js')
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
+<script>
+    //時間軸js
         (function () {
 
             // VARIABLES
@@ -345,9 +329,8 @@
             }
 
         })();
-    </script>
-    <script>
-        var count = 0;
+
+    var count = 0;
 function addcart(proid) {
 
     console.log(proid);
@@ -375,8 +358,5 @@ function addcart(proid) {
         }, 600);
         event.preventDefault();
 }
-
-    </script>
-</body>
-
-</html>
+</script>
+@endsection
