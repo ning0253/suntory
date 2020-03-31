@@ -116,7 +116,6 @@ export default {
             for (var i in this.cart) {
                 countQuantity += parseInt(this.cart[i].quantity);
             }
-            console.log(countQuantity);
 
             if (countQuantity < 1) {
                 $('#send').attr('disabled', 'disabled');
