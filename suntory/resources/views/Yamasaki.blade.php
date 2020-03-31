@@ -1,90 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.nav')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
-    <!-- <link rel="stylesheet" href="./css/timeline.css"> -->
+@section('title')
+    山崎
+@endsection
 
-    <link rel="stylesheet" href="{{asset('css/time-line.css')}}">
-    <link rel="stylesheet" href="{{asset('css/index.css')}}">
-    <link rel="stylesheet" href="{{asset('css/hover.css')}}">
-    <link rel="stylesheet" href="{{asset('css/navbar.css')}}">
-    <link rel="stylesheet" href="{{asset('css/hover2.css')}}">
-    <link rel="stylesheet" href="{{asset('css/navbar2.css')}}">
-    <link rel="stylesheet" href="{{asset('css/lightbox.css')}}">
-    <link rel="stylesheet" href="{{asset('css/cart-style.css')}}">
+@section('css')
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+<!-- <link rel="stylesheet" href="./css/timeline.css"> -->
 
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
-</head>
+<link rel="stylesheet" href="{{asset('css/time-line.css')}}">
+<link rel="stylesheet" href="{{asset('css/index.css')}}">
+<link rel="stylesheet" href="{{asset('css/hover.css')}}">
+<link rel="stylesheet" href="{{asset('css/navbar.css')}}">
+<link rel="stylesheet" href="{{asset('css/hover2.css')}}">
+<link rel="stylesheet" href="{{asset('css/navbar2.css')}}">
+<link rel="stylesheet" href="{{asset('css/lightbox.css')}}">
+<link rel="stylesheet" href="{{asset('css/cart-style.css')}}">
 
-<body>
-    <a href="#" class="cart"><span></span></a>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+<style>
+    p{
+        margin:0;
+    }
+</style>
+@endsection
+
+@section('content')
+
+    <a href="/product_list" class="cart"><span></span></a>
 
     <nav>
-        <section>
-            <div class="d-flex flex-wrap navbar-top" style="display: block;">
-                <div class="d-flex flex-wrap w-100">
-                    <div class="container">
-                        <nav id="nav" class="navbar navbar-expand-md navbar-light">
 
-                            <a class="navbar-brand" href="#">
-                                <img src="./img/SUNTORY_logo.svg.png" alt="" style="height: 20px;width: 119px;" />
-                            </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navber"
-                                aria-controls="navber" aria-expanded="false" aria-label="Toggle navigation">
-                                <div class="">
-                                    <span>menu</span>
-                                </div>
-                            </button>
-
-                            <div class="collapse navbar-collapse" id="navber">
-                                <ul class="navbar-nav ml-auto py-4 py-md-0">
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 mr-3  d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">白州</a>
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 mr-3  d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">響</a>
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 mr-3  d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">山崎</a>
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4 mr-3  d-flex">
-                                        <a class="nav-link hvr-underline-from-center text-dark d-flex align-items-center" href="#">經銷商</a>
-                                    </li>
-
-
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 md-4  mr-3 d-flex">
-                                        <a class="nav-link  text-dark mr-3" href="#">
-                                            <img src="./img/facebook.png"
-                                                style="width: 30px;height: 30px;padding-right: 10p;margin-right: 13px;"
-                                                alt="" />
-                                        </a>
-                                        <a class="nav-link  text-dark" href="#">
-                                            <img src="./img/instagram.png" style="width: 30px;height: 30px;" alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section>
             <div class="navbar_1">
                 <div class="container">
                     <nav id="nav" class="navbar navbar-expand-md navbar-light">
                         <a class="navbar-brand" href="#">
-                            <img src="./img/logo.png" alt="" style="height: 68px; display: none;" />
+                            <img src="./img/logo.png" alt="" style="height: 68px; display: none; width:auto" />
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnavber"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,19 +89,29 @@
                         <div class="collapse navbar-collapse" id="mainnavber">
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
-                                    <a class="hvr-underline-from-center1" href="#story">山崎的故事</a>
+                                <a class="hvr-underline-from-center1" href="#story">
+                                    {{$id->story != null ? $id->story : ""}}
+                                </a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
-                                    <a class=" hvr-underline-from-center1" href="#attitude">山崎的態度</a>
+                                    <a class=" hvr-underline-from-center1" href="#attitude">
+                                        {{$id->attitude != null ? $id->attitude : ""}}
+                                    </a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
-                                    <a class=" hvr-underline-from-center1" href="#sure">國際的肯定</a>
+                                    <a class=" hvr-underline-from-center1" href="#sure">
+                                        {{$id->sure != null ? $id->sure : ""}}
+                                    </a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
-                                    <a class=" hvr-underline-from-center1" href="#method">山崎蒸餾廠</a>
+                                    <a class=" hvr-underline-from-center1" href="#method">
+                                        {{$id->method != null ? $id->method : ""}}
+                                    </a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-flex">
-                                    <a class=" hvr-underline-from-center1" href="#product">山崎系列</a>
+                                    <a class=" hvr-underline-from-center1" href="#product">
+                                        {{$id->product != null ? $id->product : ""}}
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -182,7 +149,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-container">
+                <div class="swiper-container" style="max-height:500px">
                     <div class="swiper-wrapper">
 
                         @foreach ($stories as $story)
@@ -264,7 +231,7 @@
                                     </div>
                                     <div class="content">
                                         <p>
-                                            {{$attitude->content}}
+                                            {!!$attitude->content!!}
                                         </p>
                                     </div>
                                 </div>
@@ -289,17 +256,17 @@
         @foreach ($products as $product)
 
         <div class="product">
-            <div class="lightbox-target d-flex justify-content-center align-items-center" id="dog">
+            <div class="lightbox-target d-flex justify-content-center align-items-center" id="dog{{$product->id}}">
                 <div class="detail text-left d-flex align-items-center" style="width: 600px;">
                     <p>
-                        {{$product->content}}
+                        {!!$product->content!!}
                     </p>
                 </div>
 
                 <a class="lightbox-close" href="#123"></a>
             </div>
 
-            <div class="container">
+            <div class="container" id="product">
                 <div data-aos="fade-right" data-aos-duration="1000">
                     <div class="product-title">
                         <h1>
@@ -309,14 +276,14 @@
                 </div>
 
                 <div data-aos="flip-right" data-aos-duration="1000">
-                    <div class="product-content d-flex flex-wrap">
+                    <div class="product-content d-flex flex-wrap align-items-center">
                         <div class="col-lg-3 col-12 d-flex justify-content-center">
                             <img class="product-img" src="{{$product->img}}" alt="" srcset="" />
                         </div>
                         <div class="col-lg-1"></div>
 
-                        <div class="col-lg-8 col-12 border px-4 pb-3">
-                            <div class="content">
+                        <div class="col-lg-8 col-12  ">
+                            <div class="content border px-4 pb-3">
                                 <div class="product-border-inner text-left">
                                     <div class="name pad">{{$product->title}}</div>
                                     <div class="ml pad">{{$product->capacity}}</div>
@@ -335,7 +302,7 @@
                                 </div>
 
                                 <div class="Introduction text-right pb-3">
-                                    <a href="#dog">
+                                <a href="#dog{{$product->id}}">
                                         <button class="detail-btn"
                                             style="color: white;background-color: unset;border: 0;">
                                             詳細介紹
@@ -344,7 +311,8 @@
                                     </a>
                                 </div>
                                 <div class="buy-btn d-flex justify-content-center">
-                                    <a href="#" class="add-to-cart">立即購買</a>
+                                    <a href="#" class="add-to-cart" onclick="addcart({{$product->id}})">立即購買</a>
+
                                 </div>
                             </div>
                         </div>
@@ -382,7 +350,7 @@
                                 </div>
                                 <div class="content">
                                     <p>
-                                        {{$method->content}}
+                                        {!!$method->content!!}
                                     </p>
                                 </div>
                             </div>
@@ -426,6 +394,7 @@
                         </div>
                         <!-- timeline-year -->
                         <div class="timeline-content" data-anime-left="scroll-left">
+                            <img src="{{$sure->img}}" alt="" srcset="" class="img-fluid" style="width:50px">
                             <p>
                                 {{$sure->award}}
                             </p>
@@ -443,6 +412,7 @@
                         </div>
                         <!-- timeline-year -->
                         <div class="timeline-content" data-anime-right="scroll-right">
+                            <img src="{{$sure->img}}" alt="" srcset="" class="img-fluid" style="width:50px">
                             <p>
                                 {{$sure->award}}
                             </p>
@@ -493,86 +463,107 @@
             </div>
         </div>
     </section>
-    <footer>
+@endsection
 
-        <div class="footer d-flex justify-content-center align-items-center">
-            <span>Copyright ©</span>
-        </div>
-        <div class="footer2">
-            <img src="./img/sxc-warning.gif" class="img-fluid" alt="">
-        </div>
-    </footer>
+@section('js')
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+crossorigin="anonymous"></script>
+<!-- <script src="./js/timeline.js"></script> -->
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <!-- <script src="./js/timeline.js"></script> -->
-    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-    <script src="{{asset('js/time-line.js')}}"></script>
-    <script src="{{asset('js/cart-style.js')}}"></script>
-    <script src="{{asset('js/swiper.js')}}"></script>
+<script src="{{asset('js/time-line.js')}}"></script>
+<script src="{{asset('js/cart-style.js')}}"></script>
+<script src="{{asset('js/swiper.js')}}"></script>
 
 
-    <script>
-        AOS.init();
-    </script>
+<script>
+AOS.init();
+</script>
 
-    <script>
-        $(window).scroll(function () {
-            var scrollVal = $(document).scrollTop()
-            if (scrollVal > 200) {
-                $('.navbar_1').css("opacity", "0")
-                if (scrollVal > 557) {
+<script>
+$(window).scroll(function () {
+    var scrollVal = $(document).scrollTop()
+    if (scrollVal > 200) {
+        $('.navbar_1').css("opacity", "0")
+        if (scrollVal > 557) {
 
-                    $('.navbar_1 .navbar-brand img').css("display", "block")
-                    $('.navbar_1').addClass('active');
-                    $('.navbar_1').css("opacity", "1")
+            $('.navbar_1 .navbar-brand img').css("display", "block")
+            $('.navbar_1').addClass('active');
+            $('.navbar_1').css("opacity", "1")
 
-                } else {
+        } else {
 
-                    $('.navbar_1 .navbar-brand img').css("display", "none")
-                    $('.navbar_1').removeClass('active');
-                }
-            } else {
-                $('.navbar_1').css("opacity", "1")
-            }
+            $('.navbar_1 .navbar-brand img').css("display", "none")
+            $('.navbar_1').removeClass('active');
+        }
+    } else {
+        $('.navbar_1').css("opacity", "1")
+    }
 
-        })
+})
 
-        $(window).scroll(function () {
-            var scrollVal = $(document).scrollTop()
-            var footerheight = $('.sure').offset().top + $('.timeline-content').height();
+$(window).scroll(function () {
+    var scrollVal = $(document).scrollTop()
+    var footerheight = $('.sure').offset().top + $('.timeline-content').height();
 
-            // console.log(footerheight)
-            // console.log(scrollVal)
+    // console.log(footerheight)
+    // console.log(scrollVal)
 
-            if (scrollVal > footerheight) {
-                $('.footer2').addClass('active1');
-            }
-            else {
-                $('.footer2').removeClass('active1');
+    if (scrollVal > footerheight) {
+        $('.footer2').addClass('active1');
+    }
+    else {
+        $('.footer2').removeClass('active1');
 
-            }
+    }
 
-        })
+})
 
+var count = 0;
+function addcart(proid) {
 
+    console.log(proid);
 
-    </script>
-</body>
+    axios.post('/frontaddcart',{id:proid})
+                .then((res) => {
+                    console.log(res.data);
+
+                }).catch((err) => {
+                    console.log(err);
+
+                })
+    count++;
+        $("a.add-to-cart").addClass("size");
+        setTimeout(function () {
+            $("a.add-to-cart").addClass("hover");
+        }, 200);
+        setTimeout(function () {
+            $("a.cart > span").addClass("counter");
+            $("a.cart > span.counter").text(count);
+        }, 400);
+        setTimeout(function () {
+            $("a.add-to-cart").removeClass("hover");
+            $("a.add-to-cart").removeClass("size");
+        }, 600);
+        event.preventDefault();
+}
+
+</script>
+@endsection
 
 </html>

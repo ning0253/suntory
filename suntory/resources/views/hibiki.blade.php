@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <a href="#" class="cart"><span></span></a>
+    <a href="/product_list" class="cart"><span></span></a>
 
     <header class="row sticky-top" style="margin: 0;">
 
@@ -33,19 +33,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto py-4 py-md-0">
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                            <a class="nav-link hvr-underline-from-center text-body" href=#story>{{$nav_data->story}}</a>
+                            <a class="nav-link hvr-underline-from-center text-body" href=#story>
+                                {{$nav_data->story != null ? $nav_data->story : ""}}
+                            </a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
                             <a class="nav-link hvr-underline-from-center text-body"
-                                href="#movement">{{$nav_data->attitude}}</a>
+                                href="#movement">{{$nav_data->attitude != null ? $nav_data->attitude : ""}}</a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
                             <a class="nav-link hvr-underline-from-center text-body"
-                                href="#award">{{$nav_data->sure}}</a>
+                                href="#award">{{$nav_data->sure != null ? $nav_data->sure : ""}}</a>
                         </li>
                         <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
                             <a class="nav-link hvr-underline-from-center text-body"
-                                href="#series">{{$nav_data->product}}</a>
+                                href="#series">{{$nav_data->product != null ? $nav_data->product : ""}}</a>
                         </li>
                     </ul>
                 </div>
@@ -197,7 +199,7 @@
                             <p>味&thinsp;|&thinsp;{{$item->taste}}</p>
                             <p>餘&thinsp;|&thinsp;{{$item->aftertaste}}</p>
                             <br>
-                            <a href="#" class="add-to-cart">立即購買</a>
+                            <a href="#" class="add-to-cart" onclick="addcart({{$item->id}})">立即購買</a>
                         </div>
                     </div>
                     @endforeach
@@ -207,7 +209,7 @@
         </section>
     </main>
 
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -345,25 +347,34 @@
         })();
     </script>
     <script>
-        $(document).ready(function () {
-            var count = 0;
-            $("a.add-to-cart").click(function (event) {
-                count++;
-                $("a.add-to-cart").addClass("size");
-                setTimeout(function () {
-                    $("a.add-to-cart").addClass("hover");
-                }, 200);
-                setTimeout(function () {
-                    $("a.cart > span").addClass("counter");
-                    $("a.cart > span.counter").text(count);
-                }, 400);
-                setTimeout(function () {
-                    $("a.add-to-cart").removeClass("hover");
-                    $("a.add-to-cart").removeClass("size");
-                }, 600);
-                event.preventDefault();
-            });
-        });
+        var count = 0;
+function addcart(proid) {
+
+    console.log(proid);
+
+    axios.post('/frontaddcart',{id:proid})
+                .then((res) => {
+                    console.log(res.data);
+
+                }).catch((err) => {
+                    console.log(err);
+
+                })
+    count++;
+        $("a.add-to-cart").addClass("size");
+        setTimeout(function () {
+            $("a.add-to-cart").addClass("hover");
+        }, 200);
+        setTimeout(function () {
+            $("a.cart > span").addClass("counter");
+            $("a.cart > span.counter").text(count);
+        }, 400);
+        setTimeout(function () {
+            $("a.add-to-cart").removeClass("hover");
+            $("a.add-to-cart").removeClass("size");
+        }, 600);
+        event.preventDefault();
+}
 
     </script>
 </body>

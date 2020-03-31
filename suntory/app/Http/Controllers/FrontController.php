@@ -145,26 +145,30 @@ class FrontController extends Controller
     public function Yamasaki()
     {
         $id = Liqueur::where('name','山崎')->first();
+
         $banners = LiqueurImg::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
-        $stories = LiqueurStory::find($id->id)->orderBy('sort','desc')->get();
-        $attitudes = LiqueurAttitude::find($id->id)->orderBy('sort','desc')->get();
-        $products = LiqueurProduct::find($id->id)->orderBy('sort','desc')->get();
-        $methods = LiqueurMethod::find($id->id)->orderBy('sort','desc')->get();
+
+        $stories = LiqueurStory::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+
+        $attitudes = LiqueurAttitude::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+        $products = LiqueurProduct::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+
+        $methods = LiqueurMethod::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
         $sures = LiqueurSure::find($id->id)->get();
 
         // dd($stories);
-        return view('Yamasaki', compact('stories','attitudes','products','methods','sures','banners'));
+        return view('Yamasaki', compact('stories','attitudes','products','methods','sures','banners','id'));
     }
 
     //白州頁面
     public function hak_his()
     {
-
-        $product = LiqueurProduct::with('sure')->where('liqueur_id', 3)->get();
-        $store = LiqueurStory::where('liqueur_id', 3)->get();
-        $attitude = LiqueurAttitude::where('liqueur_id', 3)->get();
-        $method = LiqueurMethod::where('liqueur_id', 3)->get();
-        return view('hak_his', compact('product', 'store', 'attitude', 'method'));
+        $id = Liqueur::where('name','白州')->first();
+        $product = LiqueurProduct::with('sure')->where('liqueur_id', $id->id)->get();
+        $store = LiqueurStory::where('liqueur_id', $id->id)->get();
+        $attitude = LiqueurAttitude::where('liqueur_id', $id->id)->get();
+        $method = LiqueurMethod::where('liqueur_id', $id->id)->get();
+        return view('hak_his', compact('product', 'store', 'attitude', 'method','id'));
     }
 
     //響讀取資料

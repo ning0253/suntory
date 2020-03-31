@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\LiqueurProduct;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 
@@ -58,5 +59,22 @@ class CartController extends Controller
 
         \Cart::remove($data['id']);
         return 'successful';
+    }
+
+
+    public function frontaddcart(Request $request)
+    {
+
+        $id = $request->all();
+        $data = LiqueurProduct::find($id['id']);
+        \Cart::add(array(
+            'id' => $data['id'], // inique row ID
+            'name' => $data['title'],
+            'price' => $data['price'],
+            'img' => $data['img'],
+            'quantity' => 1,
+            'attributes' => array($data['img'])
+        ));
+        return 'success';
     }
 }

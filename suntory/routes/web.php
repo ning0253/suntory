@@ -27,6 +27,8 @@ Route::post('/checkout', 'FrontController@post_checkout');//送出訂單至綠�
 
 //購物車
 Route::post('/addcart', 'cartcontroller@addcart');
+Route::post('/frontaddcart', 'cartcontroller@frontaddcart');
+
 Route::get('/getcontent', 'cartcontroller@getcontent');
 Route::get('/totalcart', 'cartcontroller@totalcart');
 Route::post('/onChange', 'cartcontroller@onChange');//更新產品數量

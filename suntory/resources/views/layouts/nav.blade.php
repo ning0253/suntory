@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('scss/style.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/hover.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/navbar.css') }}">
@@ -75,8 +76,12 @@
         </section>
 
     </nav>
+    <div id="app">
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 
-    @yield('content')
 
     <footer>
         <section style="padding:0 0;">
@@ -106,6 +111,7 @@
 
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
         AOS.init();
     </script>

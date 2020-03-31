@@ -89,7 +89,7 @@
 @endsection
 @section('content')
 
-    <a href="#" class="cart"><span></span></a>
+    <a href="/product_list" class="cart"><span></span></a>
     <div class="row " style="display: block; margin: 0;">
         <div class="row sticky-top" style="margin: 0;">
             <div class="container">
@@ -106,19 +106,29 @@
                     <div class="collapse navbar-collapse" id="hak_his">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                                <a class="nav-link hvr-underline-from-center text-body" href=#story_tag>白州的故事</a>
+                                <a class="nav-link hvr-underline-from-center text-body" href=#story_tag>
+                                    {{$id->story != null ? $id->story : ""}}
+                                </a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                                <a class="nav-link hvr-underline-from-center text-body" href="#manner_tag">白州的態度</a>
+                                <a class="nav-link hvr-underline-from-center text-body" href="#manner_tag">
+                                    {{$id->attitude != null ? $id->attitude : ""}}
+                                </a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                                <a class="nav-link hvr-underline-from-center text-body" href="#distillery_tag">白州蒸餾所</a>
+                                <a class="nav-link hvr-underline-from-center text-body" href="#distillery_tag">
+                                    {{$id->sure != null ? $id->sure : ""}}
+                                </a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                                <a class="nav-link hvr-underline-from-center text-body" href="#Award_tag">國際肯定</a>
+                                <a class="nav-link hvr-underline-from-center text-body" href="#Award_tag">
+                                    {{$id->method != null ? $id->method : ""}}
+                                </a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 ">
-                                <a class="nav-link hvr-underline-from-center text-body" href="#product_tag">白州系列</a>
+                                <a class="nav-link hvr-underline-from-center text-body" href="#product_tag">
+                                    {{$id->product != null ? $id->product : ""}}
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -302,7 +312,7 @@
                                 <p>{{$item->aroma}}</p>
                                 <p>{{$item->taste}}</p>
                                 <p>{{$item->aftertaste}}</p>
-                                <a href="#" class="add-to-cart">立即購買</a>
+                                <a href="#" class="add-to-cart" onclick="addcart({{$item->id}})">立即購買</a>
                             </div>
 
                         </div>
@@ -316,8 +326,10 @@
 @endsection
 
 @section('js')
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
 integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
@@ -365,10 +377,21 @@ $(function () {
 </script>
 
 <script>
-$(document).ready(function () {
-    var count = 0;
-    $("a.add-to-cart").click(function (event) {
-        count++;
+
+var count = 0;
+function addcart(proid) {
+
+    console.log(proid);
+
+    axios.post('/frontaddcart',{id:proid})
+                .then((res) => {
+                    console.log(res.data);
+
+                }).catch((err) => {
+                    console.log(err);
+
+                })
+    count++;
         $("a.add-to-cart").addClass("size");
         setTimeout(function () {
             $("a.add-to-cart").addClass("hover");
@@ -382,9 +405,7 @@ $(document).ready(function () {
             $("a.add-to-cart").removeClass("size");
         }, 600);
         event.preventDefault();
-    });
-});
-
+}
 </script>
 @endsection
 
