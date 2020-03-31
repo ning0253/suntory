@@ -125,7 +125,28 @@
                         </div>
                     </template>
                     <template v-slot:expanded-item="{ headers, item }">
-                        <td :style="{ color: isDark? 'hsla(0,0%,100%,.7)':'rgba(0,0,0,0.6)' }" :colspan="headers.length">色澤：{{ item.color }}&emsp;|&emsp;香氣：{{ item.aroma }}&emsp;|&emsp;酒體：{{ item.body }}&emsp;|&emsp;味覺：{{ item.taste }}&emsp;|&emsp;餘覺：{{ item.aftertaste }}&emsp;|&emsp;備註：{{ item.note }}</td>
+                        <td :style="{ color: isDark? 'hsla(0,0%,100%,.7)':'rgba(0,0,0,0.6)' }" :colspan="headers.length">
+                            <!-- <div class="row d-flex flex-wrap">
+                                <div class="col-6">色澤：{{ item.color }}</div>
+                                <div class="col-6">香氣：{{ item.aroma }}</div>
+                                <div class="col-6">味覺：{{ item.taste }}</div>
+                                <div class="col-6">餘覺：{{ item.aftertaste }}</div>
+                                <div class="col-6">酒體：{{ item.body }}</div>
+                                <div class="col-6">備註：{{ item.note }}</div>
+                            </div> -->
+                            <tr>
+                                <td> 色澤：{{ item.color }} </td>
+                                <td> 香氣：{{ item.aroma }} </td>
+                            </tr>
+                            <tr>
+                                <td> 味覺：{{ item.taste }} </td>
+                                <td> 餘覺：{{ item.aftertaste }} </td>
+                            </tr>
+                            <tr>
+                                <td> 酒體：{{ item.body }} </td>
+                                <td> 備註：{{ item.note }} </td>
+                            </tr>
+                        </td>
                     </template>
                 </v-data-table>
             </v-card>
@@ -194,10 +215,11 @@ export default {
             headers: [
                 { text: '系列', value: 'liqueur.name', align: 'center', },
                 { text: '圖片', value: 'img', align: 'center', filterable: false, sortable: false, },
-                { text: '名稱', value: 'title', align: 'center', },
-                { text: '介紹', value: 'content', align: 'center', width: "30%" },
+                { text: '名稱', value: 'title', align: 'center', width: "9%" },
+                { text: '介紹', value: 'content', align: 'center', width: "25%" },
                 { text: '容量', value: 'capacity', align: 'center', },
                 { text: '濃度', value: 'density', align: 'center', },
+                { text: '價錢', value: 'price', align: 'center', },
                 { text: '權重', value: 'sort', align: 'center', },
                 { text: '更多', value: 'data-table-expand', align: 'center' },
                 { text: '', value: 'action', align: 'center', filterable: false, sortable: false, },
