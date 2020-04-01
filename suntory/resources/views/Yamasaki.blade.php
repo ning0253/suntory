@@ -13,18 +13,26 @@
 
 <link rel="stylesheet" href="{{asset('css/time-line.css')}}">
 <link rel="stylesheet" href="{{asset('css/index.css')}}">
-<link rel="stylesheet" href="{{asset('css/hover.css')}}">
+
 <link rel="stylesheet" href="{{asset('css/navbar.css')}}">
-<link rel="stylesheet" href="{{asset('css/hover2.css')}}">
+
 <link rel="stylesheet" href="{{asset('css/navbar2.css')}}">
 <link rel="stylesheet" href="{{asset('css/lightbox.css')}}">
 <link rel="stylesheet" href="{{asset('css/cart-style.css')}}">
+<link rel="stylesheet" href="{{asset('css/hover.css')}}">
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
 <style>
     p{
         margin:0;
+    }
+    .hvr-underline-from-center:before{
+        bottom:10px;
+    }
+    .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before{
+        bottom:10px;
+        left: 13px;
     }
 </style>
 @endsection
