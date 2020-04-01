@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
 use App\Liqueur;
-use Carbon\Carbon;
+use App\LiqueurAttitude;
 use App\LiqueurImg;
-use App\LiqueurSure;
-use App\OrderDetail;
-use App\LiqueurStory;
 use App\LiqueurMethod;
 use App\LiqueurProduct;
-use App\LiqueurAttitude;
+use App\LiqueurStory;
+use App\LiqueurSure;
+use App\Order;
+use App\OrderDetail;
+use Carbon\Carbon;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
-use TsaiYiHua\ECPay\Checkout;
 use Illuminate\Support\Facades\DB;
+use TsaiYiHua\ECPay\Checkout;
 use TsaiYiHua\ECPay\Services\StringService;
 
 class FrontController extends Controller
@@ -144,41 +144,43 @@ class FrontController extends Controller
     //山崎
     public function Yamasaki()
     {
-        $id = Liqueur::where('name','山崎')->first();
+        $id = Liqueur::where('name', '山崎')->first();
 
-        $banners = LiqueurImg::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+        $banners = LiqueurImg::where('liqueur_id', $id->id)->orderBy('sort', 'desc')->get();
 
-        $stories = LiqueurStory::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+        $stories = LiqueurStory::where('liqueur_id', $id->id)->orderBy('sort', 'desc')->get();
 
-        $attitudes = LiqueurAttitude::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
-        $products = LiqueurProduct::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+        $attitudes = LiqueurAttitude::where('liqueur_id', $id->id)->orderBy('sort', 'desc')->get();
+        $products = LiqueurProduct::where('liqueur_id', $id->id)->orderBy('sort', 'desc')->get();
 
-        $methods = LiqueurMethod::where('liqueur_id',$id->id)->orderBy('sort','desc')->get();
+        $methods = LiqueurMethod::where('liqueur_id', $id->id)->orderBy('sort', 'desc')->get();
         $sures = LiqueurSure::find($id->id)->get();
 
         // dd($stories);
-        return view('Yamasaki', compact('stories','attitudes','products','methods','sures','banners','id'));
+        return view('Yamasaki', compact('stories', 'attitudes', 'products', 'methods', 'sures', 'banners', 'id'));
     }
 
     //白州頁面
     public function hak_his()
     {
-        $id = Liqueur::where('name','白州')->first();
+        $id = Liqueur::where('name', '白州')->first();
         $product = LiqueurProduct::with('sure')->where('liqueur_id', $id->id)->get();
         $store = LiqueurStory::where('liqueur_id', $id->id)->get();
         $attitude = LiqueurAttitude::where('liqueur_id', $id->id)->get();
         $method = LiqueurMethod::where('liqueur_id', $id->id)->get();
-        return view('hak_his', compact('product', 'store', 'attitude', 'method','id'));
+        return view('hak_his', compact('product', 'store', 'attitude', 'method', 'id'));
     }
 
     //響讀取資料
     public function hibiki()
     {
-        $liqueurId = 1;
-        $nav_data = Liqueur::with('imgs')->find($liqueurId);
+        $nav_data = Liqueur::with('imgs')->where('name', '響')->first();
+        $liqueurId = $nav_data->id;
+
         $story_data = LiqueurStory::with('name')->where('liqueur_id', $liqueurId)->orderBy('sort', 'desc')->get();
+
         $attitude_data = LiqueurAttitude::with('name')->where('liqueur_id', $liqueurId)->orderBy('sort', 'desc')->get();
-        // $sure_data = LiqueurSure::with(array('liqueur_product', 'liqueur_product.liqueur'))->orderBy('year', 'desc')->get();
+
         $product_data = LiqueurProduct::with('liqueur')->where('liqueur_id', $liqueurId)->orderBy('sort', 'desc')->get();
 
         $sure_data = DB::table('liqueur_sures')
@@ -192,7 +194,6 @@ class FrontController extends Controller
 
         return view('hibiki', compact('nav_data', 'story_data', 'attitude_data', 'sure_data', 'product_data'));
     }
-
 
     public function Dealer()
     {
