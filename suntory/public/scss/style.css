@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans TC', sans-serif !important;
+  font-family: "Noto Sans TC", sans-serif !important;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -106,16 +106,6 @@ img {
   .w-wine-style {
     top: 0% !important;
     width: 30px !important;
-  }
-}
-
-@media (max-width: 1183px) {
-  .navbar_all {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.5);
   }
 }
 

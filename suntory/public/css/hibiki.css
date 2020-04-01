@@ -2,7 +2,6 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 18px;
 }
 
 body {
@@ -15,50 +14,50 @@ body {
 }
 
 body h1 {
-  font-size: 2.7rem;
+  font-size: 2rem;
 }
 
 @media (max-width: 960px) {
   body h1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 540px) {
   body h1 {
-    font-size: 2.3rem;
-  }
-}
-
-body h2 {
-  font-size: 1.8rem;
-}
-
-@media (max-width: 960px) {
-  body h2 {
     font-size: 1.6rem;
   }
 }
 
+body h2 {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 960px) {
+  body h2 {
+    font-size: 1.15rem;
+  }
+}
+
 @media (max-width: 540px) {
   body h2 {
-    font-size: 1.5rem;
+    font-size: 1.05rem;
   }
 }
 
 body p {
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 @media (max-width: 960px) {
   body p {
-    font-size: 0.9rem;
+    font-size: 0.65rem;
   }
 }
 
 @media (max-width: 540px) {
   body p {
-    font-size: 0.8rem;
+    font-size: 0.55rem;
   }
 }
 
@@ -81,11 +80,18 @@ li {
 
 a {
   text-decoration: none;
-  font-size: 1rem;
 }
 
 a:hover {
   text-decoration: none;
+}
+
+img {
+  width: unset;
+}
+
+.navbar {
+  padding: 0;
 }
 
 .nav-link {
@@ -95,6 +101,12 @@ a:hover {
 
 .navbar-expand-md .navbar-nav .nav-link {
   padding: 5px 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-right: 0;
+  }
 }
 
 /*購物車*/
@@ -165,9 +177,15 @@ a.cart > span.counter {
 
 header {
   background-color: rgba(229, 229, 229, 0.9);
-  box-shadow: 0px 5px 15px rgba(65, 65, 65, 0.7);
+  box-shadow: 0 5px 15px -4px rgba(65, 65, 65, 0.7);
   z-index: 2;
   height: 80px;
+}
+
+@media (max-width: 768px) {
+  header.row.sticky-top {
+    display: none;
+  }
 }
 
 main h1 {
@@ -182,7 +200,7 @@ main .container h1 {
 
 main #banner img {
   display: block;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 80px - 60px);
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -194,7 +212,7 @@ main #banner img {
 }
 
 main #story {
-  margin: 100px 0 0 0;
+  padding: 100px 0 0 0;
 }
 
 @media (max-width: 540px) {
@@ -346,7 +364,7 @@ main #story .phone_text p {
 }
 
 main #movement {
-  margin: 200px 0 0 0;
+  padding: 200px 0 0 0;
 }
 
 @media (max-width: 540px) {
@@ -355,27 +373,8 @@ main #movement {
   }
 }
 
-main #movement .bg {
-  width: 100%;
-  height: 380px;
-  background-position: bottom;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+main #movement img {
   border-radius: 20px;
-}
-
-@media (max-width: 769px) {
-  main #movement .bg {
-    height: 200px;
-  }
-}
-
-@media (max-width: 541px) {
-  main #movement .bg {
-    height: 150px;
-    background-attachment: unset;
-  }
 }
 
 main #movement p {
@@ -385,7 +384,7 @@ main #movement p {
 }
 
 main #award {
-  margin: 200px 0 0 0;
+  padding: 200px 0 0 0;
   /* TIMELINE ARROWS
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
   /* GENERAL MEDIA QUERIES
@@ -401,12 +400,29 @@ main #award {
 main #award .timeline {
   white-space: nowrap;
   overflow-x: hidden;
+  position: relative;
+}
+
+main #award .timeline:before {
+  background: url(/images/49180941688_e1e7531c90_k.jpg?6e8079af3abbd3b07f876c1218f867d1) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /*-1 可以當背景*/
+  opacity: 0.5;
 }
 
 main #award .timeline ol {
   font-size: 0;
   width: 100vw;
-  padding: 225px 0 175px 0;
+  padding: 275px 0 175px 0;
   transition: all 1s;
 }
 
@@ -596,7 +612,7 @@ main #award .timeline .arrows img {
 }
 
 main #series {
-  margin: 200px 0 0 0;
+  padding: 200px 0 0 0;
 }
 
 @media (max-width: 540px) {
@@ -607,7 +623,6 @@ main #series {
 
 main #series .accordion {
   background: black;
-  height: 60vh;
   margin: 20px auto;
   display: flex;
   cursor: pointer;
@@ -645,7 +660,7 @@ main #series .accordion .box:hover .text {
 }
 
 main #series .accordion .box .img {
-  height: 100%;
+  height: 50vh;
   padding: 30px 15px 0;
 }
 
@@ -659,8 +674,8 @@ main #series .accordion .box .text h2 {
   margin-bottom: 25px;
 }
 
-main #series .accordion .box .text .series_content {
-  margin-bottom: 18px;
+main #series .accordion .box .text a {
+  font-size: 0.75rem;
 }
 
 @media (max-width: 1025px) {
@@ -685,7 +700,7 @@ main #series .accordion .box .text .series_content {
   }
 
   main #series .accordion .box .img {
-    padding: 50px 0;
+    padding: 50px 20px;
   }
 
   main #series .accordion .box .text {
@@ -694,18 +709,6 @@ main #series .accordion .box .text .series_content {
 }
 
 @media (max-width: 541px) {
-  main #series .nav-link {
-    padding: 0rem;
-  }
-
-  main #series #nav {
-    padding: 0 30px;
-  }
-
-  main #series .navbar-brand {
-    margin: 0;
-  }
-
   main #series .accordion {
     flex-direction: column;
     box-shadow: none;
@@ -721,7 +724,7 @@ main #series .accordion .box .text .series_content {
   }
 
   main #series .accordion .box .img {
-    padding: 40px 0 0;
+    padding: 40px 20px 0;
     height: 200px;
   }
 

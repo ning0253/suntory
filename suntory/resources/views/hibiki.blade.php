@@ -5,6 +5,7 @@
 @endsection
 
 @section('css')
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('css/hibiki.css')}}">
 <link rel="stylesheet" href="{{asset('css/hover.css')}}">
 @endsection
@@ -17,8 +18,8 @@
     <div class="container">
         <nav id="nav" class=" navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="#">
-                    <img src="./img/00.響_logo01.png" alt="響 HIBIKI" style="height: 68px;">
-                </a>
+                <img src="./img/00.響_logo01.png" alt="響 HIBIKI" style="height: 68px;">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -128,9 +129,9 @@
     <section id="movement">
         <div class="container">
             <h1 class="text-center">{{$nav_data->attitude}}</h1>
-            <div class="bg" style="background-image: url('{{$attitude_data[0]->img}}');"></div>
-            {{-- <img src="{{$attitude_data[0]->img}}" alt="whiskey" class="w-100 mb-2"> --}}
-            <div class="row  d-flex justify-content-center">
+            <div class="bg" {{-- style="background-image: url('{{$attitude_data[0]->img}}');" --}}></div>
+            <img src="{{$attitude_data[0]->img}}" alt="whiskey" class="w-100 mb-2">
+            <div class="row d-flex justify-content-center" data-aos="fade-up" data-aos-duration="3000">
                 <div class="text-center">
                     {!! $attitude_data[0]->content !!}
                 </div>
@@ -143,7 +144,7 @@
         <div class="container">
             <h1>{{$nav_data->sure}}</h1>
         </div>
-        <div class="timeline" data-aos="fade-up" data-aos-duration="3000">
+        <div class="timeline">
             <ol>
                 @foreach ($sure_data as $item)
                 <li>
@@ -152,7 +153,7 @@
                         <span>{{$item->contest}}</span>
                         <img src="{{asset($item->img)}}">
                         <p>
-                            {{$item->title}}<br><br>
+                            {{$item->title}}<br>
                             {{$item->award}}
                         </p>
                     </div>
@@ -184,16 +185,24 @@
                         <img src="{{asset($item->img)}}" height=100%>
                     </div>
                     <div class="text">
-                        <h2>{{$item->title}}</h2>
-                        <div class="series_content">
+                        <div class="d-flex align-items-baseline">
+                            <h2>{{$item->title}}&thinsp;</h2>
+                            <span style="font-size: 0.5rem;">{{$item->capacity}}</span>&thinsp;
+                            <span style="font-size: 0.5rem;">{{$item->density}}</span>
+                        </div>
+
+                        <div class="series_content mb-3">
                             {!! $item->content !!}
                         </div>
-                        <p>色&thinsp;|&thinsp;{{$item->color}}。</p>
+                        <p>色&thinsp;|&thinsp;{{$item->color}}</p>
                         <p>香&thinsp;|&thinsp;{{$item->aroma}}</p>
                         <p>味&thinsp;|&thinsp;{{$item->taste}}</p>
                         <p>餘&thinsp;|&thinsp;{{$item->aftertaste}}</p>
-                        <br>
-                        <a href="#" class="add-to-cart" onclick="addcart({{$item->id}})">立即購買</a>
+                        <p>體&thinsp;|&thinsp;{{$item->body}}</p>
+                        <div class="d-flex align-items-end">
+                            <a href="#" class="mt-3 add-to-cart" onclick="addcart({{$item->id}})">立即購買</a>
+                            <span style="font-size: 0.5rem;">{{$item->note}}</span>
+                        </div>
                     </div>
                 </div>
                 @endforeach

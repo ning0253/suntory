@@ -73,14 +73,7 @@ img {
 }
 
 .navbar {
-    padding: 0
-}
-
-@media (max-width:575px) {
-
-    #nav {
-        padding: 0 30px;
-    }
+    padding: 0;
 }
 
 .nav-link {
@@ -167,6 +160,14 @@ header {
     box-shadow: 0 5px 15px -4px rgba(65, 65, 65, 0.7);
     z-index: 2;
     height: $header_height;
+
+
+}
+
+header.row.sticky-top{
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 main {
@@ -193,7 +194,7 @@ main {
     }
 
     #story {
-        margin: $interval_xl 0 0 0;
+        padding: $interval_xl 0 0 0;
         @media (max-width: 540px) {
             margin-top: $interval_xl;
         }
@@ -314,31 +315,31 @@ main {
     }
 
     #movement {
-        margin: $interval_xl * 2 0 0 0;
+        padding: $interval_xl * 2 0 0 0;
         @media (max-width: 540px) {
             margin-top: $interval_xl;
         }
 
-        .bg {
-            width: 100%;
-            height: 380px;
-            // background-image: url("../../public/img/02.hibiki日本文化_反轉.png");
-            background-position: bottom;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            border-radius: 20px;
-            @media (max-width: 769px) {
-                height: 200px;
-            }
-            @media (max-width: 541px) {
-                height: 150px;
-                background-attachment: unset;
-            }
-        }
-        // img {
+        // .bg {
+        //     width: 100%;
+        //     height: 380px;
+        //     // background-image: url("../../public/img/02.hibiki日本文化_反轉.png");
+        //     background-position: bottom;
+        //     background-size: contain;
+        //     background-repeat: no-repeat;
+        //     background-attachment: fixed;
         //     border-radius: 20px;
+        //     @media (max-width: 769px) {
+        //         height: 200px;
+        //     }
+        //     @media (max-width: 541px) {
+        //         height: 150px;
+        //         background-attachment: unset;
+        //     }
         // }
+        img {
+            border-radius: 20px;
+        }
         p {
             margin: $interval_s 0 0 0;
             padding: 0 15px;
@@ -347,19 +348,36 @@ main {
     }
 
     #award {
-        margin: $interval_xl * 2 0 0 0;
+        padding: $interval_xl * 2 0 0 0;
         @media (max-width: 540px) {
             margin-top: $interval_xl;
         }
+
         .timeline {
             white-space: nowrap;
             overflow-x: hidden;
+            position: relative;
+
+            &:before {
+                background: url("../img/49180941688_e1e7531c90_k.jpg") no-repeat;
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                width: 100%;
+                height: 100%;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1; /*-1 可以當背景*/
+                opacity: 0.5; //透明度设置
+            }
         }
 
         .timeline ol {
             font-size: 0;
             width: 100vw;
-            padding: 225px 0 175px 0;
+            padding: 275px 0 175px 0;
             transition: all 1s;
         }
 
@@ -552,14 +570,14 @@ main {
     }
 
     #series {
-        margin: $interval_xl * 2 0 0 0;
+        padding: $interval_xl * 2 0 0 0;
         @media (max-width: 540px) {
             margin-top: $interval_xl;
         }
 
         .accordion {
             background: $background_color;
-            height: 60vh;
+            // height: 60vh;
             margin: 20px auto;
             display: flex;
             cursor: pointer;
@@ -589,7 +607,7 @@ main {
                 }
 
                 .img {
-                    height: 100%;
+                    height: 50vh;
                     padding: 30px 15px 0;
                 }
 
@@ -601,10 +619,7 @@ main {
                     h2 {
                         margin-bottom: 25px;
                     }
-                    .series_content {
-                        margin-bottom: 18px;
-                    }
-                    a{
+                    a {
                         font-size: 0.75rem;
                     }
                 }
@@ -633,7 +648,7 @@ main {
                     }
 
                     .img {
-                        padding: 50px 0;
+                        padding: 50px 20px;
                     }
                     .text {
                         display: block;
@@ -655,7 +670,7 @@ main {
                     }
 
                     .img {
-                        padding: 40px 0 0;
+                        padding: 40px 20px 0;
                         height: 200px;
                     }
                     .text {
