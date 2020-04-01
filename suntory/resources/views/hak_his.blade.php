@@ -3,13 +3,8 @@
 白州
 @endsection
 @section('css')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|PT+Sans|Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/hak_his/hover.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/hak_his/白州2.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/hak_his/test.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <style>
