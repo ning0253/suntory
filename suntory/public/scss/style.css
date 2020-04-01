@@ -111,6 +111,7 @@ img {
 
 .navbar_all .navbar {
   padding: 0px !important;
+  z-index: 12;
 }
 
 .navbar_all .navbar span {
