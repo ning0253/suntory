@@ -28,6 +28,6 @@
     "dependencies": {
         "vue-upload-component": "^2.8.20",
         "vue2-editor": "^2.10.2",
-        "vuetify": "^2.2.19"
+        "vuetify": "^2.6.10"
     }
 }
